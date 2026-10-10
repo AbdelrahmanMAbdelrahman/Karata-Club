@@ -5,6 +5,12 @@ VisualStudioVersion = 17.14.37012.4 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarataClub.Api", "KarataClub.Api\KarataClub.Api.csproj", "{48ABB650-F5FF-4094-AB34-52661C7F51D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarataClub.Domain", "KarataClub.Domain\KarataClub.Domain.csproj", "{E707615C-61F2-49EF-947A-DF88B07E9015}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarataClub.Application", "KarataClub.Application\KarataClub.Application.csproj", "{E8829458-4782-48F6-87BE-24230AB63992}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarataClub.Infrastructure", "KarataClub.Infrastructure\KarataClub.Infrastructure.csproj", "{4B67BB31-DDE6-48F5-A347-B804A4AB8DBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{48ABB650-F5FF-4094-AB34-52661C7F51D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48ABB650-F5FF-4094-AB34-52661C7F51D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48ABB650-F5FF-4094-AB34-52661C7F51D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E707615C-61F2-49EF-947A-DF88B07E9015}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E707615C-61F2-49EF-947A-DF88B07E9015}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E707615C-61F2-49EF-947A-DF88B07E9015}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E707615C-61F2-49EF-947A-DF88B07E9015}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8829458-4782-48F6-87BE-24230AB63992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8829458-4782-48F6-87BE-24230AB63992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8829458-4782-48F6-87BE-24230AB63992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8829458-4782-48F6-87BE-24230AB63992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B67BB31-DDE6-48F5-A347-B804A4AB8DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B67BB31-DDE6-48F5-A347-B804A4AB8DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B67BB31-DDE6-48F5-A347-B804A4AB8DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B67BB31-DDE6-48F5-A347-B804A4AB8DBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
