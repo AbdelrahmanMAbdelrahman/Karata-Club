@@ -1,6 +1,4 @@
-﻿using KarataClub.Domain.BeltTests;
-
-namespace KarataClub.Domain.People.Instructors;
+﻿namespace KarataClub.Domain.People.Instructors;
 
 public class Instructor : AuditEntity
 {

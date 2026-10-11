@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace KarataClub.Domain.Attendencies;
 
-namespace KarataClub.Domain.Attendencies
+internal class AttendanceErrors
 {
-    internal class AttendanceErrors
-    {
-    }
+    internal static Error InvalidMemberId=Error.Validation("AttendanceErrors.InvalidMemberId", "Invalid Member Id ");
+    internal static Error InvalidSessionId=Error.Validation("AttendanceErrors.InvalidSessionId", "InvalidSessionId");
 }

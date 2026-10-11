@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace KarataClub.Domain.Sessions;
 
-namespace KarataClub.Domain.Sessions
+internal class SessionErrors
 {
-    internal class SessionErrors
-    {
-    }
+    internal static Error InvalidSessionDate=Error.Validation("SessionErrors.InvalidSessionDate", "Invalid Session Date");
+    internal static Error InvalidNumberOfHours=Error.Validation("SessionErrors.InvalidNumberOfHours", "Invalid Number of Hours");
+    internal static Error InvalidCourseId = Error.Validation("SessionErrors.InvalidCourseId", "Invalid Course Id");
 }

@@ -1,6 +1,4 @@
-﻿using KarataClub.Domain.BeltRanks;
-
-namespace KarataClub.Domain.People.Members;
+﻿namespace KarataClub.Domain.People.Members;
 public class Member : AuditEntity
 {
     public Guid PersonId { get;private set; }
@@ -10,6 +8,8 @@ public class Member : AuditEntity
     public Person Person { get; set; }= default!;
     public BeltRank LastBeltRank { get; set; } = default!;
     public BeltTest BeltTest=default!;
+    public ICollection<Attendance> Attendances = default!;
+    public ICollection<Payment> Payments = [];
     public Member(){}
     public Member(Guid id,Guid personId ,bool active,string emergencyContactInfo,Guid lastBeltRankId):base(id){
         PersonId = personId;

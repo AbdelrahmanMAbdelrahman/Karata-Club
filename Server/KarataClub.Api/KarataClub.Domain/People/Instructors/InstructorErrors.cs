@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace KarataClub.Domain.People.Instructors;
 
-namespace KarataClub.Domain.People.Instructors
+internal class InstructorErrors
 {
-    internal class InstructorErrors
-    {
-        internal static Result<Instructor> InvalidInstructorId;
-    }
+    internal static Error InvalidInstructorId= Error.Validation("InstructorErrors.InvalidInstructorId", "Invalid Instructor Id");
 }
