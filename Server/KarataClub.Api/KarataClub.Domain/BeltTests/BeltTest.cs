@@ -18,7 +18,7 @@ public class BeltTest:AuditEntity
     public Guid PaymentId { get; private set; }
     public PaymentStatus PaymentStatus { get; private set; }
     public string? Notes { get; private set; }
-    public ICollection<Member> Members => [];
+    public Member Member =default!;
     public Instructor Instructor =default!;
     public Payment Payment { get; set; } =default !;
     public BeltRank BeltRank { get; set; } = default!;

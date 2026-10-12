@@ -8,7 +8,7 @@ public class Subscription:AuditEntity
     public DateTime EndDate { get; private set; }
     public decimal Fees { get; private set; }
     public Payment Payment { get; set; } = default!;
-    public ICollection<Member> Members = [];
+    public Member Member = default!;
 
     public Subscription() { }
     public Subscription(Guid id, Guid paymentId, Guid memberId, DateTime startDate, DateTime endDate, decimal fees) : base(id)

@@ -8,6 +8,8 @@ public class Course:AuditEntity
     public int NumberOfSessions { get; private set; }
     public decimal TotalHours { get; private set; }
     public ICollection<CourseEnrollment> CourseEnrollments = [];
+    public ICollection<CourseFile> CourseFiles = [];
+    public ICollection<Session> Session { get; private set; }
     public Course(){}
     public Course(Guid id,string courseName,decimal fees,int numberOfSessions,decimal totalHours):base(id){
     CourseName = courseName;

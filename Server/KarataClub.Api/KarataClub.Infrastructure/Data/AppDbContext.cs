@@ -1,8 +1,37 @@
-﻿namespace KarataClub.Infrastructure.Data
+﻿
+
+namespace KarataClub.Infrastructure.Data
 {
-    public sealed class AppDbContext(DbContextOptions<AppDbContext> options,IMediator mediator) : DbContext(options), IAppDbContext
+    public sealed class AppDbContext(DbContextOptions<AppDbContext> options,IMediator mediator)
+        : DbContext(options), IAppDbContext
     {
         public DbSet<BeltTest> BeltTests => Set<BeltTest>();
+
+        public DbSet<Attendance> Attendancies => Set<Attendance>();
+
+        public DbSet<BeltRank> BeltRanks => Set<BeltRank>();
+
+        public DbSet<BeltRankFile> BeltRankFiles => Set<BeltRankFile>();
+
+        public DbSet<CourseFile> CourseFiles => Set<CourseFile>();
+
+        public DbSet<Course> Courses => Set<Course>();
+
+        public DbSet<CourseEnrollment> Enrollments => Set<CourseEnrollment>();
+
+        public DbSet<Payment> Payments => Set<Payment>();
+
+        public DbSet<Person> People => Set<Person>();
+
+        public DbSet<Member> Members => Set<Member>();
+
+        public DbSet<Instructor> Instructors => Set<Instructor>();
+
+        public DbSet<Session> Sessions => Set<Session>();
+
+        public DbSet<Subscription> Subscription => Set<Subscription>();
+
+        public DbSet<UploadedFile> UploadedFiles => Set<UploadedFile>();
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

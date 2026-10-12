@@ -7,7 +7,7 @@ public sealed class CourseEnrollment:AuditEntity
     public Guid PaymentId {  get; private set; }
     public Course Course { get; set; } = default!;
     public Payment Payment { get; set; } = default!;
-    public ICollection<Member> Members=default!;
+    public Member Member=default!;
 
     public CourseEnrollment(){}
     public CourseEnrollment(Guid id,Guid courseId,Guid memberId,Guid paymentId):base(id){

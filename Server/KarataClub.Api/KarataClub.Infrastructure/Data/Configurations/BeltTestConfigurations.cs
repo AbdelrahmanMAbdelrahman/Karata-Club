@@ -1,6 +1,6 @@
 ﻿namespace KarataClub.Infrastructure.Data.Configurations;
 
-public sealed class BeltRankConfigurations : IEntityTypeConfiguration<BeltTest>
+public sealed class BeltTestConfigurations : IEntityTypeConfiguration<BeltTest>
 {
     public void Configure(EntityTypeBuilder<BeltTest> builder)
     {
@@ -10,7 +10,7 @@ public sealed class BeltRankConfigurations : IEntityTypeConfiguration<BeltTest>
         builder.Property(bt=>bt.PaymentStatus).IsRequired().HasDefaultValue(PaymentStatus.UnPaid);
         builder.HasOne(bt => bt.Payment).WithOne(p=>p.BeltTest);
         builder.HasOne(bt => bt.Instructor).WithMany(i=>i.BeltTests);
-        builder.HasMany(bt => bt.Members).WithOne(m=>m.BeltTest);
-        builder.HasOne(bt => bt.BeltRank).WithOne(br => br.BeltTest);
+        builder.HasOne(bt => bt.Member).WithMany(m=>m.BeltTests);
+        builder.HasOne(bt => bt.BeltRank).WithMany(br => br.BeltTests);
     }
 }

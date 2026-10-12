@@ -1,4 +1,6 @@
-﻿namespace KarataClub.Domain.Payments;
+﻿using KarataClub.Domain.Subscriptions;
+
+namespace KarataClub.Domain.Payments;
 
 public sealed class Payment : AuditEntity
 {
@@ -8,6 +10,9 @@ public sealed class Payment : AuditEntity
     public string? Notes { get; private set; } = default!;
     public Member Member { get; set; } = default!;
     public BeltTest BeltTest = default!;
+    public CourseEnrollment CourseEnrollment=default!;
+    public Subscription Subscription=default!;
+
     public Payment(){}
     public Payment(Guid id ,Guid memberId,DateTime paymentDate,decimal amount,string notes):base(id)
     {

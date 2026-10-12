@@ -1,13 +1,17 @@
-﻿namespace KarataClub.Domain.BeltRanks;
+﻿using KarataClub.Domain.BeltRanksFiles;
+
+namespace KarataClub.Domain.BeltRanks;
 
 public class BeltRank : AuditEntity
 {
     public string RankName { get; private set; } = default!;
     public decimal TestFees { get; private set; }
+    
     public Priority RankPriority { get; private set; }
     public ICollection<BeltTest> BeltTests=default!;
     public ICollection<Person> People=default!;
-
+    public ICollection<BeltRankFile> BeltRankFiles=default!;
+     
     public BeltRank(){}
     public BeltRank(Guid id,string rankName,decimal testFees,Priority rankPriority):base(id){
     RankName = rankName;

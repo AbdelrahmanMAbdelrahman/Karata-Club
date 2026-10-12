@@ -1,4 +1,6 @@
-﻿namespace KarataClub.Domain.UploadedFiles;
+﻿using KarataClub.Domain.BeltRanksFiles;
+
+namespace KarataClub.Domain.UploadedFiles;
 
 public sealed class UploadedFile:AuditEntity
 {
@@ -8,7 +10,7 @@ public sealed class UploadedFile:AuditEntity
     public string Extension { get; private set; } = default!;
     public decimal Size { get; private set; }
     public CourseFile CourseFile = default!;
-    public BeltRank BeltRank= default!;
+    public BeltRankFile BeltRankFile= default!;
 
     private UploadedFile()
     {
