@@ -1,6 +1,6 @@
 ﻿
 
-using KarataClub.Domain.Subscriptions;
+using KarataClub.Domain.Courses.Subscriptions;
 
 namespace KarataClub.Infrastructure.Data.Configurations
 {

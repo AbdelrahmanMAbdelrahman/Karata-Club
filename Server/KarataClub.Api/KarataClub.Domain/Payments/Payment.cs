@@ -1,6 +1,4 @@
-﻿using KarataClub.Domain.Subscriptions;
-
-namespace KarataClub.Domain.Payments;
+﻿namespace KarataClub.Domain.Payments;
 
 public sealed class Payment : AuditEntity
 {

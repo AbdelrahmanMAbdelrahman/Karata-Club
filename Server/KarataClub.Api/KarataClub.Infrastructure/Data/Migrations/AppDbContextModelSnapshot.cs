@@ -22,43 +22,7 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("KarataClub.Domain.Attendencies.Attendance", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsExist")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("LastModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("MemberId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SessionId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MemberId");
-
-                    b.HasIndex("SessionId");
-
-                    b.ToTable("Attendencies", (string)null);
-                });
-
-            modelBuilder.Entity("KarataClub.Domain.BeltRanks.BeltRank", b =>
+            modelBuilder.Entity("KarataClub.Domain.BeltTests.BeltRanks.BeltRank", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -91,7 +55,7 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.ToTable("BeltRanks");
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.BeltRanksFiles.BeltRankFile", b =>
+            modelBuilder.Entity("KarataClub.Domain.BeltTests.BeltRanks.BeltRanksFiles.BeltRankFile", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -184,40 +148,6 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.ToTable("BeltTests", (string)null);
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.CourseFiles.CourseFile", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CourseId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("LastModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("UploadedFileId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("UploadedFileId")
-                        .IsUnique();
-
-                    b.ToTable("CourseFiles");
-                });
-
             modelBuilder.Entity("KarataClub.Domain.Courses.Course", b =>
                 {
                     b.Property<Guid>("Id")
@@ -259,7 +189,41 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.ToTable("Courses", (string)null);
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.Enrollments.CourseEnrollment", b =>
+            modelBuilder.Entity("KarataClub.Domain.Courses.CourseFiles.CourseFile", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("UploadedFileId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.HasIndex("UploadedFileId")
+                        .IsUnique();
+
+                    b.ToTable("CourseFiles");
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.Courses.Enrollments.CourseEnrollment", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -296,6 +260,156 @@ namespace KarataClub.Infrastructure.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Enrollments", (string)null);
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.Courses.Sessions.Session", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CourseId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("NumberOfHours")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SessionDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("Sessions", (string)null);
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.Courses.Subscriptions.Subscription", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Fees")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MemberId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PaymentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
+
+                    b.HasIndex("PaymentId")
+                        .IsUnique();
+
+                    b.ToTable("Subscriptions", (string)null);
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.Identity.AppUsers.AppUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("KarataClub.Domain.Payments.Payment", b =>
@@ -367,6 +481,42 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.ToTable("Instructors");
                 });
 
+            modelBuilder.Entity("KarataClub.Domain.People.Members.Attendencies.Attendance", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsExist")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MemberId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
+
+                    b.HasIndex("SessionId");
+
+                    b.ToTable("Attendencies", (string)null);
+                });
+
             modelBuilder.Entity("KarataClub.Domain.People.Members.Member", b =>
                 {
                     b.Property<Guid>("Id")
@@ -386,7 +536,7 @@ namespace KarataClub.Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("LastBeltRankId")
+                    b.Property<Guid?>("LastBeltRankId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("LastModifiedAt")
@@ -426,9 +576,8 @@ namespace KarataClub.Infrastructure.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("LastModifiedAt")
                         .HasColumnType("datetime2");
@@ -449,83 +598,6 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("People", (string)null);
-                });
-
-            modelBuilder.Entity("KarataClub.Domain.Sessions.Session", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CourseId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("LastModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("NumberOfHours")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("SessionDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("Sessions", (string)null);
-                });
-
-            modelBuilder.Entity("KarataClub.Domain.Subscriptions.Subscription", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("Fees")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("LastModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("MemberId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PaymentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MemberId");
-
-                    b.HasIndex("PaymentId")
-                        .IsUnique();
-
-                    b.ToTable("Subscriptions", (string)null);
                 });
 
             modelBuilder.Entity("KarataClub.Domain.UploadedFiles.UploadedFile", b =>
@@ -570,30 +642,144 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.ToTable("UploadedFiles", (string)null);
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.Attendencies.Attendance", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
-                    b.HasOne("KarataClub.Domain.People.Members.Member", "Member")
-                        .WithMany("Attendances")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
 
-                    b.HasOne("KarataClub.Domain.Sessions.Session", "Session")
-                        .WithMany("Attendances")
-                        .HasForeignKey("SessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Navigation("Member");
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
-                    b.Navigation("Session");
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.BeltRanksFiles.BeltRankFile", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.BeltTests.BeltRanks.BeltRanksFiles.BeltRankFile", b =>
                 {
                     b.HasOne("KarataClub.Domain.UploadedFiles.UploadedFile", "UploadedFile")
                         .WithOne("BeltRankFile")
-                        .HasForeignKey("KarataClub.Domain.BeltRanksFiles.BeltRankFile", "UploadedFileId")
+                        .HasForeignKey("KarataClub.Domain.BeltTests.BeltRanks.BeltRanksFiles.BeltRankFile", "UploadedFileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -602,7 +788,7 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("KarataClub.Domain.BeltTests.BeltTest", b =>
                 {
-                    b.HasOne("KarataClub.Domain.BeltRanks.BeltRank", "BeltRank")
+                    b.HasOne("KarataClub.Domain.BeltTests.BeltRanks.BeltRank", "BeltRank")
                         .WithMany("BeltTests")
                         .HasForeignKey("BeltRankId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -635,7 +821,7 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Navigation("Payment");
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.CourseFiles.CourseFile", b =>
+            modelBuilder.Entity("KarataClub.Domain.Courses.CourseFiles.CourseFile", b =>
                 {
                     b.HasOne("KarataClub.Domain.Courses.Course", "Course")
                         .WithMany("CourseFiles")
@@ -645,7 +831,7 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
                     b.HasOne("KarataClub.Domain.UploadedFiles.UploadedFile", "UploadedFile")
                         .WithOne("CourseFile")
-                        .HasForeignKey("KarataClub.Domain.CourseFiles.CourseFile", "UploadedFileId")
+                        .HasForeignKey("KarataClub.Domain.Courses.CourseFiles.CourseFile", "UploadedFileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -654,7 +840,7 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Navigation("UploadedFile");
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.Enrollments.CourseEnrollment", b =>
+            modelBuilder.Entity("KarataClub.Domain.Courses.Enrollments.CourseEnrollment", b =>
                 {
                     b.HasOne("KarataClub.Domain.Courses.Course", "Course")
                         .WithMany("CourseEnrollments")
@@ -670,11 +856,41 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
                     b.HasOne("KarataClub.Domain.Payments.Payment", "Payment")
                         .WithOne("CourseEnrollment")
-                        .HasForeignKey("KarataClub.Domain.Enrollments.CourseEnrollment", "PaymentId")
+                        .HasForeignKey("KarataClub.Domain.Courses.Enrollments.CourseEnrollment", "PaymentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
+
+                    b.Navigation("Member");
+
+                    b.Navigation("Payment");
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.Courses.Sessions.Session", b =>
+                {
+                    b.HasOne("KarataClub.Domain.Courses.Course", "Course")
+                        .WithMany("Session")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.Courses.Subscriptions.Subscription", b =>
+                {
+                    b.HasOne("KarataClub.Domain.People.Members.Member", "Member")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KarataClub.Domain.Payments.Payment", "Payment")
+                        .WithOne("Subscription")
+                        .HasForeignKey("KarataClub.Domain.Courses.Subscriptions.Subscription", "PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Member");
 
@@ -703,13 +919,30 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Navigation("Person");
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.People.Members.Member", b =>
+            modelBuilder.Entity("KarataClub.Domain.People.Members.Attendencies.Attendance", b =>
                 {
-                    b.HasOne("KarataClub.Domain.BeltRanks.BeltRank", "LastBeltRank")
-                        .WithMany()
-                        .HasForeignKey("LastBeltRankId")
+                    b.HasOne("KarataClub.Domain.People.Members.Member", "Member")
+                        .WithMany("Attendances")
+                        .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("KarataClub.Domain.Courses.Sessions.Session", "Session")
+                        .WithMany("Attendances")
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+
+                    b.Navigation("Session");
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.People.Members.Member", b =>
+                {
+                    b.HasOne("KarataClub.Domain.BeltTests.BeltRanks.BeltRank", "LastBeltRank")
+                        .WithMany()
+                        .HasForeignKey("LastBeltRankId");
 
                     b.HasOne("KarataClub.Domain.People.Person", "Person")
                         .WithOne("Member")
@@ -722,37 +955,58 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Navigation("Person");
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.Sessions.Session", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("KarataClub.Domain.Courses.Course", "Course")
-                        .WithMany("Session")
-                        .HasForeignKey("CourseId")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.Subscriptions.Subscription", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("KarataClub.Domain.People.Members.Member", "Member")
-                        .WithMany("Subscriptions")
-                        .HasForeignKey("MemberId")
+                    b.HasOne("KarataClub.Domain.Identity.AppUsers.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("KarataClub.Domain.Payments.Payment", "Payment")
-                        .WithOne("Subscription")
-                        .HasForeignKey("KarataClub.Domain.Subscriptions.Subscription", "PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Member");
-
-                    b.Navigation("Payment");
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.BeltRanks.BeltRank", b =>
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("KarataClub.Domain.Identity.AppUsers.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KarataClub.Domain.Identity.AppUsers.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("KarataClub.Domain.Identity.AppUsers.AppUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.BeltTests.BeltRanks.BeltRank", b =>
                 {
                     b.Navigation("BeltTests");
                 });
@@ -764,6 +1018,11 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Navigation("CourseFiles");
 
                     b.Navigation("Session");
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.Courses.Sessions.Session", b =>
+                {
+                    b.Navigation("Attendances");
                 });
 
             modelBuilder.Entity("KarataClub.Domain.Payments.Payment", b =>
@@ -796,11 +1055,6 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Navigation("Instructor");
 
                     b.Navigation("Member");
-                });
-
-            modelBuilder.Entity("KarataClub.Domain.Sessions.Session", b =>
-                {
-                    b.Navigation("Attendances");
                 });
 
             modelBuilder.Entity("KarataClub.Domain.UploadedFiles.UploadedFile", b =>

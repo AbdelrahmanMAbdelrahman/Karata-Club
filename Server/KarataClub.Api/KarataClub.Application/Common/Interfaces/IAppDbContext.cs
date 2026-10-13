@@ -1,5 +1,4 @@
 ﻿
-
 namespace KarataClub.Application.Common.Interfaces
 {
     public interface IAppDbContext
@@ -18,6 +17,7 @@ namespace KarataClub.Application.Common.Interfaces
         public DbSet<Session> Sessions { get; }
         public DbSet<Subscription> Subscription { get; }
         public DbSet<UploadedFile> UploadedFiles { get; }
+        public DbSet<RefreshToken> RefreshTokens { get; }
 
 
         public Task<int> SaveChangesAsync(CancellationToken ct);

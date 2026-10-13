@@ -1,4 +1,4 @@
-﻿using KarataClub.Domain.Attendencies;
+﻿using KarataClub.Domain.People.Members.Attendencies;
 
 namespace KarataClub.Infrastructure.Data.Configurations;
 

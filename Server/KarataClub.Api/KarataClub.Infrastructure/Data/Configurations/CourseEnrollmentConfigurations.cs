@@ -1,4 +1,4 @@
-﻿using KarataClub.Domain.Enrollments;
+﻿using KarataClub.Domain.Courses.Enrollments;
 
 namespace KarataClub.Infrastructure.Data.Configurations;
 

@@ -1,4 +1,6 @@
-﻿namespace KarataClub.Application.Features.BeltRanks.Mappers;
+﻿using KarataClub.Domain.BeltTests.BeltRanks;
+
+namespace KarataClub.Application.Features.BeltRanks.Mappers;
 
 public static class BeltRankMappers
 

@@ -12,7 +12,7 @@ public static class DependencyInjection
         servicies.AddMediatR(config =>
         {
             config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-        });//cs1061
+        });
         return servicies;
     }
 }

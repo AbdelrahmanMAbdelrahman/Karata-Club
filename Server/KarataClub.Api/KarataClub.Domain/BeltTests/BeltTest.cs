@@ -1,11 +1,4 @@
-﻿using KarataClub.Domain.BeltRanks;
-using KarataClub.Domain.BeltTests.Enums;
-using KarataClub.Domain.Common.Results;
-using KarataClub.Domain.Payments;
-using KarataClub.Domain.People.Instructors;
-using KarataClub.Domain.People.Members;
-
-namespace KarataClub.Domain.BeltTests;
+﻿namespace KarataClub.Domain.BeltTests;
 
 public class BeltTest:AuditEntity
 {

@@ -1,6 +1,4 @@
-﻿using KarataClub.Domain.BeltRanksFiles;
-
-namespace KarataClub.Domain.UploadedFiles;
+﻿namespace KarataClub.Domain.UploadedFiles;
 
 public sealed class UploadedFile:AuditEntity
 {

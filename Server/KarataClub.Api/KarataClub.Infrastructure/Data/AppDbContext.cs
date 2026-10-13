@@ -1,9 +1,10 @@
 ﻿
 
+
 namespace KarataClub.Infrastructure.Data
 {
-    public sealed class AppDbContext(DbContextOptions<AppDbContext> options,IMediator mediator)
-        : DbContext(options), IAppDbContext
+    public sealed class AppDbContext(DbContextOptions<AppDbContext> options,IMediator mediator)// appdbcontext cs0311
+        : IdentityDbContext<AppUser,IdentityRole,string>(options), IAppDbContext
     {
         public DbSet<BeltTest> BeltTests => Set<BeltTest>();
 

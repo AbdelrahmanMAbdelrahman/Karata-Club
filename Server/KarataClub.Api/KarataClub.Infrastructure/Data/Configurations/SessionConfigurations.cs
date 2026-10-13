@@ -1,4 +1,4 @@
-﻿using KarataClub.Domain.Sessions;
+﻿using KarataClub.Domain.Courses.Sessions;
 
 namespace KarataClub.Infrastructure.Data.Configurations;
 
