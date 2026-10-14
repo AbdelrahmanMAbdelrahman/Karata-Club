@@ -58,6 +58,7 @@ namespace KarataClub.Infrastructure.Services
                 claims.Add(new Claim( ClaimTypes.Role,role));
             }
             SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor() { 
+                Subject=new ClaimsIdentity(claims),
             Issuer=options.Value.Issuer,
             Audience=options.Value.Audience,
             Expires=expireOn,

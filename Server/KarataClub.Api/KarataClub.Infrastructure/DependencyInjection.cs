@@ -1,4 +1,6 @@
-﻿namespace KarataClub.Infrastructure;
+﻿using KarataClub.Infrastructure.Services;
+
+namespace KarataClub.Infrastructure;
 
 public static class DependencyInjection
 {
@@ -6,7 +8,7 @@ public static class DependencyInjection
     {
         services.AddSqlServer( config).
             AddDepedencyInject()
-            .AddOptions()
+            .AddOptionsService()
             .AddCorsService()
             .AddJwtService(config);
         return services;
@@ -25,6 +27,9 @@ public static class DependencyInjection
     public static IServiceCollection AddDepedencyInject(this IServiceCollection servicies)
     {
         servicies.AddScoped<IAppDbContext>(provider=>provider.GetRequiredService<AppDbContext>());
+        servicies.AddScoped<IIdentityService, IdentityService>();
+        servicies.AddScoped<ITokenProvider, TokenProvider>();
+        servicies.AddScoped<AppDbContextInitializer>();
         return servicies;
 
     }

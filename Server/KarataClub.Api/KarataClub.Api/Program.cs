@@ -25,5 +25,5 @@ app.UseHttpsRedirection();
 app.UseMiddlewares();
 
 app.MapControllers();
-
+await app.InitializeAsync();
 app.Run();

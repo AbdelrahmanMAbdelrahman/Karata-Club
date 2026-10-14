@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\KarataClub.Application\KarataClub.Application.csproj" />
     <ProjectReference Include="..\KarataClub.Infrastructure\KarataClub.Infrastructure.csproj" />
   </ItemGroup>

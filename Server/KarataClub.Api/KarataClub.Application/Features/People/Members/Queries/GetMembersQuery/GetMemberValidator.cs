@@ -1,4 +1,4 @@
-﻿namespace KarataClub.Application.Features.Members.Queries.GetMembersQuery;
+﻿namespace KarataClub.Application.Features.People.Members.Queries.GetMembersQuery;
 
 public sealed class GetMemberValidator:AbstractValidator<GetMemberQuery>
 {

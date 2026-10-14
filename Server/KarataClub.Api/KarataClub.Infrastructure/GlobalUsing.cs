@@ -38,6 +38,7 @@ global using Microsoft.Extensions.Options;
 global using System.IdentityModel.Tokens.Jwt;
 global using System.Security.Claims;
 global using System.Security.Cryptography;
+global using Microsoft.AspNetCore.Builder; 
 namespace KarataClub.Infrastructure;
 
 

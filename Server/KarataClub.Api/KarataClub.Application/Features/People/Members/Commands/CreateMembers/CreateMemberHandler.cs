@@ -1,4 +1,7 @@
-﻿namespace KarataClub.Application.Features.Members.Commands.CreateMembers;
+﻿using KarataClub.Application.Features.People.Members.Dtos;
+using KarataClub.Application.Features.People.Members.Mappers;
+
+namespace KarataClub.Application.Features.People.Members.Commands.CreateMembers;
 
 public sealed class CreateMemberHandler(IAppDbContext context, ILogger<CreateMemberHandler> logger)
     : IRequestHandler<CreateMemberCommand, Result<MemberDto>>
@@ -21,13 +24,14 @@ public sealed class CreateMemberHandler(IAppDbContext context, ILogger<CreateMem
             return createPersonResult.Errors;
         }
         var person = createPersonResult.Value;
-        Result<Member> createMemberResult = Member.Create(person.Id,request.EmergencyContactInfo);
+        Result<Member> createMemberResult = Member.Create(person.Id);
         if (createMemberResult.IsFailure)
         {
             logger.LogError(string.Join(" - ",createMemberResult.Errors));
             return createMemberResult.Errors;
         }
         var member=createMemberResult.Value;
+       
         member.Person = person;
         await context.Members.AddAsync(member,cancellationToken);
         await context.SaveChangesAsync(cancellationToken);

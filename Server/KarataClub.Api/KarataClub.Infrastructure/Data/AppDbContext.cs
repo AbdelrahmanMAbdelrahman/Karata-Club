@@ -33,6 +33,7 @@ namespace KarataClub.Infrastructure.Data
         public DbSet<Subscription> Subscription => Set<Subscription>();
 
         public DbSet<UploadedFile> UploadedFiles => Set<UploadedFile>();
+        public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
