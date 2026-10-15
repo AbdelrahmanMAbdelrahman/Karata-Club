@@ -15,7 +15,7 @@ public class Result<T> : IResult<T>
     public bool IsSuccess { get; }
     public T Value  {get;}
     public List<Error> Errors { get; }
-    public bool IsFailure { get; }
+    public bool IsFailure => !IsSuccess;
     public Error TopError =>IsFailure? Errors[0]:default!;
     public Result(T val,List<Error>errors,bool isSuccess)
     {

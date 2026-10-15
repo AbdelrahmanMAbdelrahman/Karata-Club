@@ -5,11 +5,11 @@ using KarataClub.Infrastructure;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddApplication().AddInfrastructure(builder.Configuration);
-builder.Services.AddControllers();
+builder.Services.AddInfrastructure(builder.Configuration)
+    .AddApplication()
+    .AddPresentation();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+
  
 var app = builder.Build();
 
@@ -26,4 +26,8 @@ app.UseMiddlewares();
 
 app.MapControllers();
 await app.InitializeAsync();
+app.MapGet("/test", () => Results.Ok(new
+{
+    Message = "API is working"
+}));
 app.Run();

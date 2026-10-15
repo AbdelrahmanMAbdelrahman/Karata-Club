@@ -1,0 +1,8 @@
+.instructor-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.pagination{
+    display: flex;
+     
+}

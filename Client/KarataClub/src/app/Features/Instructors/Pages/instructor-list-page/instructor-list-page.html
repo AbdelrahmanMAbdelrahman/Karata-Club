@@ -1,0 +1,12 @@
+<div class="instructor-page">
+    <div class="instructor-search">
+        <app-instructor-search-component
+        (OnSearch)="Search($event)"
+        ></app-instructor-search-component>
+    </div>
+    <div class="instructor-list">
+        <app-instructor-list-component
+        [Instructors]="(instructors|async)!"
+        ></app-instructor-list-component>
+    </div>
+</div>

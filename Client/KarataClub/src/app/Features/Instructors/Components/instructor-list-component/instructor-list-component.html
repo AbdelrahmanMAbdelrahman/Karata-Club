@@ -1,0 +1,38 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-info">Instructors</h3>
+    </div>
+    <div class="card-body">
+
+        <table class="table table-stripped table-hover">
+            <thead>
+                <tr>
+                   <th>Serial</th>
+                   <th>Name</th>
+                   <th>Email</th>
+                   <th>Phone</th>
+                   <th>Qualifications</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let instructor of Instructors?.items;let index=index">
+                    <td>{{index+1}}</td>
+                    <td>{{instructor.person.name}}</td>
+                    <td>{{instructor.person.email}}</td>
+                    <td>{{instructor.person.phone}}</td>
+                    <td>{{instructor.qualifications}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="instructor-footer">
+            <h6 class="text-info">Count : {{Instructors?.items?.length}}</h6>
+            <div class="pagination">
+                <button [disabled]="!Instructors?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <p class="text-light mt-2">Page {{Instructors?.totalPages}} / {{Instructors?.pageNumber}}</p>
+                <button [disabled]="!Instructors?.hasNextPage" class="btn btn-outline-primary">Next</button>
+            </div>
+        </div>
+    </div>
+</div>

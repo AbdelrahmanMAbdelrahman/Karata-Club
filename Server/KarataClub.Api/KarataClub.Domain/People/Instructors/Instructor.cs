@@ -12,8 +12,14 @@ public class Instructor : AuditEntity
     PersonId = personId;
         Qualifications = qualifications;
     }
-    public Result<Instructor> Create(Guid personId, string qualifications) {
+    public static Result<Instructor> Create(Guid personId, string qualifications) {
         if (personId == Guid.Empty) return InstructorErrors.InvalidInstructorId;
         return new Instructor(Guid.NewGuid(), personId, qualifications);
+    }
+
+    public Result<Updated> Update(string qualifications)
+    {
+        this.Qualifications = qualifications;
+        return Result.Updated;
     }
 }

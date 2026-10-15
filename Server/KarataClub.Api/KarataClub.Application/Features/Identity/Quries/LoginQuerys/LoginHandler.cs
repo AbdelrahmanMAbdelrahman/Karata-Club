@@ -8,7 +8,7 @@ namespace KarataClub.Application.Features.Identity.Quries.LoginQuerys
         public async Task<Result<TokenResponse>> Handle(LoginQuery request, CancellationToken cancellationToken)
         {
           Result<AppUserDto>user =await identity.AuthenticateAsync(request.Email,request.Password,cancellationToken);
-            if (user is null)
+            if (user.IsFailure)
             {
                 logger.LogError("Incorrect userName or password");
                 return ApplicationErrors.InCorrectUserNameOrPassword;

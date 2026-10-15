@@ -10,7 +10,8 @@ public static class DependencyInjection
             AddDepedencyInject()
             .AddOptionsService()
             .AddCorsService()
-            .AddJwtService(config);
+            .AddJwtService(config)
+            .AddAuthorization();
         return services;
     }
     public static IServiceCollection AddSqlServer(this IServiceCollection services, IConfiguration config)
@@ -41,7 +42,7 @@ public static class DependencyInjection
             {
                 policy.AllowAnyHeader()
                 .AllowAnyMethod()
-                .AllowAnyOrigin();
+                .WithOrigins(["http://localhost:4200"]);
             });
         });
         return services;
