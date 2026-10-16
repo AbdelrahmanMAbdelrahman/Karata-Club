@@ -11,6 +11,7 @@
                    <th>Name</th>
                    <th>Email</th>
                    <th>Phone</th>
+                   <th>Address</th>
                    <th>Qualifications</th>
                 </tr>
             </thead>
@@ -20,6 +21,7 @@
                     <td>{{instructor.person.name}}</td>
                     <td>{{instructor.person.email}}</td>
                     <td>{{instructor.person.phone}}</td>
+                    <td>{{instructor.person.address}}</td>
                     <td>{{instructor.qualifications}}</td>
                 </tr>
             </tbody>
@@ -28,6 +30,7 @@
     <div class="card-footer">
         <div class="instructor-footer">
             <h6 class="text-info">Count : {{Instructors?.items?.length}}</h6>
+            <button class="btn btn-primary" [routerLink]="['/InstructorPage','InstructorCreatePage','0']">Add New</button>
             <div class="pagination">
                 <button [disabled]="!Instructors?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
                 <p class="text-light mt-2">Page {{Instructors?.totalPages}} / {{Instructors?.pageNumber}}</p>

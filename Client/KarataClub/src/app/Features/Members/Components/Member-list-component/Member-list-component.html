@@ -1,0 +1,46 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-info">Members</h3>
+    </div>
+    <div class="card-body">
+
+        <table class="table table-stripped table-hover">
+            <thead>
+                <tr>
+                   <th>Serial</th>
+                   <th>Name</th>
+                   <th>Email</th>
+                   <th>Phone</th>
+                   <th>Address</th>
+                   <th>Active</th>
+                   <th>Last Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let member of Members?.items;let index=index">
+                    <td>
+                        <a [routerLink]="['/MemberPage','MemberDetailPage',member.id]" class="nav-link">
+                        {{index+1}}
+                        </a></td>
+                    <td>{{member.person.name}}</td>
+                    <td>{{member.person.email}}</td>
+                    <td>{{member.person.phone}}</td>
+                    <td>{{member.person.address}}</td>
+                    <td>{{member.active?'True':'False'}}</td>
+                    <td>{{member.beltRank?.rankName??"N/A"}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="Member-footer">
+            <h6 class="text-info">Count : {{Members?.items?.length}}</h6>
+            <button class="btn btn-primary" [routerLink]="['/MemberPage','MemberCreatePage','0']">Add New</button>
+            <div class="pagination">
+                <button [disabled]="!Members?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <p class="text-light mt-2">Page {{Members?.totalPages}} / {{Members?.pageNumber}}</p>
+                <button [disabled]="!Members?.hasNextPage" class="btn btn-outline-primary">Next</button>
+            </div>
+        </div>
+    </div>
+</div>

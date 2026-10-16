@@ -1,4 +1,6 @@
-﻿namespace KarataClub.Domain.People.Members;
+﻿using KarataClub.Domain.Subscriptions;
+
+namespace KarataClub.Domain.People.Members;
 public class Member : AuditEntity
 {
     public Guid PersonId { get;private set; }

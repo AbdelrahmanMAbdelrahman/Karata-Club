@@ -1,4 +1,6 @@
 ﻿
+using KarataClub.Domain.Subscriptions;
+
 namespace KarataClub.Application.Common.Interfaces
 {
     public interface IAppDbContext

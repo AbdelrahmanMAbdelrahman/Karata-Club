@@ -1,0 +1,12 @@
+<div class="Member-page">
+    <div class="Member-search">
+        <app-Member-search-component
+        (OnSearch)="Search($event)"
+        ></app-Member-search-component>
+    </div>
+    <div class="Member-list">
+        <app-Member-list-component
+        [Members]="(Members|async)!"
+        ></app-Member-list-component>
+    </div>
+</div>

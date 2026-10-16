@@ -1,4 +1,4 @@
-﻿namespace KarataClub.Domain.Courses.Subscriptions;
+﻿namespace KarataClub.Domain.Subscriptions;
 
 internal  sealed class SubscriptionErrors:AuditEntity
 {

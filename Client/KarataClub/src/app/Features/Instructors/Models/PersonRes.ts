@@ -1,5 +1,6 @@
 export interface PersonRes{
     name:string,
     email:string,
-    phone:string
+    phone:string,
+    address:string
 }

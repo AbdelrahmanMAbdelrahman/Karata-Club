@@ -1,4 +1,6 @@
-﻿namespace KarataClub.Domain.Payments;
+﻿using KarataClub.Domain.Subscriptions;
+
+namespace KarataClub.Domain.Payments;
 
 public sealed class Payment : AuditEntity
 {
@@ -19,7 +21,7 @@ public sealed class Payment : AuditEntity
         Amount=amount;
         Notes=notes;
     }
-    public Result<Payment> Create(Guid memberId,DateTime paymentDate,decimal amount,string notes)
+    public static Result<Payment> Create(Guid memberId,DateTime paymentDate,decimal amount,string notes)
     {
         if (memberId == Guid.Empty) return PaymentErrors.InvalidMemberId;
         if (paymentDate != DateTime.UtcNow) return PaymentErrors.InvalidPaymentDate;

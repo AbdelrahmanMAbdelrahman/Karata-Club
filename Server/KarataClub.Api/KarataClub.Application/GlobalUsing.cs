@@ -21,7 +21,7 @@ global using KarataClub.Domain.BeltTests.BeltRanks.BeltRanksFiles;
 global using KarataClub.Domain.Courses.CourseFiles;
 global using KarataClub.Domain.Courses.Enrollments;
 global using KarataClub.Domain.Courses.Sessions;
-global using KarataClub.Domain.Courses.Subscriptions;
+global using KarataClub.Domain.Subscriptions;
 global using KarataClub.Domain.Identity.RefreshTokens;
 global using KarataClub.Domain.People.Members.Attendencies;
 global using KarataClub.Application.Features.Identity.Dtos;

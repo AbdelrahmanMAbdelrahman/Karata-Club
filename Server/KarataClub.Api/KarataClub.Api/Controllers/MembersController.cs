@@ -1,7 +1,10 @@
-﻿using KarataClub.Application.Features.People.Members.Commands.CreateMembers;
+﻿using KarataClub.Application.Features.People.Instructors.Queries.GetInstructors;
+using KarataClub.Application.Features.People.Members.Commands.CreateMembers;
 using KarataClub.Application.Features.People.Members.Commands.UpdateMembers;
 using KarataClub.Application.Features.People.Members.Dtos;
+using KarataClub.Application.Features.People.Members.Queries.GetMembers;
 using KarataClub.Application.Features.People.Members.Queries.GetMembersQuery;
+using KarataClub.Domain.Common.Models;
 
 namespace KarataClub.Api.Controllers;
 
@@ -33,6 +36,18 @@ public class MembersController(IMediator mediator) : ApiController
     [EndpointDescription("Provide a valid member id to fetch it's data from database ")]
     [HttpGet("{MemberId}")]
     public async Task<IActionResult> GetMember([FromRoute]GetMemberQuery query,CancellationToken ct)
+    {
+        var result = await mediator.Send(query,ct);
+        return result.Match(res=>Ok(res),Problem);
+    }
+    [ProducesResponseType(typeof(PaginatedList< MemberDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [EndpointName(nameof(GetMembers))]
+    [EndpointSummary("Get Members")]
+    [EndpointDescription("return a paginated list of member with given creteria")]
+    [HttpGet("")]
+    public async Task<IActionResult> GetMembers([FromQuery]GetMembersQuery query,CancellationToken ct)
     {
         var result = await mediator.Send(query,ct);
         return result.Match(res=>Ok(res),Problem);

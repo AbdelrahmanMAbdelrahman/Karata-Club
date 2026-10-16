@@ -1,0 +1,37 @@
+<div class="card">
+    <div class="card-body">
+        <div class="form-groups">
+            <div class="form-group">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" [disabled]="true" [value]="Member?.person?.name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" id="name" [disabled]="true" [value]="Member?.person?.email" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="phone" class="form-label">Phone</label>
+                <input type="text" id="phone" [disabled]="true" [value]="Member?.person?.phone" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" id="name" [disabled]="true" [value]="Member?.person?.address" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="active" class="form-label">Active</label>
+                <input type="text" id="active" [disabled]="true" [value]="Member?.active?'True':'False'" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="priority" class="form-label">Last Belt Rank Priority</label>
+                <input type="text" id="priority" [disabled]="true" [value]="Member?.beltRank?.RankPriority ??'N/A'" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="footer-btns">
+            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-primary">Subscribe - Renew</button>
+        </div>
+    </div>
+</div>

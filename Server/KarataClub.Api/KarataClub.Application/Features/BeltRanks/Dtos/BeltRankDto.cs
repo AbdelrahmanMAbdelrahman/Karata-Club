@@ -1,5 +1,5 @@
-﻿namespace KarataClub.Application.Features.BeltRanks.Dtos;
+﻿using KarataClub.Domain.BeltTests.BeltRanks.Enums;
 
-public sealed record BeltRankDto
-{
-}
+namespace KarataClub.Application.Features.BeltRanks.Dtos;
+
+public sealed record BeltRankDto(Guid Id,string RankName,Priority Priority);

@@ -4,6 +4,8 @@ import { InstructorSearch } from "../Models/InstructorSearch";
 import { Observable } from "rxjs";
 import { PaginatedList } from "../../Global/Models/PaginatedList";
 import { InstructorRes } from "../Models/InstructorRes";
+import { Failure } from "../../Global/Models/Failure";
+import { InstructorReq } from "../Models/InstructorReq";
 
 @Injectable({providedIn:"root"})
 export class InstructorApiService{
@@ -25,5 +27,8 @@ GetInstructors(search:InstructorSearch):Observable<PaginatedList<InstructorRes>>
       params=  params.set("qualifications",search.qualifications);
     return this.http.get<PaginatedList<InstructorRes>>(this.url,{params})
 }
-
+CreateInstructor(req:InstructorReq):Observable<InstructorRes>{
+  debugger;
+return this.http.post<InstructorRes>(this.url,req);
+}
 }

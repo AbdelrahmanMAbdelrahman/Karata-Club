@@ -3,10 +3,11 @@ import { Observable } from 'rxjs';
 import { InstructorRes } from '../../Models/InstructorRes';
 import { PaginatedList } from '../../../Global/Models/PaginatedList';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-instructor-list-component',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './instructor-list-component.html',
   styleUrl: './instructor-list-component.css',
 })

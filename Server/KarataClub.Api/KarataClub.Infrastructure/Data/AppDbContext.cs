@@ -1,6 +1,10 @@
 ﻿
 
 
+
+
+using KarataClub.Domain.Subscriptions;
+
 namespace KarataClub.Infrastructure.Data
 {
     public sealed class AppDbContext(DbContextOptions<AppDbContext> options,IMediator mediator)// appdbcontext cs0311

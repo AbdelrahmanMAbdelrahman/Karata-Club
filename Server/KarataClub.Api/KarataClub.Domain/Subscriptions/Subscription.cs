@@ -1,4 +1,4 @@
-﻿namespace KarataClub.Domain.Courses.Subscriptions;
+﻿namespace KarataClub.Domain.Subscriptions;
 
 public class Subscription:AuditEntity
 {
@@ -20,7 +20,7 @@ public class Subscription:AuditEntity
         Fees = fees;
 
     }
-    public Result<Subscription> Create(Guid paymentId, Guid memberId, DateTime startDate, DateTime endDate, decimal fees)
+    public static Result<Subscription> Create(Guid paymentId, Guid memberId, DateTime startDate, DateTime endDate, decimal fees)
     {
         if (paymentId == Guid.Empty) return SubscriptionErrors.InvalidPaymentId;
         if (memberId == Guid.Empty) return SubscriptionErrors.InvalidMemberId;

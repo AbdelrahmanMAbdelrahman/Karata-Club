@@ -1,4 +1,5 @@
 ﻿using KarataClub.Application.Features.People.Instructors.Queries.GetInstructors;
+using KarataClub.Application.Features.People.Members.Queries.GetMembers;
 using KarataClub.Domain.Common.Models;
 
 namespace KarataClub.Api.Controllers;
