@@ -1,4 +1,5 @@
 ﻿using KarataClub.Infrastructure.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace KarataClub.Infrastructure;
 
@@ -27,6 +28,7 @@ public static class DependencyInjection
 
     public static IServiceCollection AddDepedencyInject(this IServiceCollection servicies)
     {
+        servicies.AddSingleton(TimeProvider.System);
         servicies.AddScoped<IAppDbContext>(provider=>provider.GetRequiredService<AppDbContext>());
         servicies.AddScoped<IIdentityService, IdentityService>();
         servicies.AddScoped<ITokenProvider, TokenProvider>();

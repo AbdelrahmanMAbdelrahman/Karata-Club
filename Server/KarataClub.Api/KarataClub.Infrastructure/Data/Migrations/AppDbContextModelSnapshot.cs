@@ -128,11 +128,11 @@ namespace KarataClub.Infrastructure.Data.Migrations
                         .HasColumnType("int")
                         .HasDefaultValue(0);
 
-                    b.Property<DateTime>("ReservationDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("ReservationDate")
+                        .HasColumnType("datetimeoffset");
 
-                    b.Property<DateTime>("TestDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("TestDate")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -286,57 +286,14 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Property<int>("NumberOfHours")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("SessionDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("SessionDate")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CourseId");
 
                     b.ToTable("Sessions", (string)null);
-                });
-
-            modelBuilder.Entity("KarataClub.Domain.Courses.Subscriptions.Subscription", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("EndDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("Fees")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<DateTime>("LastModifiedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("MemberId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("PaymentId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MemberId");
-
-                    b.HasIndex("PaymentId")
-                        .IsUnique();
-
-                    b.ToTable("Subscriptions", (string)null);
                 });
 
             modelBuilder.Entity("KarataClub.Domain.Identity.AppUsers.AppUser", b =>
@@ -473,8 +430,8 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("PaymentDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTimeOffset>("PaymentDate")
+                        .HasColumnType("datetimeoffset");
 
                     b.HasKey("Id");
 
@@ -628,6 +585,49 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("People", (string)null);
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.Subscriptions.Subscription", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("EndDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<decimal>("Fees")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MemberId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PaymentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("StartDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
+
+                    b.HasIndex("PaymentId")
+                        .IsUnique();
+
+                    b.ToTable("Subscriptions", (string)null);
                 });
 
             modelBuilder.Entity("KarataClub.Domain.UploadedFiles.UploadedFile", b =>
@@ -908,25 +908,6 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.Courses.Subscriptions.Subscription", b =>
-                {
-                    b.HasOne("KarataClub.Domain.People.Members.Member", "Member")
-                        .WithMany("Subscriptions")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("KarataClub.Domain.Payments.Payment", "Payment")
-                        .WithOne("Subscription")
-                        .HasForeignKey("KarataClub.Domain.Courses.Subscriptions.Subscription", "PaymentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Member");
-
-                    b.Navigation("Payment");
-                });
-
             modelBuilder.Entity("KarataClub.Domain.Payments.Payment", b =>
                 {
                     b.HasOne("KarataClub.Domain.People.Members.Member", "Member")
@@ -983,6 +964,25 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Navigation("LastBeltRank");
 
                     b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.Subscriptions.Subscription", b =>
+                {
+                    b.HasOne("KarataClub.Domain.People.Members.Member", "Member")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KarataClub.Domain.Payments.Payment", "Payment")
+                        .WithOne("Subscription")
+                        .HasForeignKey("KarataClub.Domain.Subscriptions.Subscription", "PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Member");
+
+                    b.Navigation("Payment");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

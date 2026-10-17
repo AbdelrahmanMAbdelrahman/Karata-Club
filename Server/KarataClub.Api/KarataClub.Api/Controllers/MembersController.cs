@@ -25,7 +25,7 @@ public class MembersController(IMediator mediator) : ApiController
     {
         var result = await mediator.Send(command, ct);
         return result.Match(res =>
-        CreatedAtAction(nameof(GetMember), new { MemberId = res.Id }, res), Problem);
+        CreatedAtAction(nameof(GetMember), new { MemberId = res.MemberId }, res), Problem);
     }
 
     [ProducesResponseType(typeof(MemberDto), StatusCodes.Status200OK)]

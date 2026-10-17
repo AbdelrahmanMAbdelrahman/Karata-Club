@@ -19,7 +19,7 @@
             <tbody>
                 <tr *ngFor="let member of Members?.items;let index=index">
                     <td>
-                        <a [routerLink]="['/MemberPage','MemberDetailPage',member.id]" class="nav-link">
+                        <a [routerLink]="['/MemberPage','MemberDetailPage',member.memberId]" class="nav-link">
                         {{index+1}}
                         </a></td>
                     <td>{{member.person.name}}</td>

@@ -10,6 +10,10 @@ global using KarataClub.Application.Features.People.Instructors.Commands.CreateI
 global using KarataClub.Application.Features.People.Instructors.Commands.UpdateInstructors;
 global using KarataClub.Application.Features.People.Instructors.Dtos;
 global using KarataClub.Application.Features.People.Instructors.Queries.GetInstructor;
+global using KarataClub.Application.Features.Subscriptions.Commands.CreateSubscriptions;
+global using KarataClub.Application.Features.Subscriptions.Dtos;
+global using KarataClub.Application.Features.Subscriptions.Queries.GetSubscription;
+global using Microsoft.AspNetCore.Diagnostics;
 namespace KarataClub.Api;
 
 

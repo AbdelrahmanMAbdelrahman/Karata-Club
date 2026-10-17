@@ -38,6 +38,7 @@ public sealed class GetMembersHandler
 
     private IQueryable<Member> ApplyFilter(IQueryable<Member> query, string? name, string? qualifications)
     {
+        query = query.Where(m => m.Active);
         if (!string.IsNullOrWhiteSpace(name))
             query = query.Where(q=>q.Person.Name.Contains( name));
         if (!string.IsNullOrWhiteSpace(qualifications))

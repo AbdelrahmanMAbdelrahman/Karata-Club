@@ -26,7 +26,7 @@ export class MemberCreatePage {
 SaveMember(req: MemberReq) {
  this.MemberService.CreateMember(req).subscribe(
   (res)=>{
-this.router.navigate(['/MemberPage','MemberDetailPage',res.id])
+this.router.navigate(['/MemberPage','MemberDetailPage',res.memberId])
   },
 (err:HttpErrorResponse)=>{
 let failure:Failure=err.error as Failure;

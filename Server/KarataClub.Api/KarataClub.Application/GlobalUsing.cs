@@ -27,6 +27,8 @@ global using KarataClub.Domain.People.Members.Attendencies;
 global using KarataClub.Application.Features.Identity.Dtos;
 global using KarataClub.Application.Features.People.Instructors.Dtos;
 global using KarataClub.Application.Features.People.Instructors.Mappers;
+global using KarataClub.Application.Features.Subscriptions.Dtos;
+global using KarataClub.Application.Features.Subscriptions.Mappers;
 namespace KarataClub.Application;
 
 

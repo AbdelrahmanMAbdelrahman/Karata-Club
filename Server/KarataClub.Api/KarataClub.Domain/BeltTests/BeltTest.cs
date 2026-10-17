@@ -2,9 +2,9 @@
 
 public class BeltTest:AuditEntity
 {
-    public DateTime TestDate { get; private set; }
+    public DateTimeOffset TestDate { get; private set; }
     public Guid BeltRankId { get; private set; }
-    public DateTime ReservationDate { get; private set; }
+    public DateTimeOffset ReservationDate { get; private set; }
     public Guid InstructorId { get; private set; }
     public Guid MemberId { get; private set; }
     public bool Passed { get; private set; } = false;
@@ -19,8 +19,8 @@ public class BeltTest:AuditEntity
     {
         
     }
-    public BeltTest(Guid id,DateTime testDate,Guid beltRankId,
-        DateTime reservationDate,Guid instructorId,
+    public BeltTest(Guid id,DateTimeOffset testDate,Guid beltRankId,
+        DateTimeOffset reservationDate,Guid instructorId,
         Guid memeberId,bool passed,Guid paymentId):base(id)
     {
         this.BeltRankId=beltRankId;
@@ -32,8 +32,8 @@ public class BeltTest:AuditEntity
         this.PaymentId=paymentId;
     }
 
-    public Result<BeltTest> Create(DateTime testDate, Guid beltRankId,
-        DateTime reservationDate, Guid instructorId,
+    public Result<BeltTest> Create(DateTimeOffset testDate, Guid beltRankId,
+        DateTimeOffset reservationDate, Guid instructorId,
         Guid memeberId, bool passed, Guid paymentId) {
 
         if (testDate < DateTime.UtcNow) return BeltTestErrors.InvalidTestDate(testDate);

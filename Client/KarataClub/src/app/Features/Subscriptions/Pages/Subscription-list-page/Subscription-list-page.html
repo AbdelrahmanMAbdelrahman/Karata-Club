@@ -1,0 +1,12 @@
+<div class="Subscription-page">
+    <div class="Subscription-search">
+        <app-Subscription-search-component
+        (OnSearch)="Search($event)"
+        ></app-Subscription-search-component>
+    </div>
+    <div class="Subscription-list">
+        <app-Subscription-list-component
+        [Subscriptions]="(Subscriptions|async)!"
+        ></app-Subscription-list-component>
+    </div>
+</div>

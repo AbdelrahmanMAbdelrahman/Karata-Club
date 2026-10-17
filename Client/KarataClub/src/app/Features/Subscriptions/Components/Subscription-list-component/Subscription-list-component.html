@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-info">Subscriptions</h3>
+    </div>
+    <div class="card-body">
+
+        <table class="table table-stripped table-hover">
+            <thead>
+                <tr>
+                   <th>Serial</th>
+                   <th>Name</th>
+                   <th>Start Date</th>
+                   <th>End Date</th>
+                   <th>Active</th>
+                   <th>Last Rank</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Subscription of Subscriptions?.items;let index=index">
+                    <td>{{index+1}}</td>
+                    <td>{{Subscription.member.person.name}}</td>
+                    <td>{{Subscription.startDate |date:'yyyy-MM-dd'}}</td>
+                    <td>{{Subscription.endDate |date:'yyyy-MM-dd'}} </td>
+                    <td>{{Subscription.member.active?'True':'False'}}</td>
+                    <td>{{Subscription.beltRank?.rankName??"N/A"}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="Subscription-footer">
+            <h6 class="text-info">Count : {{Subscriptions?.items?.length}}</h6>
+            <!-- <button class="btn btn-primary" [routerLink]="['/SubscriptionPage','SubscriptionCreatePage','0']">Add New</button> -->
+            <div class="pagination">
+                <button [disabled]="!Subscriptions?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <p class="text-light mt-2">Page {{Subscriptions?.totalPages}} / {{Subscriptions?.pageNumber}}</p>
+                <button [disabled]="!Subscriptions?.hasNextPage" class="btn btn-outline-primary">Next</button>
+            </div>
+        </div>
+    </div>
+</div>

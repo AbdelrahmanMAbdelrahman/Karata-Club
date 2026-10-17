@@ -1,12 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace KarataClub.Application.Features.Subscriptions.Dtos
-{
-    internal class SubscriptionDto
-    {
-    }
-}
+﻿namespace KarataClub.Application.Features.Subscriptions.Dtos;
+public sealed record SubscriptionDto(
+    Guid Id,decimal Fees,DateTimeOffset StartDate, DateTimeOffset EndDate,MemberDto Member);

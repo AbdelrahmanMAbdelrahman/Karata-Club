@@ -17,7 +17,7 @@ namespace KarataClub.Application.Common.Interfaces
         public DbSet<Member> Members { get; }
         public DbSet<Instructor> Instructors { get; }
         public DbSet<Session> Sessions { get; }
-        public DbSet<Subscription> Subscription { get; }
+        public DbSet<Subscription> Subscriptions { get; }
         public DbSet<UploadedFile> UploadedFiles { get; }
         public DbSet<RefreshToken> RefreshTokens { get; }
 

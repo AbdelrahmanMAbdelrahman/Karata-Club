@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { MemberRes } from '../../Models/MemberRes';
 import { AsyncPipe } from '@angular/common';
 import { MemberApiService } from '../../Services/MemberApiService';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-Member-detail-page',
-  imports: [MemberDetailComponent,AsyncPipe],
+  imports: [MemberDetailComponent, AsyncPipe, RouterLink],
   templateUrl: './Member-detail-page.html',
   styleUrl: './Member-detail-page.css',
 })

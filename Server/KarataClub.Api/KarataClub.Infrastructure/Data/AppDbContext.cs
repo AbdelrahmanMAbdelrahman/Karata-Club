@@ -34,7 +34,7 @@ namespace KarataClub.Infrastructure.Data
 
         public DbSet<Session> Sessions => Set<Session>();
 
-        public DbSet<Subscription> Subscription => Set<Subscription>();
+        public DbSet<Subscription> Subscriptions => Set<Subscription>();
 
         public DbSet<UploadedFile> UploadedFiles => Set<UploadedFile>();
         public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
