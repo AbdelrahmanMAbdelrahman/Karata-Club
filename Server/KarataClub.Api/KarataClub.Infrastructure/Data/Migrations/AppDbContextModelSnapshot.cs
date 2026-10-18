@@ -76,13 +76,14 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UploadedFileId")
+                    b.Property<Guid?>("UploadedFileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
                     b.HasIndex("UploadedFileId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UploadedFileId] IS NOT NULL");
 
                     b.ToTable("BeltRankFiles");
                 });
@@ -210,7 +211,7 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Property<Guid>("LastModifiedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("UploadedFileId")
+                    b.Property<Guid?>("UploadedFileId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
@@ -218,7 +219,8 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.HasIndex("CourseId");
 
                     b.HasIndex("UploadedFileId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UploadedFileId] IS NOT NULL");
 
                     b.ToTable("CourseFiles");
                 });
@@ -809,9 +811,7 @@ namespace KarataClub.Infrastructure.Data.Migrations
                 {
                     b.HasOne("KarataClub.Domain.UploadedFiles.UploadedFile", "UploadedFile")
                         .WithOne("BeltRankFile")
-                        .HasForeignKey("KarataClub.Domain.BeltTests.BeltRanks.BeltRanksFiles.BeltRankFile", "UploadedFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("KarataClub.Domain.BeltTests.BeltRanks.BeltRanksFiles.BeltRankFile", "UploadedFileId");
 
                     b.Navigation("UploadedFile");
                 });
@@ -861,9 +861,7 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
                     b.HasOne("KarataClub.Domain.UploadedFiles.UploadedFile", "UploadedFile")
                         .WithOne("CourseFile")
-                        .HasForeignKey("KarataClub.Domain.Courses.CourseFiles.CourseFile", "UploadedFileId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("KarataClub.Domain.Courses.CourseFiles.CourseFile", "UploadedFileId");
 
                     b.Navigation("Course");
 

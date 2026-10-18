@@ -29,7 +29,8 @@ public class CreateSubscriptionHandler(
 
         DateTimeOffset now = timeProvider.GetUtcNow();
         bool subExist = await context.Subscriptions.AnyAsync(s=>s.MemberId==request.MemberId&&
-        s.StartDate.Month==now.Month);
+        s.StartDate.Month==now.Month&&
+        s.StartDate.Year==now.Year);
         if (subExist) {
             logger.LogError("Subscription already exist for member with id {memberId}", request.MemberId);
             return ApplicationErrors.SubscriptionAlreadyExist;

@@ -1,7 +1,11 @@
-﻿namespace KarataClub.Api.Controllers;
+﻿using KarataClub.Application.Features.Courses.Dtos;
+
+namespace KarataClub.Api.Controllers;
 
 public class ApiController:ControllerBase
 {
+
+
     protected ActionResult Problem(List<Error> errors)
     {
         if (errors.Count == 0) throw new InvalidOperationException();

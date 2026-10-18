@@ -6,7 +6,7 @@ namespace KarataClub.Domain.BeltTests.BeltRanks.BeltRanksFiles;
 public sealed class BeltRankFile:AuditEntity
 {
     public Guid BeltRankId { get;private set; }
-    public Guid UploadedFileId { get; private set; }
+    public Guid? UploadedFileId { get; private set; }
     public BeltRank BeltRank = default!;
     public UploadedFile UploadedFile = default!;
     public BeltRankFile()

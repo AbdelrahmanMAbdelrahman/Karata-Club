@@ -32,6 +32,7 @@ public static class DependencyInjection
         servicies.AddScoped<IAppDbContext>(provider=>provider.GetRequiredService<AppDbContext>());
         servicies.AddScoped<IIdentityService, IdentityService>();
         servicies.AddScoped<ITokenProvider, TokenProvider>();
+        servicies.AddScoped<IFileStorage, FileStorage>();
         servicies.AddScoped<AppDbContextInitializer>();
         return servicies;
 

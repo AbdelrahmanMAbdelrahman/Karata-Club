@@ -1,5 +1,5 @@
 ﻿
-using KarataClub.Application.Features.Subscriptions.Queries.GetSubscriptions;
+using KarataClub.Application.Features.Courses.Queries.GetSubscriptions;
 using KarataClub.Domain.Common.Models;
 
 namespace KarataClub.Api.Controllers;
@@ -43,7 +43,7 @@ public class SubscriptionsController(IMediator mediator):ApiController
     [EndpointSummary("Get Subscriptions")]
     [EndpointDescription("return a paginated list of Subscription with given creteria")]
     [HttpGet("")]
-    public async Task<IActionResult> GetSubscriptions([FromQuery] GetSubscriptionsQuery query, CancellationToken ct)
+    public async Task<IActionResult> GetSubscriptions([FromQuery] GetCoursesQuery query, CancellationToken ct)
     {
         var result = await mediator.Send(query, ct);
         return result.Match(res => Ok(res), Problem);

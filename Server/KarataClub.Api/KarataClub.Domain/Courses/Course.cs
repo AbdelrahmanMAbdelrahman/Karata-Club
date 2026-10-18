@@ -18,7 +18,7 @@ public class Course:AuditEntity
         NumberOfSessions = numberOfSessions;
         TotalHours = totalHours;
     }
-    public Result<Course> Create(string courseName, decimal fees, int numberOfSessions, decimal totalHours)
+    public static Result<Course> Create(string courseName, decimal fees, int numberOfSessions, decimal totalHours)
     {
         if (string.IsNullOrWhiteSpace(courseName)) return CourseErrors.InvalidCourseName;
         if (fees < 0 || fees > 10000) return CourseErrors.InvalidCourseFees;

@@ -1,8 +1,8 @@
-﻿namespace KarataClub.Application.Features.Subscriptions.Queries.GetSubscriptions;
+﻿namespace KarataClub.Application.Features.Courses.Queries.GetSubscriptions;
 
-public sealed class GetSubscriptionsValidator:AbstractValidator<GetSubscriptionsQuery>
+public sealed class GetCoursesValidator:AbstractValidator<GetCoursesQuery>
 {
-    public GetSubscriptionsValidator()
+    public GetCoursesValidator()
     {
         RuleFor(i => i.PageNumber).Must(p => p > 0 && p < 1000).WithMessage("Provide a valid Property Name");
         RuleFor(i => i.PageNumber).Must(p => p > 0 && p < 50).WithMessage("Provide a valid Property Name");

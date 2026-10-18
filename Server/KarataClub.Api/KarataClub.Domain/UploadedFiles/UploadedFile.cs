@@ -23,7 +23,7 @@ public sealed class UploadedFile:AuditEntity
         Size = size;
 
     }
-    public Result<UploadedFile> Create(string fileName, string contentType, string storedFileName, string extension, decimal size)
+    public static Result<UploadedFile> Create(string fileName, string contentType, string storedFileName, string extension, decimal size)
     {
         if (string.IsNullOrWhiteSpace(fileName)) return UploadedFileErrors.InvalidFileName;
         if (string.IsNullOrWhiteSpace(contentType)) return UploadedFileErrors.InvalidContentType;

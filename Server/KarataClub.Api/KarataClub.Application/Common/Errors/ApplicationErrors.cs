@@ -1,8 +1,10 @@
 ﻿
 
 
+using KarataClub.Application.Features.Courses.Dtos;
 using KarataClub.Application.Features.People.Members.Dtos;
 using KarataClub.Application.Features.Subscriptions.Dtos;
+using KarataClub.Application.Features.UploadedFiles.Dtos;
 
 namespace KarataClub.Application.Common.Errors;
 
@@ -24,4 +26,19 @@ public static class ApplicationErrors
 
     internal static Result<SubscriptionDto> SubscriptionNotFound(Guid subscriptionId)
     => Error.NotFound("SubscriptionError.NotFound", $"No Subscription found for id ={subscriptionId}");
+
+    public static DownloadFileDto ImageNotFound(Guid id)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal static Result<CourseFileDto> CourseAlreadyExist(string courseName)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal static Result<CourseFileDto> CourseNotFound(Guid courseFileId)
+    {
+        throw new NotImplementedException();
+    }
 }
