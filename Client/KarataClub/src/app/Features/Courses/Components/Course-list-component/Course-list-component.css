@@ -1,0 +1,23 @@
+.Course-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.pagination{
+    display: flex;
+     
+}.cards-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,20%);
+    gap: 1%;
+}
+img{
+  object-fit:cover;
+    height: 100%;
+    width: 100%;
+    max-height: 140px;
+    max-width: 250px;
+}
+/* .course-card{
+    height: 200px;
+    width: 200px;
+} */

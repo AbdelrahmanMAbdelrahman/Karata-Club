@@ -12,7 +12,8 @@ public sealed class FileStorage(
     public async Task<Result<DownloadFileDto>> DownloadAsync(Guid Id, CancellationToken ct)
     {
         UploadedFile? file = await context.UploadedFiles.FindAsync(Id,ct);
-        if(file is null)
+        Console.WriteLine(AppSettings.FilesDirectory);
+        if (file is null)
         {
             logger.LogError("No Image found for file with id = {Id}", Id);
             return ApplicationErrors.ImageNotFound(Id);
@@ -22,7 +23,7 @@ public sealed class FileStorage(
             logger.LogError("Image Source not found");
             return ApplicationErrors.ImageNotFound(Id);
         }
-        using Stream fileStream = new FileStream(fullPath,FileMode.Open,FileAccess.Read);
+         Stream fileStream = new FileStream(fullPath,FileMode.Open,FileAccess.Read);
         string contentType = "Image/jpeg";
         return new DownloadFileDto(fileStream,file.StoredFileName,contentType);
     }
@@ -35,7 +36,7 @@ public sealed class FileStorage(
         }
         string extn=Path.GetExtension(ImageName);
         string newImageName=Guid.NewGuid().ToString()+extn;
-        string imagePath=Path.Combine(AppSettings.FileDirectory,newImageName);
+        string imagePath=Path.Combine(AppSettings.FilesDirectory,newImageName);
         using Stream stream = new FileStream(imagePath,FileMode.Create);
         await Image.CopyToAsync(stream,ct);
         return new UploadFileDto(ImageName,newImageName,extn,ContentType,Image.Length);

@@ -1,0 +1,17 @@
+<div class="card">
+<div class="card-body">
+
+    <app-Course-detail-component
+    [Course]="(Course|async)!"
+></app-Course-detail-component>
+</div>
+<div class="card-footer">
+
+    <div class="card-footer">
+        <div class="footer-btns">
+            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-danger">Delete</button>
+            <button [routerLink]="['/SubscriptionPage','SubscriptionCreatePage',Id]" class="btn btn-primary">Subscribe - Renew</button>
+        </div>
+    </div>
+</div>

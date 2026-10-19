@@ -1,0 +1,12 @@
+<div class="Course-page">
+    <div class="Course-search">
+        <app-Course-search-component
+        (OnSearch)="Search($event)"
+        ></app-Course-search-component>
+    </div>
+    <div class="Course-list">
+        <app-Course-list-component
+        [Courses]="(Courses|async)!"
+        ></app-Course-list-component>
+    </div>
+</div>

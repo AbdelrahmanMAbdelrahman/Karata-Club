@@ -1,0 +1,6 @@
+.footer-btns{
+    display: flex;
+    justify-content: end;
+    gap: 1%;
+    margin: 1%;
+}

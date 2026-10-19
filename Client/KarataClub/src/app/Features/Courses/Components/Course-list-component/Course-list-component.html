@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-info">Courses</h3>
+    </div>
+    <div class="card-body">
+     <div class="cards-grid">
+
+         <div class="card course-card" *ngFor="let course of Courses?.items">
+             <div class="card-body">
+            <img [src]="imageUrl+'/'+course.uploadedFileId" alt="Not Found"
+            (error)="OnError($event)"
+            >
+        </div>
+        <div class="card-footer">
+            <p class="text-white">{{course?.course?.courseName}}</p>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="card-footer">
+        <div class="Course-footer">
+            <h6 class="text-info">Count : {{Courses?.items?.length}}</h6>
+            <button class="btn btn-primary" [routerLink]="['/CoursePage','CourseCreatePage','0']">Add New</button>
+            <div class="pagination">
+                <button [disabled]="!Courses?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <p class="text-light mt-2">Page {{Courses?.totalPages}} / {{Courses?.pageNumber}}</p>
+                <button [disabled]="!Courses?.hasNextPage" class="btn btn-outline-primary">Next</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -11,6 +11,10 @@ import { MemberListPage } from './Features/Members/Pages/Member-list-page/Member
 import { SubscriptionListPage } from './Features/Subscriptions/Pages/Subscription-list-page/Subscription-list-page';
 import { SubscriptionCreatePage } from './Features/Subscriptions/Pages/Subscription-create-page/Subscription-create-page';
 import { SubscriptionPage } from './Features/Subscriptions/Pages/Subscription-page/Subscription-page';
+import { CoursePage } from './Features/Courses/Pages/Course-page/Course-page';
+import { CourseDetailPage } from './Features/Courses/Pages/Course-detail-page/Course-detail-page';
+import { CourseListPage } from './Features/Courses/Pages/Course-list-page/Course-list-page';
+import { CourseCreatePage } from './Features/Courses/Pages/Course-create-page/Course-create-page';
 
 export const routes: Routes = [
     {path:"",component:HomePageComponent,
@@ -26,6 +30,12 @@ export const routes: Routes = [
             {path:"MemberCreatePage/:id",component:MemberCreatePage},
             {path:"MemberListPage",component:MemberListPage},
             {path:"MemberDetailPage/:id",component:MemberDetailPage},
+        ]},
+    {path:"CoursePage",component:CoursePage,
+        children:[
+            {path:"CourseCreatePage/:id",component:CourseCreatePage},
+            {path:"CourseListPage",component:CourseListPage},
+            {path:"CourseDetailPage/:id",component:CourseDetailPage},
         ]},
     {path:"SubscriptionPage",component:SubscriptionPage,
         children:[
