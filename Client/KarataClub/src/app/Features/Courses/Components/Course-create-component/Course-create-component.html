@@ -8,16 +8,25 @@
                     <input type="text" id="name" formControlName="name" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" id="email" formControlName="email" class="form-control">
+                    <label for="fees" class="form-label">Fees</label>
+                    <input type="number" id="fees" formControlName="fees" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="phone" class="form-label">Phone</label>
-                    <input type="tel" id="phone" formControlName="phone" class="form-control">
+                    <label for="sessions" class="form-label">number Of Sessions </label>
+                    <input type="number" id="sessions" formControlName="sessions" class="form-control">
                 </div>
                 <div class="form-group">
-                    <label for="address" class="form-label">Address</label>
-                    <input type="text" id="address" formControlName="address" class="form-control">
+                    <label for="hours" class="form-label">Number of Hours</label>
+                    <input type="number" id="hours" formControlName="hours" class="form-control">
+                </div>
+         
+                <div class="form-group">
+                    <label for="image" class="form-label">Image</label>
+                    <div class="input-field">
+                        <input #selectedImage type="file" id="image" class="form-control"
+                    (change)="SelectImage($event)" accept="Image/*">
+                    <button (click)="ClearImage(selectedImage)" class="btn btn-secondary">Clear</button>
+                </div>
                 </div>
              
        

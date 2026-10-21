@@ -26,26 +26,32 @@ public sealed class CreateCourseHandler(
             logger.LogError(string.Join(" - ", createCourseResult.Errors));
             return createCourseResult.Errors;
         }
+        Result<UploadFileDto>? uploadedFileResult=null  ;
+        Result<UploadedFile>? createFileResult=null;
+        if (request.Image is not null)
+        {
+            uploadedFileResult = await
+                fileStorage.UploadAsync(request.Image, request.ImageName, request.ContentType, cancellationToken);
+            if (uploadedFileResult.IsFailure)
+            {
+                logger.LogError(string.Join(" - ", uploadedFileResult.Errors));
+                return uploadedFileResult.Errors;
+            }
 
-        Result<UploadFileDto> uploadedFileResult = await
-            fileStorage.UploadAsync(request.Image,request.ImageName,request.ContentType,cancellationToken);
-        if (uploadedFileResult.IsFailure)
-        {
-            logger.LogError(string.Join(" - ", uploadedFileResult.Errors));
-            return uploadedFileResult.Errors;
-        }
-        Result<UploadedFile> createFileResult =
-            UploadedFile.Create(request.ImageName,request.ContentType,
-            uploadedFileResult.Value.StoredImageName,
-            uploadedFileResult.Value.Extension,
-            uploadedFileResult.Value.Length);
-        if (createFileResult.IsFailure)
-        {
-            logger.LogError(string.Join(" - ", createFileResult.Errors));
-            return createFileResult.Errors;
+
+            createFileResult =
+                UploadedFile.Create(request.ImageName, request.ContentType,
+                uploadedFileResult.Value.StoredImageName,
+                uploadedFileResult.Value.Extension,
+                uploadedFileResult.Value.Length);
+            if (createFileResult.IsFailure)
+            {
+                logger.LogError(string.Join(" - ", createFileResult.Errors));
+                return createFileResult.Errors;
+            }
         }
         Result<CourseFile> createCourseFileResult = CourseFile.Create(createCourseResult.Value.Id,
-            createFileResult.Value.Id);
+            createFileResult !=null ? createFileResult.Value.Id:null);
         if (createCourseFileResult.IsFailure)
         {
             logger.LogError(string.Join(" - ", createCourseFileResult.Errors));

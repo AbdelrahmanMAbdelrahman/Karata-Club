@@ -26,7 +26,7 @@ export class CourseCreatePage {
 SaveCourse(req: CourseReq) {
  this.CourseService.CreateCourse(req).subscribe(
   (res)=>{
-this.router.navigate(['/CoursePage','CourseDetailPage',res.CourseFileId])
+this.router.navigate(['/CoursePage','CourseDetailPage',res.courseFileId])
   },
 (err:HttpErrorResponse)=>{
 let failure:Failure=err.error as Failure;

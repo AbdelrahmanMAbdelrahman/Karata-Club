@@ -4,9 +4,10 @@
     </div>
     <div class="card-body">
      <div class="cards-grid">
-
-         <div class="card course-card" *ngFor="let course of Courses?.items">
-             <div class="card-body">
+         
+         <div [routerLink]="['/CoursePage','CourseDetailPage',course.courseFileId]" class="card course-card" *ngFor="let course of Courses?.items">
+        
+        <div class="card-body">
             <img [src]="imageUrl+'/'+course.uploadedFileId" alt="Not Found"
             (error)="OnError($event)"
             >
@@ -14,6 +15,7 @@
         <div class="card-footer">
             <p class="text-white">{{course?.course?.courseName}}</p>
         </div>
+ 
     </div>
     </div>
     </div>

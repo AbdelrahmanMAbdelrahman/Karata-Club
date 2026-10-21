@@ -1,6 +1,7 @@
 export interface CourseReq{
-    name:string,
-    email:string,
-    phone:string,
-    address:string
+    courseName:string,
+    fees:number,
+    numberOfHours:number,
+    numberOfSessions:number,
+    image?:File
 }

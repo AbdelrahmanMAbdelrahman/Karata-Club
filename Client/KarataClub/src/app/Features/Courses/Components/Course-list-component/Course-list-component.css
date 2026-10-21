@@ -7,7 +7,7 @@
      
 }.cards-grid{
     display: grid;
-    grid-template-columns: repeat(auto-fit,20%);
+    grid-template-columns: repeat(auto-fit,19%);
     gap: 1%;
 }
 img{

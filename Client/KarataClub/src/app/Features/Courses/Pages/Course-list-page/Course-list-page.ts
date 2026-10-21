@@ -15,15 +15,13 @@ import { CourseSearch } from '../../Models/CourseSearch';
   styleUrl: './Course-list-page.css',
 })
 export class CourseListPage implements OnInit {
-  Courses?:Observable<PaginatedList<CourseRes>>  ;
-  /**
-   *
-  */
+  Courses?:Observable<PaginatedList<CourseRes>>;
+
  constructor(private CourseService:CourseApiService) {}
  ngOnInit(): void {
   let search:CourseSearch={
-    name: '',
-    rankName: '',
+    courseName: '',
+    active: false,
     pageNumber: 1,
     pageSize: 10,
     sortColumn: '',
@@ -34,8 +32,8 @@ export class CourseListPage implements OnInit {
 Search(searchModel:CourseSearch) {
   debugger;
   let search:CourseSearch={
-    name: searchModel.name,
-    rankName: searchModel.rankName,
+    courseName: searchModel.courseName,
+    active: searchModel.active,
     pageNumber: 1,
     pageSize: 10,
     sortColumn: '',

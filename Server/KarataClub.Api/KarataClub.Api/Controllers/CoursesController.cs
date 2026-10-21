@@ -26,8 +26,8 @@ public class CoursesController(IMediator mediator) : ApiController
     public async Task<IActionResult> CreateCourse([FromForm]CourseReq req, CancellationToken ct)
     {
         CreateCourseCommand command = new CreateCourseCommand(req.CourseName,req.Fees,
-            req.NumberOfSessions,req.NumberOfHours,req.Image.OpenReadStream(),
-            req.Image.ContentType,req.Image.FileName);
+            req.NumberOfSessions,req.NumberOfHours,req.Image?.OpenReadStream(),
+            req.Image?.ContentType,req.Image?.FileName);
         var result = await mediator.Send(command, ct);
         return result.Match(res =>
         CreatedAtAction(nameof(GetCourse), new { CourseFileId = res.CourseFileId }, res), Problem);

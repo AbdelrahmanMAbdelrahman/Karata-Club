@@ -24,14 +24,21 @@ GetCourses(search:CourseSearch):Observable<PaginatedList<CourseRes>>{
     .set('pageSize',search.pageSize)
     .set('sortColumn',search.sortColumn)
     .set('sortDirection',search.sortDirection);
-    if(search.name)
-      params=  params.set("name",search.name);
-    if(search.rankName)
-      params=  params.set("qualifications",search.rankName);
+    if(search.courseName)
+      params=  params.set("courseName",search.courseName);
+    if(search.active)
+      params=  params.set("active",search.active);
     return this.http.get<PaginatedList<CourseRes>>(this.url,{params})
 }
 CreateCourse(req:CourseReq):Observable<CourseRes>{
   debugger;
-return this.http.post<CourseRes>(this.url,req);
+  const formData=new FormData();
+  formData.append('courseName',req.courseName);
+  formData.append('fees',req.fees.toString());
+  formData.append('numberOfHours',req.numberOfHours.toString());
+  formData.append('numberOfSessions',req.numberOfSessions.toString());
+  if(req.image)formData.append('image',req.image,req.image.name
+  );
+return this.http.post<CourseRes>(this.url,formData);
 }
 }

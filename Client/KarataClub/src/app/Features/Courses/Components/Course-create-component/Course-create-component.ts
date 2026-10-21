@@ -25,20 +25,34 @@ export class CourseCreateComponent implements OnInit{
   }
   fillObject():CourseReq{
     let req:CourseReq={
-      name: this.form?.get('name')?.value,
-      email: this.form?.get('email')?.value,
-      phone: this.form?.get('phone')?.value,
-      address: this.form?.get('address')?.value
-    
+      courseName: this.form?.get('name')?.value,
+      fees: this.form?.get('fees')?.value,
+      numberOfHours: this.form?.get('hours')?.value,
+      image: this.form?.get('image')?.value,
+      numberOfSessions: this.form?.get('sessions')?.value
+      
     }
     return req;
+  }
+  ClearImage(image: HTMLInputElement) {
+    image.value="";
+  this.form?.patchValue({image:null})
+  }
+  SelectImage(event: Event) {
+    console.log("select image now")
+    debugger;
+  let input=event.target as HTMLInputElement;
+  if(!input|| input?.files?.length===0)return;
+  const image=input?.files![0];
+  this.form?.get('image')?.setValue(image);
   }
 initForm(){
   this.form=new FormGroup({
 'name':new FormControl(null,Validators.required),
-'email':new FormControl(null,Validators.required),
-'phone':new FormControl(null,Validators.required),
-'address':new FormControl(null,Validators.required)
+'fees':new FormControl(null,Validators.required),
+'hours':new FormControl(null,Validators.required),
+'image':new FormControl<File|null>(null),
+'sessions':new FormControl(null,Validators.required)
   });
 }
 }

@@ -1,6 +1,6 @@
 export interface CourseSearch{
-    name:string,
-    rankName:string,
+    active:boolean,
+    courseName:string,
     pageNumber:number,
     pageSize:number,
     sortColumn:string,

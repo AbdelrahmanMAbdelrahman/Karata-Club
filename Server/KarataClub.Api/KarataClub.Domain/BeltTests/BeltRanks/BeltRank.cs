@@ -10,7 +10,7 @@ public class BeltRank : AuditEntity
     
     public Priority RankPriority { get; private set; }
     public ICollection<BeltTest> BeltTests=default!;
-    public ICollection<Person> People=default!;
+    public ICollection<Member> Members=default!;
     public ICollection<BeltRankFile> BeltRankFiles=default!;
      
     public BeltRank(){}

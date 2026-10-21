@@ -8,11 +8,11 @@ public class CourseFile:AuditEntity
     public UploadedFile UploadedFile { get; set; }= default!;
 
     public CourseFile(){}
-    public CourseFile(Guid id,Guid courseId,Guid uploadedFileId):base(id){
+    public CourseFile(Guid id,Guid courseId,Guid? uploadedFileId):base(id){
     CourseId=courseId;
         UploadedFileId=uploadedFileId;
     }
-    public static Result<CourseFile> Create(Guid courseId, Guid uploadedFileId)
+    public static Result<CourseFile> Create(Guid courseId, Guid? uploadedFileId)
     {
         if (courseId == Guid.Empty) return CourseFileErrors.InvalidCourseId;
         if (uploadedFileId == Guid.Empty) return CourseFileErrors.InvalidUploadedFileId;

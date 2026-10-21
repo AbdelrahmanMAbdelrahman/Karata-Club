@@ -15,14 +15,14 @@ export class CourseSearchComponent implements OnInit{
   @Output() OnSearch=new EventEmitter<CourseSearch>();
   ngOnInit(): void {
     this.searchForm=new FormGroup({
-      'name': new FormControl(null),
-      'rankName': new FormControl(null),
+      'courseName': new FormControl(null),
+      'active': new FormControl(null),
     })
   }
   Search() {
     let search:CourseSearch={
-      name: this.searchForm?.get('name')?.value,
-      rankName: this.searchForm?.get('rankName')?.value,
+      courseName: this.searchForm?.get('courseName')?.value,
+      active: this.searchForm?.get('active')?.value,
       pageNumber: 1,
       pageSize: GlobalConst.pageSize,
       sortColumn: 'name',
