@@ -1,11 +1,4 @@
-﻿using KarataClub.Application.Features.Courses.Dtos;
-using KarataClub.Application.Features.Courses.Mappers;
-
-using KarataClub.Application.Features.Courses.Queries.GetSubscriptions;
-using KarataClub.Domain.Common.Models;
-using MediatR;
-
-namespace KarataClub.Application.Features.Courses.Queries.GetCourses;
+﻿namespace KarataClub.Application.Features.Courses.Queries.GetCourses;
 
 public sealed class GetCoursesHandler
     (IAppDbContext context)

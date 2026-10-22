@@ -81,11 +81,14 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BeltRankId")
+                        .IsUnique();
+
                     b.HasIndex("UploadedFileId")
                         .IsUnique()
                         .HasFilter("[UploadedFileId] IS NOT NULL");
 
-                    b.ToTable("BeltRankFiles");
+                    b.ToTable("BeltRankFiles", (string)null);
                 });
 
             modelBuilder.Entity("KarataClub.Domain.BeltTests.BeltTest", b =>
@@ -809,9 +812,17 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("KarataClub.Domain.BeltTests.BeltRanks.BeltRanksFiles.BeltRankFile", b =>
                 {
+                    b.HasOne("KarataClub.Domain.BeltTests.BeltRanks.BeltRank", "BeltRank")
+                        .WithOne("BeltRankFile")
+                        .HasForeignKey("KarataClub.Domain.BeltTests.BeltRanks.BeltRanksFiles.BeltRankFile", "BeltRankId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("KarataClub.Domain.UploadedFiles.UploadedFile", "UploadedFile")
                         .WithOne("BeltRankFile")
                         .HasForeignKey("KarataClub.Domain.BeltTests.BeltRanks.BeltRanksFiles.BeltRankFile", "UploadedFileId");
+
+                    b.Navigation("BeltRank");
 
                     b.Navigation("UploadedFile");
                 });
@@ -1036,6 +1047,8 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("KarataClub.Domain.BeltTests.BeltRanks.BeltRank", b =>
                 {
+                    b.Navigation("BeltRankFile");
+
                     b.Navigation("BeltTests");
                 });
 

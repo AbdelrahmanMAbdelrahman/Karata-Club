@@ -2,4 +2,4 @@
 
 namespace KarataClub.Application.Features.BeltRanks.Dtos;
 
-public sealed record BeltRankDto(Guid Id,string RankName,Priority Priority);
+public sealed record BeltRankDto(Guid Id,string RankName,decimal TestFees,Priority Priority);

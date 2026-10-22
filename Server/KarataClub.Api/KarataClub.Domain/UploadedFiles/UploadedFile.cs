@@ -9,7 +9,7 @@ public sealed class UploadedFile:AuditEntity
     public decimal Size { get; private set; }
     public CourseFile CourseFile = default!;
     public BeltRankFile BeltRankFile= default!;
-
+    public BeltRank BeltRank = default!;
     private UploadedFile()
     {
         

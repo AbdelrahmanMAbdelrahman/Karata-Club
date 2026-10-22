@@ -1,12 +1,4 @@
-﻿using KarataClub.Application.Features.People.Instructors.Queries.GetInstructors;
-using KarataClub.Application.Features.People.Members.Commands.CreateMembers;
-using KarataClub.Application.Features.People.Members.Commands.UpdateMembers;
-using KarataClub.Application.Features.People.Members.Dtos;
-using KarataClub.Application.Features.People.Members.Queries.GetMembers;
-using KarataClub.Application.Features.People.Members.Queries.GetMembersQuery;
-using KarataClub.Domain.Common.Models;
-
-namespace KarataClub.Api.Controllers;
+﻿namespace KarataClub.Api.Controllers;
 
 [ApiController()]
 [Route("Api/[Controller]")]

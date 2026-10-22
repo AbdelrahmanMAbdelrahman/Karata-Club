@@ -29,6 +29,13 @@ global using KarataClub.Application.Features.People.Instructors.Dtos;
 global using KarataClub.Application.Features.People.Instructors.Mappers;
 global using KarataClub.Application.Features.Subscriptions.Dtos;
 global using KarataClub.Application.Features.Subscriptions.Mappers;
+global using KarataClub.Application.Features.Courses.Enrollments.Dtos;
+global using KarataClub.Application.Features.Courses.Enrollments.Mappers;
+global using KarataClub.Application.Features.Courses.Mappers;
+global using KarataClub.Domain.Common.Models;
+global using KarataClub.Application.Features.Courses.Dtos;
+global using KarataClub.Application.Features.Courses.Queries.GetSubscriptions;
+global using KarataClub.Application.Features.Courses.Queries.GetSubscriptions;
 namespace KarataClub.Application;
 
 

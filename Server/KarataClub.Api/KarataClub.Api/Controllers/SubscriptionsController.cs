@@ -1,8 +1,4 @@
-﻿
-using KarataClub.Application.Features.Courses.Queries.GetSubscriptions;
-using KarataClub.Domain.Common.Models;
-
-namespace KarataClub.Api.Controllers;
+﻿namespace KarataClub.Api.Controllers;
 
 [ApiController()]
 [Route("api/[Controller]")]

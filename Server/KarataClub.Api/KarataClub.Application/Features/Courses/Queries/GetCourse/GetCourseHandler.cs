@@ -1,7 +1,4 @@
-﻿using KarataClub.Application.Features.Courses.Dtos;
-using KarataClub.Application.Features.Courses.Mappers;
-
-namespace KarataClub.Application.Features.Courses.Queries.GetCourse;
+﻿namespace KarataClub.Application.Features.Courses.Queries.GetCourse;
 
 public sealed class GetCourseHandler (
     IAppDbContext context,ILogger<GetCourseHandler>logger

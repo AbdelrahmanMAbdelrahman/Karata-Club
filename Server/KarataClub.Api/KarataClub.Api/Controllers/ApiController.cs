@@ -1,6 +1,4 @@
-﻿using KarataClub.Application.Features.Courses.Dtos;
-
-namespace KarataClub.Api.Controllers;
+﻿namespace KarataClub.Api.Controllers;
 
 public class ApiController:ControllerBase
 {

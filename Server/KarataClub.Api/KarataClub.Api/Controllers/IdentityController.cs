@@ -1,8 +1,4 @@
-﻿
-
-using System.Threading.Tasks;
-
-namespace KarataClub.Api.Controllers
+﻿namespace KarataClub.Api.Controllers
 {
     [ApiController()]
     [Route("Api/[Controller]")]

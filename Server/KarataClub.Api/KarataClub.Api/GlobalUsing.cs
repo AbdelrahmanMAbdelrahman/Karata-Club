@@ -14,6 +14,28 @@ global using KarataClub.Application.Features.Subscriptions.Commands.CreateSubscr
 global using KarataClub.Application.Features.Subscriptions.Dtos;
 global using KarataClub.Application.Features.Subscriptions.Queries.GetSubscription;
 global using Microsoft.AspNetCore.Diagnostics;
+global using KarataClub.Application.Features.People.Instructors.Queries.GetInstructors;
+global using KarataClub.Application.Features.People.Members.Commands.CreateMembers;
+global using KarataClub.Application.Features.People.Members.Commands.UpdateMembers;
+global using KarataClub.Application.Features.People.Members.Dtos;
+global using KarataClub.Application.Features.People.Members.Queries.GetMembers;
+global using KarataClub.Application.Features.People.Members.Queries.GetMembersQuery;
+global using KarataClub.Domain.Common.Models;
+global using KarataClub.Application.Features.Courses.Enrollments.Dtos;
+global using KarataClub.Application.Features.Courses.Enrollments.Queries.GetEnrollment;
+global using KarataClub.Application.Features.Courses.Enrollments.Queries.GetEnrollments;
+global using KarataClub.Api.Requests.BeltRanks;
+global using KarataClub.Application.Features.BeltRanks.Commands.CreateBeltRanks;
+global using KarataClub.Application.Features.BeltRanks.Dtos;
+global using KarataClub.Application.Features.BeltRanks.Queries.GetBeltRank;
+global using KarataClub.Application.Features.Courses.Queries.GetSubscriptions;
+global using KarataClub.Application.Features.UploadedFiles.Dtos;
+global using KarataClub.Application.Features.UploadedFiles.Queries.GetFile;
+global using KarataClub.Api.Requests.Courses;
+global using KarataClub.Application.Features.Courses.Commands.CreateCourses;
+global using KarataClub.Application.Features.Courses.Dtos;
+global using KarataClub.Application.Features.Courses.Queries.GetCourse;
+global using KarataClub.Application.Features.Courses.Enrollments.Commands.CreateEnrollment;
 namespace KarataClub.Api;
 
 

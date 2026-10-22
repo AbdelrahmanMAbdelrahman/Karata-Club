@@ -2,6 +2,7 @@
 
 
 using KarataClub.Application.Features.Courses.Dtos;
+using KarataClub.Application.Features.Courses.Enrollments.Dtos;
 using KarataClub.Application.Features.People.Members.Dtos;
 using KarataClub.Application.Features.Subscriptions.Dtos;
 using KarataClub.Application.Features.UploadedFiles.Dtos;
@@ -27,17 +28,23 @@ public static class ApplicationErrors
     internal static Result<SubscriptionDto> SubscriptionNotFound(Guid subscriptionId)
     => Error.NotFound("SubscriptionError.NotFound", $"No Subscription found for id ={subscriptionId}");
 
-    public static DownloadFileDto ImageNotFound(Guid id)
+    public static  Error        ImageNotFound(Guid id)=>Error.NotFound("ImageErrors.ImageNotFound", "ImageNotFound");
+
+    internal static  Error CourseAlreadyExist(string courseName)=>Error.Conlict("CourseErrors.CourseAlreadyExist", "CourseAlreadyExist");
+
+    internal static  Error CourseNotFound(Guid courseFileId)=>Error.NotFound("CourseErrors.CourseNotFound", "CourseNotFound");
+
+    internal static Error  BeltRankAlreadyExist(string rankName)=>
+        Error.Conlict("BelkRankErrors.BeltRankAlreadyExist", "Belt Rank Already Exist");
+
+    internal static  Error BeltRankNotFound(Guid beltRankId)=>Error.NotFound("BeltRankErrors.BeltRankNotFound", "Belt Rank Not Found");
+
+    internal static Result<EnrollmentDto> MemberHasAlreadyEnrollment(Guid courseId, Guid memberId)
     {
         throw new NotImplementedException();
     }
 
-    internal static Result<CourseFileDto> CourseAlreadyExist(string courseName)
-    {
-        throw new NotImplementedException();
-    }
-
-    internal static Result<CourseFileDto> CourseNotFound(Guid courseFileId)
+    internal static Result<EnrollmentDto> EnrollmentNotFound(Guid enrollmentId)
     {
         throw new NotImplementedException();
     }

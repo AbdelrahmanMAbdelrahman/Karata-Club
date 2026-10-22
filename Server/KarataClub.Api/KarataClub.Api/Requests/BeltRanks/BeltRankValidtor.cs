@@ -1,12 +1,11 @@
 ﻿using FluentValidation;
 using KarataClub.Infrastructure.Settings;
-using QuestPDF.Infrastructure;
 
-namespace KarataClub.Api.Requests
+namespace KarataClub.Api.Requests.BeltRanks
 {
-    public sealed class CourseRequestValidator:AbstractValidator<CourseReq>
+    public class BeltRankValidtor:AbstractValidator<BeltRankReq>
     {
-        public CourseRequestValidator()
+        public BeltRankValidtor()
         {
             RuleFor(c => c.Image)
                 .Must(image => IsImageValid(image))
@@ -17,7 +16,7 @@ namespace KarataClub.Api.Requests
         {
             BinaryReader reader = new BinaryReader(image.OpenReadStream());
             byte[] bytes = reader.ReadBytes(2);
-            string extn=BitConverter.ToString(bytes);
+            string extn = BitConverter.ToString(bytes);
             return AppSettings.AllowedExtns.Contains(extn);
         }
     }

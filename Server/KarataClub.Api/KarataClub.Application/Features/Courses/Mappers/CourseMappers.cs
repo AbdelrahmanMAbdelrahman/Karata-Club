@@ -1,6 +1,4 @@
-﻿using KarataClub.Application.Features.Courses.Dtos;
-
-namespace KarataClub.Application.Features.Courses.Mappers;
+﻿namespace KarataClub.Application.Features.Courses.Mappers;
 
 public static class CourseMappers
 {

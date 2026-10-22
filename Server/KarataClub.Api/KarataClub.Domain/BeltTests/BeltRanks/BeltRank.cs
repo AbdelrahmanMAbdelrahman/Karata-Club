@@ -11,18 +11,18 @@ public class BeltRank : AuditEntity
     public Priority RankPriority { get; private set; }
     public ICollection<BeltTest> BeltTests=default!;
     public ICollection<Member> Members=default!;
-    public ICollection<BeltRankFile> BeltRankFiles=default!;
-     
+    public ICollection<UploadedFile> UploadedFiles=default!;
+    public BeltRankFile BeltRankFile = default!;
     public BeltRank(){}
     public BeltRank(Guid id,string rankName,decimal testFees,Priority rankPriority):base(id){
     RankName = rankName;
         RankPriority = rankPriority;
         TestFees = testFees;
     }
-    public Result<BeltRank> Create(string rankName, decimal testFees, Priority rankPriority)
+    public static Result<BeltRank> Create(string rankName, decimal testFees, Priority rankPriority)
     {
         if (string.IsNullOrEmpty(rankName)) return BeltRankErrors.InvalidRankName;
-        if (TestFees < 0 || TestFees > 10000m) return BeltRankErrors.InvalidTestFees;
+        if (testFees < 0 || testFees > 10000m) return BeltRankErrors.InvalidTestFees;
         if (!Enum.IsDefined(rankPriority)) return BeltRankErrors.InvalidRankPriority;
 
         return new BeltRank(Guid.NewGuid(),rankName,testFees,rankPriority);

@@ -1,14 +1,4 @@
-﻿
-using KarataClub.Api.Requests;
-using KarataClub.Application.Features.Courses.Commands.CreateCourses;
-using KarataClub.Application.Features.Courses.Dtos;
-using KarataClub.Application.Features.Courses.Queries.GetCourse;
-using KarataClub.Application.Features.Courses.Queries.GetSubscriptions;
-using KarataClub.Domain.Common.Models;
-using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-
-namespace KarataClub.Api.Controllers;
+﻿namespace KarataClub.Api.Controllers;
 
 [ApiController()]
 [Route("Api/[Controller]")]

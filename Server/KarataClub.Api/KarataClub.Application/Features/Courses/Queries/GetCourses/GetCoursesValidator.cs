@@ -1,6 +1,4 @@
-﻿using KarataClub.Application.Features.Courses.Queries.GetSubscriptions;
-
-namespace KarataClub.Application.Features.Courses.Queries.GetCourses;
+﻿namespace KarataClub.Application.Features.Courses.Queries.GetCourses;
 
 public sealed class GetCoursesValidator:AbstractValidator<GetCoursesQuery>
 {

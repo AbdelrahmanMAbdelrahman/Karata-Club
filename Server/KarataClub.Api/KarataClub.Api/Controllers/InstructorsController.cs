@@ -1,8 +1,4 @@
-﻿using KarataClub.Application.Features.People.Instructors.Queries.GetInstructors;
-using KarataClub.Application.Features.People.Members.Queries.GetMembers;
-using KarataClub.Domain.Common.Models;
-
-namespace KarataClub.Api.Controllers;
+﻿namespace KarataClub.Api.Controllers;
 [ApiController]
 [Route("Api/[Controller]")]
 public class InstructorsController(IMediator mediator):ApiController

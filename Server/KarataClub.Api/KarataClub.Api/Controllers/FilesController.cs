@@ -1,8 +1,4 @@
-﻿using KarataClub.Application.Features.UploadedFiles.Dtos;
-using KarataClub.Application.Features.UploadedFiles.Queries.GetFile;
-using System.Threading.Tasks;
-
-namespace KarataClub.Api.Controllers
+﻿namespace KarataClub.Api.Controllers
 {
     [ApiController]
     [Route("Api/[Controller]")]

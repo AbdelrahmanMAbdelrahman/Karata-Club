@@ -15,7 +15,7 @@ public sealed class CourseEnrollment:AuditEntity
         MemberId = memberId;
         PaymentId = paymentId;
     }
-    public Result<CourseEnrollment> Create(Guid courseId, Guid memberId, Guid paymentId) {
+    public static Result<CourseEnrollment> Create(Guid courseId, Guid memberId, Guid paymentId) {
         if (courseId == Guid.Empty) return CourseEnrollmentErrors.InvalidCourseId;
         if (memberId == Guid.Empty) return CourseEnrollmentErrors.InvalidMemberId;
         if (paymentId == Guid.Empty) return CourseEnrollmentErrors.InvalidPaymentId;
