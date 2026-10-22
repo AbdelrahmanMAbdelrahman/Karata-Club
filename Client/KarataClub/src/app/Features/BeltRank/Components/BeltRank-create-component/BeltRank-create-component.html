@@ -1,0 +1,49 @@
+<div class="card">
+    <form action="" (submit)="Save()" [formGroup]="form!">
+
+        <div class="card-body">
+             <div class="form-groups">
+                <div class="form-group">
+                    <label for="rank-name" class="form-label">Rank Name</label>
+                    <input type="text" id="rank-name" formControlName="rankName" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="testFees" class="form-label">Test Fees</label>
+                    <input type="number" id="testFees" formControlName="testFees" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="priority" class="form-label">Proirity </label>
+                    <select id="priority" formControlName="priority" class="form-select">
+                        <option value="0">White</option>
+                        <option value="1">Yellow</option>
+                        <option value="2">Orange</option>
+                        <option value="3">Green</option>
+                        <option value="4">Blue</option>
+                        <option value="5">Purple</option>
+                        <option value="6">Brown</option>
+                        <option value="7">Black</option>
+                    </select>
+                </div>
+            
+
+                <div class="form-group">
+                    <label for="image" class="form-label">Image</label>
+                    <div class="input-field">
+                        <input #selectedImage type="file" id="image" class="form-control"
+                    (change)="SelectImage($event)" accept="Image/*">
+                    <button (click)="ClearImage(selectedImage)" class="btn btn-secondary">Clear</button>
+                </div>
+                </div>
+             
+       
+             </div>    
+        </div>
+        <div class="card-footer">
+            <div class="footer-btns">
+                <button (click)="Clear()" type="button" class="btn btn-secondary">Clear</button>
+                <button [routerLink]="" type="button" class="btn btn-warning">Cancel</button>
+                <button class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </form>
+</div>

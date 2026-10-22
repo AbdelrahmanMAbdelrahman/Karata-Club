@@ -1,0 +1,12 @@
+<div class="BeltRank-page">
+    <div class="BeltRank-search">
+        <app-BeltRank-search-component
+        (OnSearch)="Search($event)"
+        ></app-BeltRank-search-component>
+    </div>
+    <div class="BeltRank-list">
+        <app-BeltRank-list-component
+        [BeltRanks]="(BeltRanks|async)!"
+        ></app-BeltRank-list-component>
+    </div>
+</div>

@@ -15,6 +15,10 @@ import { CoursePage } from './Features/Courses/Pages/Course-page/Course-page';
 import { CourseDetailPage } from './Features/Courses/Pages/Course-detail-page/Course-detail-page';
 import { CourseListPage } from './Features/Courses/Pages/Course-list-page/Course-list-page';
 import { CourseCreatePage } from './Features/Courses/Pages/Course-create-page/Course-create-page';
+import { BeltRankCreatePage } from './Features/BeltRank/Pages/BeltRank-create-page/BeltRank-create-page';
+import { BeltRankListPage } from './Features/BeltRank/Pages/BeltRank-list-page/BeltRank-list-page';
+import { BeltRankDetailPage } from './Features/BeltRank/Pages/BeltRank-detail-page/BeltRank-detail-page';
+import { BeltRankPage } from './Features/BeltRank/Pages/BeltRank-page/BeltRank-page';
 
 export const routes: Routes = [
     {path:"",component:HomePageComponent,
@@ -36,6 +40,12 @@ export const routes: Routes = [
             {path:"CourseCreatePage/:id",component:CourseCreatePage},
             {path:"CourseListPage",component:CourseListPage},
             {path:"CourseDetailPage/:id",component:CourseDetailPage},
+        ]},
+        {path:"BeltRankPage",component:BeltRankPage,
+        children:[
+            {path:"BeltRankCreatePage/:id",component:BeltRankCreatePage},
+            {path:"BeltRankListPage",component:BeltRankListPage},
+            {path:"BeltRankDetailPage/:id",component:BeltRankDetailPage},
         ]},
     {path:"SubscriptionPage",component:SubscriptionPage,
         children:[

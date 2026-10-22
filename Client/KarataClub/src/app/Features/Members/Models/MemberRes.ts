@@ -1,4 +1,4 @@
-import { BeltRankRes } from "../../BeltRanks/Models/BeltRankRes";
+import { BeltRankRes } from "../../BeltRank/Models/BeltRankRes";
 import { PersonRes } from "../../Instructors/Models/PersonRes";
 
 export interface MemberRes{

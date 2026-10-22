@@ -22,7 +22,7 @@
                     <td>{{Subscription.startDate |date:'yyyy-MM-dd'}}</td>
                     <td>{{Subscription.endDate |date:'yyyy-MM-dd'}} </td>
                     <td>{{Subscription.member.active?'True':'False'}}</td>
-                    <td>{{Subscription.beltRank?.rankName??"N/A"}}</td>
+                    <td>{{Subscription.beltRank?.beltRank?.rankName??"N/A"}}</td>
                 </tr>
             </tbody>
         </table>

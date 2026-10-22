@@ -1,0 +1,34 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-info">BeltRanks</h3>
+    </div>
+    <div class="card-body">
+     <div class="cards-grid">
+         
+         <div [routerLink]="['/BeltRankPage','BeltRankDetailPage',BeltRank.beltRank.id]" 
+         class="card BeltRank-card" *ngFor="let BeltRank of BeltRanks?.items">
+        
+        <div class="card-body">
+            <img [src]="imageUrl+'/'+BeltRank.uploadedFileId" alt="Not Found"
+            (error)="OnError($event)"
+            >
+        </div>
+        <div class="card-footer">
+            <p class="text-white">{{BeltRank.beltRank.rankName}}</p>
+        </div>
+ 
+    </div>
+    </div>
+    </div>
+    <div class="card-footer">
+        <div class="BeltRank-footer">
+            <h6 class="text-info">Count : {{BeltRanks?.items?.length}}</h6>
+            <button class="btn btn-primary" [routerLink]="['/BeltRankPage','BeltRankCreatePage','0']">Add New</button>
+            <div class="pagination">
+                <button [disabled]="!BeltRanks?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <p class="text-light mt-2">Page {{BeltRanks?.totalPages}} / {{BeltRanks?.pageNumber}}</p>
+                <button [disabled]="!BeltRanks?.hasNextPage" class="btn btn-outline-primary">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
