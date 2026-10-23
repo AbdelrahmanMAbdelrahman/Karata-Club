@@ -10,7 +10,7 @@ export interface CourseRes{
         numberOfSessions:number,
         active:boolean
     },
-    uploadedFileId:PersonRes
+    uploadedFileId:string
 }
 
    

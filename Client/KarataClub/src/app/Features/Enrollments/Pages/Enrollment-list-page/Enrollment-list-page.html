@@ -1,0 +1,12 @@
+<div class="Enrollment-page">
+    <div class="Enrollment-search">
+        <app-Enrollment-search-component
+        (OnSearch)="Search($event)"
+        ></app-Enrollment-search-component>
+    </div>
+    <div class="Enrollment-list">
+        <app-Enrollment-list-component
+        [Enrollments]="(Enrollments|async)!"
+        ></app-Enrollment-list-component>
+    </div>
+</div>

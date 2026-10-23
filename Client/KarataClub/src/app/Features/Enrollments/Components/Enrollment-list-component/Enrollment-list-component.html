@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-info">Enrollments</h3>
+    </div>
+    <div class="card-body">
+
+        <table class="table table-stripped table-hover">
+            <thead>
+                <tr>
+                   <th>Serial</th>
+                   <th>Member Name</th>
+                   <th>Course name</th>
+                   <th>Fees</th>
+                   <th>Number Of Sessions</th>
+                   <th>Total Hours</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let Enrollment of Enrollments?.items;let index=index">
+                    <td>
+                        <a [routerLink]="['/EnrollmentPage','EnrollmentDetailPage',Enrollment.enrollmentId]" class="nav-link">
+                            {{index+1}}
+                        </a>
+                    </td>
+                    <td>{{Enrollment.member.person.name}}</td>
+                    <td>{{Enrollment.course.courseName}}</td>
+                    <td>{{Enrollment.course.fees}} </td>
+                    <td>{{Enrollment.course.numberOfSessions}}</td>
+                    <td>{{Enrollment.course.totalHours}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="Enrollment-footer">
+            <h6 class="text-info">Count : {{Enrollments?.items?.length}}</h6>
+            <!-- <button class="btn btn-primary" [routerLink]="['/EnrollmentPage','EnrollmentCreatePage','0']">Add New</button> -->
+            <div class="pagination">
+                <button [disabled]="!Enrollments?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <p class="text-light mt-2">Page {{Enrollments?.totalPages}} / {{Enrollments?.pageNumber}}</p>
+                <button [disabled]="!Enrollments?.hasNextPage" class="btn btn-outline-primary">Next</button>
+            </div>
+        </div>
+    </div>
+</div>

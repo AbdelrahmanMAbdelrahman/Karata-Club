@@ -10,7 +10,7 @@ public sealed class EnrollmentHandler(
              .Include(e => e.Course)
              .Include(e => e.Member)
               .ThenInclude(m => m.Person)
-              .FirstOrDefaultAsync(cancellationToken);
+              .FirstOrDefaultAsync(e=>e.Id== request.EnrollmentId,cancellationToken);
 
         if (enrollment is null)
         {

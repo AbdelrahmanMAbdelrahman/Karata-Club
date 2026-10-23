@@ -16,10 +16,15 @@ export class MemberDetailPage implements OnInit {
   Member?:Observable<MemberRes>;
   /**
    *
-   */
-  constructor(private memberService:MemberApiService,private route:ActivatedRoute) {
-  
-  }
+  */
+ constructor(private memberService:MemberApiService,
+  private route:ActivatedRoute,
+  private router:Router) {
+   
+}
+NavigateToEnrollment() {
+this.router.navigate(['/EnrollmentPage','EnrollmentCreatePage',this.Id]);
+}
   ngOnInit(): void {
     this.Member=this.memberService.GetMember(this.Id);  
   }

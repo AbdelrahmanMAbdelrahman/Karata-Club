@@ -1,4 +1,6 @@
-﻿namespace KarataClub.Application.Features.Courses.Enrollments.Commands.CreateEnrollment;
+﻿
+
+namespace KarataClub.Application.Features.Courses.Enrollments.Commands.CreateEnrollment;
 
 public sealed class CreateEnrollmentHandler (
     IAppDbContext context,ILogger<CreateEnrollmentHandler>logger,TimeProvider timeProvider
@@ -28,6 +30,16 @@ public sealed class CreateEnrollmentHandler (
             return ApplicationErrors.MemberHasAlreadyEnrollment(request.CourseId,request.MemberId);
         }
 
+        bool hasSubscription = await context.Subscriptions.AnyAsync(
+            s=>s.MemberId==request.MemberId&&
+            s.EndDate>timeProvider.GetUtcNow()
+            ,cancellationToken
+            );
+        if (!hasSubscription)
+        {
+            logger.LogError("Must has Subscribtion ");
+            return ApplicationErrors.MustHasSubscription(request.MemberId);
+        }
         Result<Payment> createPaymentResult = Payment.Create(member.Id,timeProvider.GetUtcNow(),
             course.Fees,request.Notes);
         if (createPaymentResult.IsFailure)

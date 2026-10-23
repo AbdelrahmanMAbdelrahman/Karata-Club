@@ -19,6 +19,10 @@ import { BeltRankCreatePage } from './Features/BeltRank/Pages/BeltRank-create-pa
 import { BeltRankListPage } from './Features/BeltRank/Pages/BeltRank-list-page/BeltRank-list-page';
 import { BeltRankDetailPage } from './Features/BeltRank/Pages/BeltRank-detail-page/BeltRank-detail-page';
 import { BeltRankPage } from './Features/BeltRank/Pages/BeltRank-page/BeltRank-page';
+import { EnrollmentPage } from './Features/Enrollments/Pages/Enrollment-page/Enrollment-page';
+import { EnrollmentListPage } from './Features/Enrollments/Pages/Enrollment-list-page/Enrollment-list-page';
+import { EnrollmentCreatePage } from './Features/Enrollments/Pages/Enrollment-create-page/Enrollment-create-page';
+import { EnrollmentDetailPage } from './Features/Enrollments/Pages/enrollment-detail-page/enrollment-detail-page';
 
 export const routes: Routes = [
     {path:"",component:HomePageComponent,
@@ -51,6 +55,12 @@ export const routes: Routes = [
         children:[
             {path:"SubscriptionCreatePage/:id",component:SubscriptionCreatePage},
             {path:"SubscriptionListPage",component:SubscriptionListPage},
+        ]},
+    {path:"EnrollmentPage",component:EnrollmentPage,
+        children:[
+            {path:"EnrollmentCreatePage/:id",component:EnrollmentCreatePage},
+            {path:"EnrollmentListPage",component:EnrollmentListPage},
+            {path:"EnrollmentDetailPage/:id",component:EnrollmentDetailPage},
         ]},
 
         ]

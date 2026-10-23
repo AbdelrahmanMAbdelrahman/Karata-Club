@@ -27,7 +27,7 @@ public class EnrollmentsController(IMediator mediator) : ApiController
     [EndpointSummary("Get Enrollment By Id")]
     [EndpointDescription("Provide a valid Enrollment id to fetch it's data from database ")]
     [HttpGet("{EnrollmentId}")]
-    public async Task<IActionResult> GetEnrollment([FromRoute]EnrollmentsQuery query,CancellationToken ct)
+    public async Task<IActionResult> GetEnrollment([FromRoute]EnrollmentQuery query,CancellationToken ct)
     {
         var result = await mediator.Send(query,ct);
         return result.Match(res=>Ok(res),Problem);
