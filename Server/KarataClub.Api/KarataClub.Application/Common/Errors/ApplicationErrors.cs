@@ -18,6 +18,8 @@ public static class ApplicationErrors
     public static Error MemberAlreadyExist => Error.BadRequest("Identity.MemberAlreadyExist", "Member Already Exist");
     internal static Error InstructorAlreadyExist => Error.Conlict("InstructorErrors.InstructorAlreadyExist","Instructor already exist");
 
+    public static Result<BeltTestDto> BeltTestAlreadyExist { get; internal set; }
+
     public static  Error UserNotFound(string email) => Error.NotFound("AuthErrors.UserNotFound",$"No user found for email = {email}");
 
     public static Error MemberNotFound(Guid memberId) => Error.NotFound("MemberError.MemberNotFound", $"no member found for id = {memberId}");
@@ -45,6 +47,11 @@ public static class ApplicationErrors
     }
 
     internal static Result<EnrollmentDto> EnrollmentNotFound(Guid enrollmentId)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal static Result<EnrollmentDto> MustHasSubscription(Guid memberId)
     {
         throw new NotImplementedException();
     }

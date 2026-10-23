@@ -9,7 +9,7 @@ public class BeltTest:AuditEntity
     public Guid MemberId { get; private set; }
     public bool Passed { get; private set; } = false;
     public Guid PaymentId { get; private set; }
-    public PaymentStatus PaymentStatus { get; private set; }
+    //public PaymentStatus PaymentStatus { get; private set; }
     public string? Notes { get; private set; }
     public Member Member =default!;
     public Instructor Instructor =default!;
@@ -32,18 +32,17 @@ public class BeltTest:AuditEntity
         this.PaymentId=paymentId;
     }
 
-    public Result<BeltTest> Create(DateTimeOffset testDate, Guid beltRankId,
+    public static Result<BeltTest> Create(DateTimeOffset testDate, Guid beltRankId,
         DateTimeOffset reservationDate, Guid instructorId,
-        Guid memeberId, bool passed, Guid paymentId) {
+        Guid memberId, Guid paymentId, bool passed=false) {
 
         if (testDate < DateTime.UtcNow) return BeltTestErrors.InvalidTestDate(testDate);
         if (reservationDate < DateTime.UtcNow) return BeltTestErrors.InvalidReservationDate(reservationDate);
-        if (BeltRankId == Guid.Empty) return BeltTestErrors.InvalidBeltRankId;
-        if (MemberId == Guid.Empty) return BeltTestErrors.InvalidMemberId;
+        if (beltRankId == Guid.Empty) return BeltTestErrors.InvalidBeltRankId;
+        if (memberId == Guid.Empty) return BeltTestErrors.InvalidMemberId;
         if (paymentId == Guid.Empty) return BeltTestErrors.InvalidPaymentId;
-        if (Enum.IsDefined(PaymentStatus)) return BeltTestErrors.InvalidPaymentStatus;
 
-        return new BeltTest(Guid.NewGuid(),testDate,beltRankId,reservationDate,instructorId,memeberId,passed,paymentId);
+        return new BeltTest(Guid.NewGuid(),testDate,beltRankId,reservationDate,instructorId,memberId,passed,paymentId);
     }
 
     public Result<Updated> Pass()
@@ -55,11 +54,11 @@ public class BeltTest:AuditEntity
         DateTime reservationDate,bool passed,PaymentStatus paymentStatus)
     {
         if (testDate < DateTime.UtcNow) return BeltTestErrors.InvalidTestDate(testDate);
-        if (Enum.IsDefined(PaymentStatus)) return BeltTestErrors.InvalidPaymentStatus;
+        //if (Enum.IsDefined(PaymentStatus)) return BeltTestErrors.InvalidPaymentStatus;
         if (reservationDate < DateTime.UtcNow) return BeltTestErrors.InvalidReservationDate(reservationDate);
 
         this.TestDate = testDate;
-        this.PaymentStatus=paymentStatus;
+        //this.PaymentStatus=paymentStatus;
         this.ReservationDate=reservationDate;
         return Result.Updated;
     }

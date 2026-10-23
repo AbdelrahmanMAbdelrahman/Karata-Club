@@ -7,7 +7,7 @@ public sealed class BeltTestConfigurations : IEntityTypeConfiguration<BeltTest>
         builder.ToTable("BeltTests");
         builder.Property(bt => bt.TestDate).IsRequired();
         builder.Property(bt => bt.ReservationDate).IsRequired();
-        builder.Property(bt=>bt.PaymentStatus).IsRequired().HasDefaultValue(PaymentStatus.UnPaid);
+        //builder.Property(bt=>bt.PaymentStatus).IsRequired().HasDefaultValue(PaymentStatus.UnPaid);
         builder.HasOne(bt => bt.Payment).WithOne(p=>p.BeltTest);
         builder.HasOne(bt => bt.Instructor).WithMany(i=>i.BeltTests);
         builder.HasOne(bt => bt.Member).WithMany(m=>m.BeltTests);

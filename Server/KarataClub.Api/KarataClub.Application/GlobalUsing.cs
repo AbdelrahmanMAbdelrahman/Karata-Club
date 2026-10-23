@@ -35,7 +35,9 @@ global using KarataClub.Application.Features.Courses.Mappers;
 global using KarataClub.Domain.Common.Models;
 global using KarataClub.Application.Features.Courses.Dtos;
 global using KarataClub.Application.Features.Courses.Queries.GetSubscriptions;
-global using KarataClub.Application.Features.Courses.Queries.GetSubscriptions;
+global using KarataClub.Application.Features.BeltTests.Dtos;
+global using KarataClub.Application.Features.BeltTests.Mappers;
+global using KarataClub.Infrastructure.Settings;
 namespace KarataClub.Application;
 
 

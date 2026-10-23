@@ -127,11 +127,6 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Property<Guid>("PaymentId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("PaymentStatus")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
                     b.Property<DateTimeOffset>("ReservationDate")
                         .HasColumnType("datetimeoffset");
 
