@@ -1,5 +1,4 @@
-﻿using KarataClub.Application.Features.Courses.Dtos;
-using KarataClub.Application.Features.Courses.Mappers;
+﻿
 using KarataClub.Application.Features.UploadedFiles.Dtos;
 
 namespace KarataClub.Application.Features.Courses.Commands.CreateCourses;
@@ -18,9 +17,9 @@ public sealed class CreateCourseHandler(
             logger.LogError("there is alrady a course exist with name = {courseName}", request.CourseName);
             return ApplicationErrors.CourseAlreadyExist(request.CourseName);
         }
-
+        DateTimeOffset endAt = request.StartAt.AddDays(AppSettings.CoursePeriodInDays);
         Result<Course> createCourseResult = Course.Create(request.CourseName,request.Fees,request.NumberOfSessions,
-            request.TotalHours);
+            request.TotalHours,request.StartAt,endAt,request.Priority);
         if (createCourseResult.IsFailure)
         {
             logger.LogError(string.Join(" - ", createCourseResult.Errors));

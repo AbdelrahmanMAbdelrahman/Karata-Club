@@ -11,10 +11,10 @@
         <div class="footer-btns">
             <button class="btn btn-danger">Delete</button>
             <button [routerLink]="['/SubscriptionPage','SubscriptionCreatePage',Id]" class="btn btn-primary">Subscribe - Renew</button>
-            <button (click)="NavigateToEnrollment()" class="btn btn-warning">
+            <button (click)="NavigateToEnrollment()" class="btn btn-outline-primary">
                 Enroll In Course
             </button>
-            <button [routerLink]="" class="btn btn-outline-primary">Schedule Belt Test</button>
+            <button [routerLink]="['/BeltTestPage','BeltTestCreatePage',Id]" class="btn btn-outline-primary">Schedule Belt Test</button>
         </div>
     </div>
 </div>

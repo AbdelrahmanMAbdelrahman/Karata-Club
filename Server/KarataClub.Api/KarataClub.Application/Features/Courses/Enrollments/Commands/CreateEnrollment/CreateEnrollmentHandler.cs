@@ -48,8 +48,9 @@ public sealed class CreateEnrollmentHandler (
             return createPaymentResult.Errors;
         }
         Payment payment = createPaymentResult.Value;
-
-        Result<CourseEnrollment> createEnrollResult = CourseEnrollment.Create(course.Id, member.Id,payment.Id);
+        
+        Result<CourseEnrollment> createEnrollResult = CourseEnrollment.Create(course.Id, member.Id,
+            payment.Id,timeProvider.GetUtcNow(),course.EndAt);
         if (createEnrollResult.IsFailure)
         {
             logger.LogError(string.Join(" - ", createEnrollResult.Errors));

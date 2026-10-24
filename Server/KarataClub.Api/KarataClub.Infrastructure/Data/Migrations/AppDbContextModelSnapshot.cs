@@ -168,6 +168,9 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTimeOffset>("EndAt")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<decimal>("Fees")
                         .HasColumnType("decimal(18,2)");
 
@@ -179,6 +182,12 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
                     b.Property<int>("NumberOfSessions")
                         .HasColumnType("int");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("StartAt")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<decimal>("TotalHours")
                         .HasColumnType("decimal(18,2)");
@@ -237,6 +246,12 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("EndDate")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<DateTimeOffset>("EnrollmentDate")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<DateTime>("LastModifiedAt")
                         .HasColumnType("datetime2");

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace KarataClub.Application.Features.BeltTests.Queries.GetBeltTest;
 
-namespace KarataClub.Application.Features.BeltTests.Queries.GetBeltTest
+public sealed class BeltTestValidator:AbstractValidator<BeltTestQuery>
 {
-    internal class BeltTestValidator
+    public BeltTestValidator()
     {
+        RuleFor(bt=>bt.BeltTestId).Must(id=>id!=Guid.Empty)
+            .WithMessage("Provide a valid '{PropertyName}'");
     }
 }

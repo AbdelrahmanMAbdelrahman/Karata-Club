@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EnrollmentDetailPage } from './enrollment-detail-page';
+import { EnrollmentDetailPage } from './Enrollment-detail-page';
 
 describe('EnrollmentDetailPage', () => {
   let component: EnrollmentDetailPage;

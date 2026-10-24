@@ -1,4 +1,6 @@
-﻿namespace KarataClub.Api.Controllers;
+﻿using KarataClub.Application.Features.BeltRanks.Queries.GetAllowedBeltRank;
+
+namespace KarataClub.Api.Controllers;
 
 [ApiController()]
 [Route("Api/[Controller]")]
@@ -31,6 +33,18 @@ public class MembersController(IMediator mediator) : ApiController
     {
         var result = await mediator.Send(query,ct);
         return result.Match(res=>Ok(res),Problem);
+    }
+    [ProducesResponseType(typeof(BeltRankFileDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [EndpointName(nameof(GetAllowedBeltRank))]
+    [EndpointSummary("Get Belt Rank By Member Id")]
+    [EndpointDescription("This end point responsible for get Allowed Belt Rank by providing Member id")]
+    [HttpGet("{MemberId}/EligibleBeltRank")]
+    public async Task<IActionResult> GetAllowedBeltRank([FromRoute] AllowedBeltRankQuery query, CancellationToken ct)
+    {
+        var result = await mediator.Send(query, ct);
+        return result.Match(res => Ok(res), Problem);
     }
     [ProducesResponseType(typeof(PaginatedList< MemberDto>), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]

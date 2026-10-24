@@ -6,6 +6,7 @@ import { PaginatedList } from "../../Global/Models/PaginatedList";
 import { MemberRes } from "../Models/MemberRes";
 import { Failure } from "../../Global/Models/Failure";
 import { MemberReq } from "../Models/MemberReq";
+import { BeltRankRes } from "../../BeltRank/Models/BeltRankRes";
 
 @Injectable({providedIn:"root"})
 export class MemberApiService{
@@ -16,6 +17,9 @@ export class MemberApiService{
  constructor(private http:HttpClient) {}
  GetMember(Id: string): Observable<MemberRes> {
    return this.http.get<MemberRes>(`${this.url}/${Id}`);
+ }
+ GetAvailableMemberBeltRank(memberId: string): Observable<BeltRankRes> {
+   return this.http.get<BeltRankRes>(`${this.url}/${memberId}/EligibleBeltRank`);
  }
 GetMembers(search:MemberSearch):Observable<PaginatedList<MemberRes>>{
     debugger;

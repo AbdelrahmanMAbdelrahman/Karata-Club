@@ -6,8 +6,9 @@ public sealed class CreateBeltTestHandler(
 {
     public async Task<Result<BeltTestDto>> Handle(CreateBeltTestCommand request, CancellationToken cancellationToken)
     {
-        Member? member = await context.Members.
-            Include(m => m.Person)
+        Member? member = await context.Members
+            .AsNoTracking()
+            .Include(m => m.Person)
             .FirstOrDefaultAsync(m=>m.Id==request.MemberId,cancellationToken);
         if(member is null)
         {
@@ -15,8 +16,9 @@ public sealed class CreateBeltTestHandler(
             return ApplicationErrors.MemberNotFound(request.MemberId);
         }
 
-        Instructor? instructor = await context.Instructors.
-            Include(m => m.Person)
+        Instructor? instructor = await context.Instructors
+            .AsNoTracking()
+            .Include(m => m.Person)
             .FirstOrDefaultAsync(m=>m.Id==request.InstructorId,cancellationToken);
         if(instructor is null)
         {
@@ -24,15 +26,25 @@ public sealed class CreateBeltTestHandler(
             return ApplicationErrors.InstructorNotFound(request.InstructorId);
         }
         BeltRank? beltRank = await context.BeltRanks
+            .AsNoTracking()
             .FirstOrDefaultAsync(m=>m.Id==request.BeltRankId,cancellationToken);
         if(beltRank is null)
         {
             logger.LogError("No belt Rank Found for id = {MemberId}", request.BeltRankId);
             return ApplicationErrors.BeltRankNotFound(request.BeltRankId);
         }
+        bool hasSubscription = await context.Subscriptions.AnyAsync(
+            s=>s.MemberId==request.MemberId&&
+            s.EndDate>DateTimeOffset.UtcNow
+            ,cancellationToken);
+        if (!hasSubscription)
+        {
+            logger.LogError("No Subscription found for member id {memberId}",request.MemberId);
+            return ApplicationErrors.SubscriptionNotFound(Guid.Empty);
+        }
         bool conflict = await context.BeltTests
             .AnyAsync(
-            bt => bt.InstructorId == request.BeltRankId &&
+            bt => bt.InstructorId == request.InstructorId &&
             bt.MemberId == request.MemberId &&
             bt.BeltRankId == request.BeltRankId&&
             bt.TestDate>DateTime.UtcNow
@@ -50,6 +62,7 @@ public sealed class CreateBeltTestHandler(
         }
         Payment payment = createPaymentResult.Value;
         DateTimeOffset testDate=timeProvider.GetUtcNow().AddDays(AppSettings.TestPeriodInDays);
+
         Result<BeltTest> createBeltTestResult = BeltTest.Create(
             testDate,beltRank.Id,
             timeProvider.GetUtcNow(),instructor.Id,member.Id,payment.Id);
@@ -59,12 +72,12 @@ public sealed class CreateBeltTestHandler(
             return createBeltTestResult.Errors;
         }
         BeltTest beltTest = createBeltTestResult.Value;
-        beltTest.BeltRank = beltRank;
-        beltTest.Member = member;
-        beltTest.Instructor = instructor;
+        beltTest.Payment = payment;
         await context.BeltTests.AddAsync(beltTest,cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-
+        beltTest.Member= member;
+        beltTest.Instructor= instructor;
+        beltTest.BeltRank= beltRank;
         return beltTest.ToDto();
     }
 }

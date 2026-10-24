@@ -22,7 +22,10 @@ import { BeltRankPage } from './Features/BeltRank/Pages/BeltRank-page/BeltRank-p
 import { EnrollmentPage } from './Features/Enrollments/Pages/Enrollment-page/Enrollment-page';
 import { EnrollmentListPage } from './Features/Enrollments/Pages/Enrollment-list-page/Enrollment-list-page';
 import { EnrollmentCreatePage } from './Features/Enrollments/Pages/Enrollment-create-page/Enrollment-create-page';
-import { EnrollmentDetailPage } from './Features/Enrollments/Pages/enrollment-detail-page/enrollment-detail-page';
+import { EnrollmentDetailPage } from './Features/Enrollments/Pages/Enrollment-detail-page/Enrollment-detail-page';
+import { BeltTestPage } from './Features/BeltTests/Pages/BeltTest-page/BeltTest-page';
+import { BeltTestDetailPage } from './Features/BeltTests/Pages/BeltTest-detail-page/BeltTest-detail-page';
+import { BeltTestCreatePage } from './Features/BeltTests/Pages/BeltTest-create-page/BeltTest-create-page';
 
 export const routes: Routes = [
     {path:"",component:HomePageComponent,
@@ -62,7 +65,11 @@ export const routes: Routes = [
             {path:"EnrollmentListPage",component:EnrollmentListPage},
             {path:"EnrollmentDetailPage/:id",component:EnrollmentDetailPage},
         ]},
-
+        {path:"BeltTestPage",component:BeltTestPage,
+        children:[
+            {path:"BeltTestCreatePage/:id",component:BeltTestCreatePage},
+            {path:"BeltTestDetailPage/:id",component:BeltTestDetailPage},
+        ]},
         ]
     }
 ];

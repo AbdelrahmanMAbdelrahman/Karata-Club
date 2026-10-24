@@ -36,8 +36,9 @@ public class BeltTest:AuditEntity
         DateTimeOffset reservationDate, Guid instructorId,
         Guid memberId, Guid paymentId, bool passed=false) {
 
-        if (testDate < DateTime.UtcNow) return BeltTestErrors.InvalidTestDate(testDate);
-        if (reservationDate < DateTime.UtcNow) return BeltTestErrors.InvalidReservationDate(reservationDate);
+        //if (testDate < DateTime.UtcNow) return BeltTestErrors.InvalidTestDate(testDate);
+        //if (reservationDate < DateTimeof.UtcNow) return BeltTestErrors.InvalidReservationDate(reservationDate);
+        if(testDate<reservationDate)return BeltTestErrors.InvalidTestDate(testDate);
         if (beltRankId == Guid.Empty) return BeltTestErrors.InvalidBeltRankId;
         if (memberId == Guid.Empty) return BeltTestErrors.InvalidMemberId;
         if (paymentId == Guid.Empty) return BeltTestErrors.InvalidPaymentId;

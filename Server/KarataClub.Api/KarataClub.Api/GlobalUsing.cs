@@ -36,6 +36,10 @@ global using KarataClub.Application.Features.Courses.Commands.CreateCourses;
 global using KarataClub.Application.Features.Courses.Dtos;
 global using KarataClub.Application.Features.Courses.Queries.GetCourse;
 global using KarataClub.Application.Features.Courses.Enrollments.Commands.CreateEnrollment;
+global using KarataClub.Application.Features.BeltTests.Commands.CreateBeltTests;
+global using KarataClub.Application.Features.BeltTests.Dtos;
+global using KarataClub.Application.Features.BeltTests.Queries.GetBeltTest;
+global using KarataClub.Application.Features.BeltTests.Queries.GetBeltTests;
 namespace KarataClub.Api;
 
 

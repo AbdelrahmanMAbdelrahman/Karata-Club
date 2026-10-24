@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-info">BeltTests</h3>
+    </div>
+    <div class="card-body">
+
+        <table class="table table-stripped table-hover">
+            <thead>
+                <tr>
+                   <th>Serial</th>
+                   <th>Member Name</th>
+                   <th>Course name</th>
+                   <th>Fees</th>
+                   <th>Number Of Sessions</th>
+                   <th>Total Hours</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let BeltTest of BeltTests?.items;let index=index">
+                    <td>
+                        <a [routerLink]="['/BeltTestPage','BeltTestDetailPage',BeltTest.BeltTestId]" class="nav-link">
+                            {{index+1}}
+                        </a>
+                    </td>
+                    <td>{{BeltTest.member.person.name}}</td>
+                    <td>{{BeltTest.course.courseName}}</td>
+                    <td>{{BeltTest.course.fees}} </td>
+                    <td>{{BeltTest.course.numberOfSessions}}</td>
+                    <td>{{BeltTest.course.totalHours}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="BeltTest-footer">
+            <h6 class="text-info">Count : {{BeltTests?.items?.length}}</h6>
+            <!-- <button class="btn btn-primary" [routerLink]="['/BeltTestPage','BeltTestCreatePage','0']">Add New</button> -->
+            <div class="pagination">
+                <button [disabled]="!BeltTests?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <p class="text-light mt-2">Page {{BeltTests?.totalPages}} / {{BeltTests?.pageNumber}}</p>
+                <button [disabled]="!BeltTests?.hasNextPage" class="btn btn-outline-primary">Next</button>
+            </div>
+        </div>
+    </div>
+</div>

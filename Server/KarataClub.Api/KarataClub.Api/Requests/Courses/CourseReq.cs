@@ -1,4 +1,6 @@
-﻿namespace KarataClub.Api.Requests.Courses;
+﻿using KarataClub.Domain.BeltTests.BeltRanks.Enums;
+
+namespace KarataClub.Api.Requests.Courses;
 
 public sealed record CourseReq(string CourseName,decimal Fees,int NumberOfHours,
-    int NumberOfSessions,IFormFile?Image);
+    int NumberOfSessions,DateTimeOffset StartAt,Priority Priority,IFormFile?Image);

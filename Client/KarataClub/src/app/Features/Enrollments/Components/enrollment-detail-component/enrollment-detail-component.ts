@@ -5,10 +5,11 @@ import { CourseDetailComponent } from '../../../Courses/Components/Course-detail
 import { CourseRes } from '../../../Courses/Models/CourseRes';
 import { MemberRes } from '../../../Members/Models/MemberRes';
 import { EnrollmentRes } from '../../Models/EnrollmentRes';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-enrollment-detail-component',
-  imports: [EnrollmentCreateComponent, MemberDetailComponent, CourseDetailComponent],
+  imports: [EnrollmentCreateComponent, MemberDetailComponent, CourseDetailComponent, RouterLink],
   templateUrl: './enrollment-detail-component.html',
   styleUrl: './enrollment-detail-component.css',
 })
