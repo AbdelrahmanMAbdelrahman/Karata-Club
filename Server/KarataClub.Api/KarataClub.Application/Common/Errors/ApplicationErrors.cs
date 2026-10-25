@@ -1,4 +1,6 @@
-﻿namespace KarataClub.Application.Common.Errors;
+﻿using KarataClub.Application.Features.Sessions.Dtos;
+
+namespace KarataClub.Application.Common.Errors;
 
 public static class ApplicationErrors
 {
@@ -45,6 +47,11 @@ public static class ApplicationErrors
     => Error.NotFound("BeltTest.NotFound", $"No Belt Test found for id {beltTestId}");
 
     internal static void BeltTestAlreadyPassed(Guid beltTestId)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal static Result<SessionDto> SessionNotFound(Guid sessionId)
     {
         throw new NotImplementedException();
     }

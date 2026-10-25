@@ -16,7 +16,7 @@ public sealed class Session: AuditEntity
         NumberOfHours = numberOfHours;
         SessionDate = sessionDate;
     }
-    public Result<Session> Create(Guid courseId, int numberOfHours, DateTimeOffset sessionDate)
+    public static Result<Session> Create(Guid courseId, int numberOfHours, DateTimeOffset sessionDate)
     {
         if (courseId == Guid.Empty) return SessionErrors.InvalidCourseId;
         if (numberOfHours <= 0) return SessionErrors.InvalidNumberOfHours;
