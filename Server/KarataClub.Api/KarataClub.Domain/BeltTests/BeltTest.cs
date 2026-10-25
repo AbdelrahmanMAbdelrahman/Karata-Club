@@ -63,4 +63,10 @@ public class BeltTest:AuditEntity
         this.ReservationDate=reservationDate;
         return Result.Updated;
     }
+
+    public Result<Updated> PassTest()
+    {
+        Passed=true;
+        return Result.Updated;
+    }
 }

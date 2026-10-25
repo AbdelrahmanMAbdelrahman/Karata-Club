@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CourseRes } from '../../Models/CourseRes';
+import { CourseFileRes } from '../../Models/CourseFileRes';
 import { PaginatedList } from '../../../Global/Models/PaginatedList';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
 })
 export class CourseListComponent {
   imageUrl:string="https://localhost:7189/Api/Files";
-  @Input() Courses?:PaginatedList< CourseRes>;
+  @Input() Courses?:PaginatedList< CourseFileRes>;
   OnError(event: ErrorEvent) {
   let image=event.target as HTMLImageElement;
   image.onerror=null;

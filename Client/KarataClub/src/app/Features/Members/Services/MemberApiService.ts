@@ -6,7 +6,10 @@ import { PaginatedList } from "../../Global/Models/PaginatedList";
 import { MemberRes } from "../Models/MemberRes";
 import { Failure } from "../../Global/Models/Failure";
 import { MemberReq } from "../Models/MemberReq";
-import { BeltRankRes } from "../../BeltRank/Models/BeltRankRes";
+import { BeltRankFileRes } from "../../BeltRank/Models/BeltRankFileRes";
+import { CourseFileRes } from "../../Courses/Models/CourseFileRes";
+import { BeltTestRes } from "../../BeltTests/Models/BeltTestRes";
+import { BeltTestSearch } from "../../BeltTests/Models/BeltTestSearch";
 
 @Injectable({providedIn:"root"})
 export class MemberApiService{
@@ -18,9 +21,32 @@ export class MemberApiService{
  GetMember(Id: string): Observable<MemberRes> {
    return this.http.get<MemberRes>(`${this.url}/${Id}`);
  }
- GetAvailableMemberBeltRank(memberId: string): Observable<BeltRankRes> {
-   return this.http.get<BeltRankRes>(`${this.url}/${memberId}/EligibleBeltRank`);
- }
+ GetAvailableMemberBeltRank(memberId: string): Observable<BeltRankFileRes> {
+   return this.http.get<BeltRankFileRes>(`${this.url}/${memberId}/EligibleBeltRank`);
+  }
+  GetAvailableMemberCourse(memberId: string): Observable<CourseFileRes> {
+    return this.http.get<CourseFileRes>(`${this.url}/${memberId}/EligibleCourse`);
+  }
+  GetMemberBeltRanks(beltTestSearch:BeltTestSearch): Observable<PaginatedList< BeltTestRes>> {
+    let params=new HttpParams()
+    .append('pageNumber',beltTestSearch.pageNumber)
+    .append('pageSize',beltTestSearch.pageSize)
+    .append('memberId',beltTestSearch.memberId);
+    if(beltTestSearch.sortDirection)
+    params=params. append('sortDirection',beltTestSearch.sortDirection)
+    if(beltTestSearch.sortColumn)
+    params=params. append('sortColumn',beltTestSearch.sortColumn)
+    if(beltTestSearch.memberName)
+    params=params. append('memberName',beltTestSearch.memberName)
+    if(beltTestSearch.instructorName)
+    params=params. append('instructorName',beltTestSearch.instructorName)
+    if(beltTestSearch.rankName)
+    params=params. append('rankName',beltTestSearch.rankName)
+     
+    return this.http.get<PaginatedList< BeltTestRes>>(
+      `${this.url}/BeltTests`,{params});
+   
+  }
 GetMembers(search:MemberSearch):Observable<PaginatedList<MemberRes>>{
     debugger;
     let params=new HttpParams()

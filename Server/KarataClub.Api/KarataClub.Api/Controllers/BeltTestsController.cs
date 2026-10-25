@@ -1,4 +1,6 @@
-﻿    namespace KarataClub.Api.Controllers;
+﻿using KarataClub.Application.Features.BeltTests.Commands.PassBeltTest;
+
+namespace KarataClub.Api.Controllers;
 
 [ApiController()]
 [Route("Api/[Controller]")]
@@ -32,17 +34,29 @@ public class BeltTestsController(IMediator mediator) : ApiController
         var result = await mediator.Send(query,ct);
         return result.Match(res=>Ok(res),Problem);
     }
-    [ProducesResponseType(typeof(PaginatedList< BeltTestDto>), StatusCodes.Status200OK)]
+    [ProducesResponseType( StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
-    [EndpointName(nameof(GetBeltTests))]
-    [EndpointSummary("Get BeltTests")]
-    [EndpointDescription("return a paginated list of BeltTest with given creteria")]
-    [HttpGet("")]
-    public async Task<IActionResult> GetBeltTests([FromQuery]BeltTestsQuery query,CancellationToken ct)
+    [EndpointName(nameof(PassBeltTest))]
+    [EndpointSummary("update BeltTest By Id")]
+    [EndpointDescription("Provide a valid BeltTest id to set belt passed ")]
+    [HttpPut("{BeltTestId}/Pass")]
+    public async Task<IActionResult> PassBeltTest([FromRoute]PassBeltCommand command,CancellationToken ct)
     {
-        var result = await mediator.Send(query,ct);
-        return result.Match(res=>Ok(res),Problem);
+        var result = await mediator.Send(command,ct);
+        return result.Match(res=>NoContent(),Problem);
     }
+    //[ProducesResponseType(typeof(PaginatedList< BeltTestDto>), StatusCodes.Status200OK)]
+    //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    //[ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    //[EndpointName(nameof(GetBeltTests))]
+    //[EndpointSummary("Get BeltTests")]
+    //[EndpointDescription("return a paginated list of BeltTest with given creteria")]
+    //[HttpGet("")]
+    //public async Task<IActionResult> GetBeltTests([FromQuery]MemberBeltTestsQuery query,CancellationToken ct)
+    //{
+    //    var result = await mediator.Send(query,ct);
+    //    return result.Match(res=>Ok(res),Problem);
+    //}
     
 }

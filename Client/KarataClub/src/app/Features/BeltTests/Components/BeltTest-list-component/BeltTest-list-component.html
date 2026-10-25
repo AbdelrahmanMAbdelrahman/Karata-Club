@@ -8,25 +8,29 @@
             <thead>
                 <tr>
                    <th>Serial</th>
-                   <th>Member Name</th>
-                   <th>Course name</th>
-                   <th>Fees</th>
-                   <th>Number Of Sessions</th>
-                   <th>Total Hours</th>
+                   <th>Member </th>
+                   <th>Instructor </th>
+                   <th>Rank name</th>
+                   <th>Test Fees</th>
+                   <th>Reservation Date</th>
+                   <th>Test Date</th>
+                   <th>Passed</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let BeltTest of BeltTests?.items;let index=index">
                     <td>
-                        <a [routerLink]="['/BeltTestPage','BeltTestDetailPage',BeltTest.BeltTestId]" class="nav-link">
+                        <a [routerLink]="['/BeltTestPage','BeltTestDetailPage',BeltTest.beltTestId]" class="nav-link">
                             {{index+1}}
                         </a>
                     </td>
                     <td>{{BeltTest.member.person.name}}</td>
-                    <td>{{BeltTest.course.courseName}}</td>
-                    <td>{{BeltTest.course.fees}} </td>
-                    <td>{{BeltTest.course.numberOfSessions}}</td>
-                    <td>{{BeltTest.course.totalHours}}</td>
+                    <td>{{BeltTest.instructor.person.name}}</td>
+                    <td>{{BeltTest.beltRank.rankName}} </td>
+                    <td>{{BeltTest.beltRank.testFees}}</td>
+                    <td>{{BeltTest.reservationDate|date:"yyyy / MM / dd"}}</td>
+                    <td>{{BeltTest.testDate|date:"yyyy / MM / dd"}}</td>
+                    <td>{{BeltTest.passed?'Yes':'No'}}</td>
                 </tr>
             </tbody>
         </table>

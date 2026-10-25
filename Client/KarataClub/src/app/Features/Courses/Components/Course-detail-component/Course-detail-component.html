@@ -3,23 +3,31 @@
         <div class="form-groups">
             <div class="form-group">
                 <label for="name" class="form-label">Course Name</label>
-                <input type="text" id="name" [disabled]="true" [value]="Course?.course?.courseName" class="form-control">
+                <input type="text" id="name" [disabled]="true" [value]="Course?.courseName" class="form-control">
             </div>
             <div class="form-group">
                 <label for="email" class="form-label">Fees</label>
-                <input type="text" id="fees" [disabled]="true" [value]="Course?.course?.fees" class="form-control">
+                <input type="text" id="fees" [disabled]="true" [value]="Course?.fees" class="form-control">
             </div>
             <div class="form-group">
                 <label for="phone" class="form-label">Sessions</label>
-                <input type="text" id="phone" [disabled]="true" [value]="Course?.course?.numberOfSessions" class="form-control">
+                <input type="text" id="phone" [disabled]="true" [value]="Course?.numberOfSessions" class="form-control">
             </div>
             <div class="form-group">
                 <label for="address" class="form-label">totalHours</label>
-                <input type="text" id="address" [disabled]="true" [value]="Course?.course?.totalHours" class="form-control">
+                <input type="text" id="address" [disabled]="true" [value]="Course?.totalHours" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="startAt" class="form-label">Start At</label>
+                <input type="text" id="startAt" [disabled]="true" [value]="Course?.startAt" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="endAt" class="form-label">End At</label>
+                <input type="text" id="endAt" [disabled]="true" [value]="Course?.endAt" class="form-control">
             </div>
             <div class="form-group">
                 <label for="active" class="form-label">Active</label>
-                <input type="text" id="active" [disabled]="true" [value]="Course?.course?.active" class="form-control">
+                <input type="text" id="active" [disabled]="true" [value]="Course?.active" class="form-control">
             </div>
              
         </div>

@@ -8,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Failure } from '../../../Global/Models/Failure';
 import { fail } from 'assert';
 import { PaginatedList } from '../../../Global/Models/PaginatedList';
-import { CourseRes } from '../../../Courses/Models/CourseRes';
+import { CourseFileRes } from '../../../Courses/Models/CourseFileRes';
 import { Observable } from 'rxjs';
 import { CourseApiService } from '../../../Courses/Services/CourseApiService';
 import { CourseSearch } from '../../../Courses/Models/CourseSearch';
@@ -16,7 +16,7 @@ import { AsyncPipe } from '@angular/common';
 import { InstructorRes } from '../../../Instructors/Models/InstructorRes';
 import { InstructorApiService } from '../../../Instructors/Services/InstructorApiService';
 import { InstructorSearch } from '../../../Instructors/Models/InstructorSearch';
-import { BeltRankRes } from '../../../BeltRank/Models/BeltRankRes';
+import { BeltRankFileRes } from '../../../BeltRank/Models/BeltRankFileRes';
 import { BeltRankApiService } from '../../../BeltRank/Services/BeltRankApiService';
 import { MemberApiService } from '../../../Members/Services/MemberApiService';
 
@@ -73,7 +73,7 @@ SaveBeltTest(req: BeltTestReq) {
       this.router.navigate([
         '/BeltTestPage',
         'BeltTestDetailPage',
-        res.BeltTestId
+        res.beltTestId
       ]);
     },
     error: (err: HttpErrorResponse) => {

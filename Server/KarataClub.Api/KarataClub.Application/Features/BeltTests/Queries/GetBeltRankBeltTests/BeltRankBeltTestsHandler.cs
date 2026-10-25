@@ -1,13 +1,13 @@
 ﻿
 
 
-namespace KarataClub.Application.Features.BeltTests.Queries.GetBeltTests
+namespace KarataClub.Application.Features.BeltTests.Queries.GetBeltRankBeltTests
 {
-    internal class BeltTestsHandler(
-        IAppDbContext context,ILogger<BeltTestsHandler> logger
-        ) : IRequestHandler<BeltTestsQuery, Result<PaginatedList<BeltTestDto>>>
+    internal class MemberBeltTestsHandler(
+        IAppDbContext context, ILogger<MemberBeltTestsHandler> logger
+        ) : IRequestHandler<BeltRankBeltTestsQuery, Result<PaginatedList<BeltTestDto>>>
     {
-        public async Task<Result<PaginatedList<BeltTestDto>>> Handle(BeltTestsQuery request, CancellationToken cancellationToken)
+        public async Task<Result<PaginatedList<BeltTestDto>>> Handle(BeltRankBeltTestsQuery request, CancellationToken cancellationToken)
         {
             IQueryable<BeltTest> query = context.BeltTests
            .AsNoTracking()
@@ -17,8 +17,9 @@ namespace KarataClub.Application.Features.BeltTests.Queries.GetBeltTests
               .ThenInclude(bt => bt.LastBeltRank)
             .Include(bt => bt.Instructor)
               .ThenInclude(i => i.Person)
-            .Include(bt => bt.BeltRank);
-            query = ApplyFilter(query, request.RankName,request.MemberName,request.InstructorName, request.FeesFrom, request.FeesTo);
+            .Include(bt => bt.BeltRank)
+            .Where(b=>b.BeltRankId==request.BeltRankId);
+            query = ApplyFilter(query, request.RankName, request.MemberName, request.InstructorName, request.FeesFrom, request.FeesTo);
             query = ApplySorting(query, request.SortColumn, request.SortDirection);
             Result<PaginatedList<BeltTestDto>> BeltRank = await PaginatedList<BeltTestDto>.Create(
                  query.ToDto(), request.PageNumber, request.PageSize
@@ -28,7 +29,7 @@ namespace KarataClub.Application.Features.BeltTests.Queries.GetBeltTests
         }
 
         private IQueryable<BeltTest> ApplyFilter(IQueryable<BeltTest> query, string? RankName,
-            string? MemberName,string? InstructorName,
+            string? MemberName, string? InstructorName,
              decimal? feesFrom, decimal? feesTo)
         {
             if (!string.IsNullOrWhiteSpace(RankName))

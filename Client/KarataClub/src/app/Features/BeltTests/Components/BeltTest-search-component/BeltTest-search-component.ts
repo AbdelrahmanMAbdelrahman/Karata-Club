@@ -23,13 +23,15 @@ export class BeltTestSearchComponent implements OnInit{
   }
   Search() {
     let search:BeltTestSearch={
-      courseName: this.searchForm?.get('courseName')?.value,
+      rankName: this.searchForm?.get('courseName')?.value,
       memberName: this.searchForm?.get('memberName')?.value,
       pageNumber: 1,
       pageSize: GlobalConst.pageSize,
       sortColumn: 'name',
       sortDirection: 'asc',
-      
+      instructorName: '',
+      memberId: '',
+      beltRankId: ''
     }
 this.OnSearch.emit(search);
   }

@@ -2,16 +2,14 @@
     <div class="card-body">
        <app-Member-detail-component [Member]="BeltTestRes?.member"></app-Member-detail-component>
        <!-- <app-Course-detail-component [Course]="Course"></app-Course-detail-component> -->
-        <div class="form-group">
-            <label for="courseName"  class="form-label">Course Name</label>
-            <input id="courseName" class="form-control" type="text" [value]="BeltTestRes?.course?.courseName" [disabled]="true">
-        </div>
+       <!-- <app-BeltTest-detail-component [BeltTestRes]="BeltTestRes"></app-BeltTest-detail-component> -->
+        <app-BeltRank-detail-component [BeltRank]="beltRank"></app-BeltRank-detail-component>
+    <!-- <app-instructor-detail-component></app-instructor-detail-component> -->
     </div>
     <div class="card-footer">
         <div class="footer-btns">
             <button class="btn btn-secondary">Cancel</button>
-            <button class="btn btn-primary">Pass</button>
-            <button [routerLink]="['/']" class="btn btn-outline-primary">Schedule Belt Test</button>
+            <button type="button" (click)="PassBeltTest()" class="btn btn-primary">Pass</button>
         </div>
     </div>
 </div>

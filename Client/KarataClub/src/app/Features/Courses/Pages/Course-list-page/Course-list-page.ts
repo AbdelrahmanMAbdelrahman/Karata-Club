@@ -3,7 +3,7 @@ import { CourseSearchComponent } from '../../Components/Course-search-component/
 import { CourseListComponent } from '../../Components/Course-list-component/Course-list-component';
 import { Observable } from 'rxjs';
 import { PaginatedList } from '../../../Global/Models/PaginatedList';
-import { CourseRes } from '../../Models/CourseRes';
+import { CourseFileRes } from '../../Models/CourseFileRes';
 import { AsyncPipe } from '@angular/common';
 import { CourseApiService } from '../../Services/CourseApiService';
 import { CourseSearch } from '../../Models/CourseSearch';
@@ -15,7 +15,7 @@ import { CourseSearch } from '../../Models/CourseSearch';
   styleUrl: './Course-list-page.css',
 })
 export class CourseListPage implements OnInit {
-  Courses?:Observable<PaginatedList<CourseRes>>;
+  Courses?:Observable<PaginatedList<CourseFileRes>>;
 
  constructor(private CourseService:CourseApiService) {}
  ngOnInit(): void {

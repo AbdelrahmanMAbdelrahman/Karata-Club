@@ -3,7 +3,7 @@ import { BeltRankSearchComponent } from '../../Components/BeltRank-search-compon
 import { BeltRankListComponent } from '../../Components/BeltRank-list-component/BeltRank-list-component';
 import { Observable } from 'rxjs';
 import { PaginatedList } from '../../../Global/Models/PaginatedList';
-import { BeltRankRes } from '../../Models/BeltRankRes';
+import { BeltRankFileRes } from '../../Models/BeltRankFileRes';
 import { AsyncPipe } from '@angular/common';
 import { BeltRankApiService } from '../../Services/BeltRankApiService';
 import { BeltRankSearch } from '../../Models/BeltRankSearch';
@@ -15,7 +15,7 @@ import { BeltRankSearch } from '../../Models/BeltRankSearch';
   styleUrl: './BeltRank-list-page.css',
 })
 export class BeltRankListPage implements OnInit {
-  BeltRanks?:Observable<PaginatedList<BeltRankRes>>;
+  BeltRanks?:Observable<PaginatedList<BeltRankFileRes>>;
 
  constructor(private BeltRankService:BeltRankApiService) {}
  ngOnInit(): void {

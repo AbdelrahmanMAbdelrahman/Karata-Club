@@ -2,8 +2,11 @@ export interface BeltTestSearch{
 
     pageNumber:number,
     memberName:string,
-    courseName:string,
+    rankName:string,
+    instructorName:string,
     pageSize:number,
     sortColumn:string,
-    sortDirection:string
+    sortDirection:string,
+    memberId:string,
+    beltRankId:string
 }

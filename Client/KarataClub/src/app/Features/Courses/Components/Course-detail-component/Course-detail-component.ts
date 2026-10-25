@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CourseFileRes } from '../../Models/CourseFileRes';
 import { CourseRes } from '../../Models/CourseRes';
 
 @Component({

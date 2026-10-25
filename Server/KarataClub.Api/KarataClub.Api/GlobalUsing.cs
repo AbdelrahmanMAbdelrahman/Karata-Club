@@ -39,7 +39,7 @@ global using KarataClub.Application.Features.Courses.Enrollments.Commands.Create
 global using KarataClub.Application.Features.BeltTests.Commands.CreateBeltTests;
 global using KarataClub.Application.Features.BeltTests.Dtos;
 global using KarataClub.Application.Features.BeltTests.Queries.GetBeltTest;
-global using KarataClub.Application.Features.BeltTests.Queries.GetBeltTests;
+global using KarataClub.Application.Features.BeltTests.Queries.GetBeltRankBeltTests;
 namespace KarataClub.Api;
 
 

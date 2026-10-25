@@ -43,4 +43,9 @@ public static class ApplicationErrors
 
     internal static Error BeltTestNotFound(Guid beltTestId)
     => Error.NotFound("BeltTest.NotFound", $"No Belt Test found for id {beltTestId}");
+
+    internal static void BeltTestAlreadyPassed(Guid beltTestId)
+    {
+        throw new NotImplementedException();
+    }
 }

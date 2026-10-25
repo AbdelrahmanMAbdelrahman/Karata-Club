@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BeltRankRes } from '../../Models/BeltRankRes';
+import { BeltRankFileRes } from '../../Models/BeltRankFileRes';
 import { Interface } from 'readline';
 import { Proiority } from '../../Models/Enums/Priority';
 
@@ -15,7 +15,7 @@ export class BeltRankDetailComponent implements OnInit{
     console.log("revieved belt rank",this.BeltRank);
   
   }
-  @Input()BeltRank?:BeltRankRes;
+  @Input()BeltRank?:BeltRankFileRes;
   
 }
  

@@ -1,16 +1,14 @@
 import { BeltRankRes } from "../../BeltRank/Models/BeltRankRes";
-import { CourseRes } from "../../Courses/Models/CourseRes";
+import { InstructorRes } from "../../Instructors/Models/InstructorRes";
+
 import { MemberRes } from "../../Members/Models/MemberRes";
 
 export interface BeltTestRes{
-    BeltTestId:string,
-     course:{
-        courseId:string,
-        courseName:string,
-        fees:number,
-        totalHours:number,
-        numberOfSessions:number,
-        active:boolean
-    },
-    member:MemberRes
+    beltTestId:string,
+    instructor:InstructorRes,
+    beltRank:BeltRankRes,
+    member:MemberRes,
+    reservationDate:string,
+    testDate:string
+    passed:boolean
 }

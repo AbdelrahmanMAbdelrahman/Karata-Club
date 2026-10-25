@@ -1,16 +1,12 @@
-import { BeltRankRes } from "../../BeltRank/Models/BeltRankRes";
+import { Proiority } from "../../BeltRank/Models/Enums/Priority";
+import { CourseFileRes } from "../../Courses/Models/CourseFileRes";
 import { CourseRes } from "../../Courses/Models/CourseRes";
 import { MemberRes } from "../../Members/Models/MemberRes";
 
 export interface EnrollmentRes{
     enrollmentId:string,
-     course:{
-        courseId:string,
-        courseName:string,
-        fees:number,
-        totalHours:number,
-        numberOfSessions:number,
-        active:boolean
-    },
+    course:CourseRes ,
+    enrollmentDate:string,
+    endDate:string,
     member:MemberRes
 }

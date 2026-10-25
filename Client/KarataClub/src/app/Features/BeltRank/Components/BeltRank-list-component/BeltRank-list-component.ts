@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BeltRankRes } from '../../Models/BeltRankRes';
+import { BeltRankFileRes } from '../../Models/BeltRankFileRes';
 import { PaginatedList } from '../../../Global/Models/PaginatedList';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { RouterLink } from '@angular/router';
 })
 export class BeltRankListComponent {
   imageUrl:string="https://localhost:7189/Api/Files";
-  @Input() BeltRanks?:PaginatedList< BeltRankRes>;
+  @Input() BeltRanks?:PaginatedList< BeltRankFileRes>;
   OnError(event: ErrorEvent) {
   let image=event.target as HTMLImageElement;
   image.onerror=null;

@@ -8,11 +8,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Failure } from '../../../Global/Models/Failure';
 import { fail } from 'assert';
 import { PaginatedList } from '../../../Global/Models/PaginatedList';
-import { CourseRes } from '../../../Courses/Models/CourseRes';
+
 import { Observable } from 'rxjs';
 import { CourseApiService } from '../../../Courses/Services/CourseApiService';
 import { CourseSearch } from '../../../Courses/Models/CourseSearch';
 import { AsyncPipe } from '@angular/common';
+import { CourseFileRes } from '../../../Courses/Models/CourseFileRes';
 
 @Component({
   selector: 'app-Enrollment-create-page',
@@ -21,21 +22,21 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './Enrollment-create-page.css',
 })
 export class EnrollmentCreatePage implements OnInit {
-courses?:Observable< PaginatedList<CourseRes>>;
+// courses?:Observable< PaginatedList<CourseFileRes>>;
   constructor(private router:Router,private route:ActivatedRoute,
     private EnrollmentService:EnrollmentApiService,private courseService:CourseApiService) {
     
   }
   ngOnInit(): void {
-    let search:CourseSearch={
-      active: true,
-      courseName: '',
-      pageNumber: 1,
-      pageSize: 50,
-      sortColumn: '',
-      sortDirection: ''
-    }
-    this.courses=this.courseService.GetCourses(search);
+    // let search:CourseSearch={
+    //   active: true,
+    //   courseName: '',
+    //   pageNumber: 1,
+    //   pageSize: 50,
+    //   sortColumn: '',
+    //   sortDirection: ''
+    // }
+    // this.courses=this.courseService.GetCourses(search);
   }
   
 SaveEnrollment(req: EnrollmentReq) {

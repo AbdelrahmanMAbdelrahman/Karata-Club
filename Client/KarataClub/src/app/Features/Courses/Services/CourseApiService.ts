@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { CourseSearch } from "../Models/CourseSearch";
 import { Observable } from "rxjs";
 import { PaginatedList } from "../../Global/Models/PaginatedList";
-import { CourseRes } from "../Models/CourseRes";
+import { CourseFileRes } from "../Models/CourseFileRes";
 import { Failure } from "../../Global/Models/Failure";
 import { CourseReq } from "../Models/CourseReq";
 
@@ -14,10 +14,10 @@ export class CourseApiService{
    *
   */
  constructor(private http:HttpClient) {}
- GetCourse(Id: string): Observable<CourseRes> {
-   return this.http.get<CourseRes>(`${this.url}/${Id}`);
+ GetCourse(Id: string): Observable<CourseFileRes> {
+   return this.http.get<CourseFileRes>(`${this.url}/${Id}`);
  }
-GetCourses(search:CourseSearch):Observable<PaginatedList<CourseRes>>{
+GetCourses(search:CourseSearch):Observable<PaginatedList<CourseFileRes>>{
     debugger;
     let params=new HttpParams()
     .set('pageNumber',search.pageNumber)
@@ -28,17 +28,19 @@ GetCourses(search:CourseSearch):Observable<PaginatedList<CourseRes>>{
       params=  params.set("courseName",search.courseName);
     if(search.active)
       params=  params.set("active",search.active);
-    return this.http.get<PaginatedList<CourseRes>>(this.url,{params})
+    return this.http.get<PaginatedList<CourseFileRes>>(this.url,{params})
 }
-CreateCourse(req:CourseReq):Observable<CourseRes>{
+CreateCourse(req:CourseReq):Observable<CourseFileRes>{
   debugger;
   const formData=new FormData();
   formData.append('courseName',req.courseName);
   formData.append('fees',req.fees.toString());
   formData.append('numberOfHours',req.numberOfHours.toString());
   formData.append('numberOfSessions',req.numberOfSessions.toString());
+  formData.append('startAt',req.startAt.toString());
+  formData.append('priority',req.priority.toString());
   if(req.image)formData.append('image',req.image,req.image.name
   );
-return this.http.post<CourseRes>(this.url,formData);
+return this.http.post<CourseFileRes>(this.url,formData);
 }
 }

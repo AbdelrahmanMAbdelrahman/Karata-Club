@@ -2,11 +2,10 @@
 <div class="card-body">
 
     <app-Member-detail-component
-    [Member]="(Member|async)!"
-></app-Member-detail-component>
+    [Member]="(Member|async)!"></app-Member-detail-component>
 </div>
 <div class="card-footer">
-
+    
     <div class="card-footer">
         <div class="footer-btns">
             <button class="btn btn-danger">Delete</button>
@@ -17,4 +16,5 @@
             <button [routerLink]="['/BeltTestPage','BeltTestCreatePage',Id]" class="btn btn-outline-primary">Schedule Belt Test</button>
         </div>
     </div>
+    <app-BeltTest-list-component [BeltTests]="(beltTests|async)!"></app-BeltTest-list-component>
 </div>

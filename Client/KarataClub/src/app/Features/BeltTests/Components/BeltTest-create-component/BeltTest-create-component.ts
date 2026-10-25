@@ -8,13 +8,13 @@ import { MemberApiService } from '../../../Members/Services/MemberApiService';
 import { MemberRes } from '../../../Members/Models/MemberRes';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Failure } from '../../../Global/Models/Failure';
-import { CourseRes } from '../../../Courses/Models/CourseRes';
+
 import { PaginatedList } from '../../../Global/Models/PaginatedList';
 import { CommonModule } from '@angular/common';
 import { BeltRankDetailComponent } from '../../../BeltRank/Components/BeltRank-detail-component/BeltRank-detail-component';
 import { InstructorRes } from '../../../Instructors/Models/InstructorRes';
 import { Observable } from 'rxjs';
-import { BeltRankRes } from '../../../BeltRank/Models/BeltRankRes';
+import { BeltRankFileRes } from '../../../BeltRank/Models/BeltRankFileRes';
  
  
 
@@ -27,7 +27,7 @@ import { BeltRankRes } from '../../../BeltRank/Models/BeltRankRes';
 export class BeltTestCreateComponent implements OnInit{
   @Output() OnSaveBeltTest=new EventEmitter<BeltTestReq>;
   @Input() Instructors?:PaginatedList<InstructorRes>;
-   BeltRank=signal< BeltRankRes|undefined>(undefined);
+   BeltRank=signal< BeltRankFileRes|undefined>(undefined);
   member=signal< MemberRes|undefined>(undefined);
   form?:FormGroup;
  

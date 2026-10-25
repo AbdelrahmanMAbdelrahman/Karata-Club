@@ -11,6 +11,8 @@
                    <th>Member Name</th>
                    <th>Course name</th>
                    <th>Fees</th>
+                   <th>Enrollment Date</th>
+                   <th>End Date</th>
                    <th>Number Of Sessions</th>
                    <th>Total Hours</th>
                 </tr>
@@ -25,6 +27,8 @@
                     <td>{{Enrollment.member.person.name}}</td>
                     <td>{{Enrollment.course.courseName}}</td>
                     <td>{{Enrollment.course.fees}} </td>
+                    <td>{{Enrollment.enrollmentDate|date:"yyyyMMdd"}} </td>
+                    <td>{{Enrollment.endDate|date:"yyyyMMdd"}} </td>
                     <td>{{Enrollment.course.numberOfSessions}}</td>
                     <td>{{Enrollment.course.totalHours}}</td>
                 </tr>

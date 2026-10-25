@@ -3,12 +3,14 @@ import { EnrollmentDetailComponent } from '../../Components/enrollment-detail-co
 import { CourseApiService } from '../../../Courses/Services/CourseApiService';
 import { MemberApiService } from '../../../Members/Services/MemberApiService';
 import { Observable } from 'rxjs';
-import { CourseRes } from '../../../Courses/Models/CourseRes';
 import { MemberRes } from '../../../Members/Models/MemberRes';
 import { EnrollmentRes } from '../../Models/EnrollmentRes';
 import { ActivatedRoute } from '@angular/router';
 import { EnrollmentApiService } from '../../Services/EnrollmentApiService';
 import { AsyncPipe } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Failure } from '../../../Global/Models/Failure';
+import { fail } from 'assert';
 
 @Component({
   selector: 'app-enrollment-detail-page',
@@ -17,10 +19,21 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './enrollment-detail-page.css',
 })
 export class EnrollmentDetailPage implements OnInit {
-  enrollment?:Observable<EnrollmentRes>;
+  enrollment?:Observable< EnrollmentRes>;
  
   ngOnInit(): void {
-    this.enrollment=this.enrollmentService.GetEnrollment(this.Id);
+    this.enrollment=
+    this.enrollmentService.GetEnrollment(this.Id);
+    // .subscribe(
+    //   (res)=>{
+    //     console.log(res);
+    //     this.enrollment=res;
+    //   },
+    //   (err:HttpErrorResponse)=>{
+    //   let failure=err.error as Failure;
+    //   console.log(failure);
+    //   }
+    // );
   }
 
 constructor(private enrollmentService:EnrollmentApiService,private route:ActivatedRoute) {

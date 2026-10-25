@@ -1,4 +1,6 @@
-﻿namespace KarataClub.Api.Controllers;
+﻿using KarataClub.Application.Features.BeltTests.Queries.GetBeltRankBeltTests;
+
+namespace KarataClub.Api.Controllers;
 
 [ApiController()]
 [Route("Api/[Controller]")]
@@ -29,6 +31,18 @@ public class BeltRanksController(IMediator mediator) : ApiController
     [EndpointDescription("This end point responsible for get BeltRanks by providing it's id")]
     [HttpGet("{BeltRankId}")]
     public async Task<IActionResult> GetBeltRank([FromRoute]GetBeltRankQuery query,CancellationToken ct)
+    {
+        var result=await mediator.Send(query, ct);  
+        return result.Match(res=>Ok(res),Problem);
+    }
+    [ProducesResponseType(typeof(BeltRankFileDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [EndpointName(nameof(GetBeltRankBeltTests))]
+    [EndpointSummary("Get Belt Tests By belt rank Id")]
+    [EndpointDescription("This end point responsible for get Belt tests for belt rank by providing it's rank id")]
+    [HttpGet("BeltTests")]
+    public async Task<IActionResult> GetBeltRankBeltTests([FromQuery]BeltRankBeltTestsQuery query,CancellationToken ct)
     {
         var result=await mediator.Send(query, ct);  
         return result.Match(res=>Ok(res),Problem);

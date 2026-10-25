@@ -26,7 +26,7 @@ export class BeltRankCreatePage {
 SaveBeltRank(req: BeltRankReq) {
  this.BeltRankService.CreateBeltRank(req).subscribe(
   (res)=>{
-this.router.navigate(['/BeltRankPage','BeltRankDetailPage',res.uploadedFileId])
+this.router.navigate(['/BeltRankPage','BeltRankDetailPage',res.beltRank.id])
   },
 (err:HttpErrorResponse)=>{
 let failure:Failure=err.error as Failure;

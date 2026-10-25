@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseDetailComponent } from '../../Components/Course-detail-component/Course-detail-component';
 import { Observable } from 'rxjs';
-import { CourseRes } from '../../Models/CourseRes';
+import { CourseFileRes } from '../../Models/CourseFileRes';
 import { AsyncPipe } from '@angular/common';
 import { CourseApiService } from '../../Services/CourseApiService';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -13,7 +13,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
   styleUrl: './Course-detail-page.css',
 })
 export class CourseDetailPage implements OnInit {
-  Course?:Observable<CourseRes>;
+  Course?:Observable<CourseFileRes>;
   /**
    *
    */

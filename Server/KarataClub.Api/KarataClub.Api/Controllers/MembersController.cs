@@ -1,4 +1,6 @@
 ﻿using KarataClub.Application.Features.BeltRanks.Queries.GetAllowedBeltRank;
+using KarataClub.Application.Features.BeltTests.Queries.GetMemberBeltTests;
+using KarataClub.Application.Features.Courses.Queries.GetAvailableCourses;
 
 namespace KarataClub.Api.Controllers;
 
@@ -42,6 +44,30 @@ public class MembersController(IMediator mediator) : ApiController
     [EndpointDescription("This end point responsible for get Allowed Belt Rank by providing Member id")]
     [HttpGet("{MemberId}/EligibleBeltRank")]
     public async Task<IActionResult> GetAllowedBeltRank([FromRoute] AllowedBeltRankQuery query, CancellationToken ct)
+    {
+        var result = await mediator.Send(query, ct);
+        return result.Match(res => Ok(res), Problem);
+    }
+    [ProducesResponseType(typeof(CourseFileDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [EndpointName(nameof(GetEligibleCourse))]
+    [EndpointSummary("Get Course By Member Id")]
+    [EndpointDescription("This end point responsible for get Allowed Course by providing Member id")]
+    [HttpGet("{MemberId}/EligibleCourse")]
+    public async Task<IActionResult> GetEligibleCourse([FromRoute] AvailableCoursesQuery query, CancellationToken ct)
+    {
+        var result = await mediator.Send(query, ct);
+        return result.Match(res => Ok(res), Problem);
+    }
+    [ProducesResponseType(typeof(BeltTestDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+    [EndpointName(nameof(GetMemberBeltTests))]
+    [EndpointSummary("Get BeltTest for Member")]
+    [EndpointDescription("This end point responsible for get member belt tests by providing Member id")]
+    [HttpGet("BeltTests")]
+    public async Task<IActionResult> GetMemberBeltTests([FromQuery] MemberBeltTestsQuery query, CancellationToken ct)
     {
         var result = await mediator.Send(query, ct);
         return result.Match(res => Ok(res), Problem);

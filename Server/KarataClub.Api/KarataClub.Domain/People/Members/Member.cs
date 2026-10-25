@@ -28,6 +28,10 @@ public class Member : AuditEntity
         return new Member(Guid.NewGuid(),personId,lastBeltRankId, active);
     }
 
-    
+    public Result<Updated> UpdateLastBeltRank(Guid beltRankId)
+    {
+        this.LastBeltRankId = beltRankId;
+        return Result.Updated;
+    }
 }
 

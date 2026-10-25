@@ -29,8 +29,9 @@ export class CourseCreateComponent implements OnInit{
       fees: this.form?.get('fees')?.value,
       numberOfHours: this.form?.get('hours')?.value,
       image: this.form?.get('image')?.value,
-      numberOfSessions: this.form?.get('sessions')?.value
-      
+      numberOfSessions: this.form?.get('sessions')?.value,
+      startAt: this.form?.get('startAt')?.value,
+      priority:this.form?.get('priority')?.value
     }
     return req;
   }
@@ -52,7 +53,9 @@ initForm(){
 'fees':new FormControl(null,Validators.required),
 'hours':new FormControl(null,Validators.required),
 'image':new FormControl<File|null>(null),
-'sessions':new FormControl(null,Validators.required)
+'sessions':new FormControl(null,Validators.required),
+'startAt':new FormControl(null,Validators.required),
+'priority':new FormControl(null,Validators.required)
   });
 }
 }
