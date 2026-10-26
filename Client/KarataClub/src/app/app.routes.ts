@@ -26,6 +26,11 @@ import { EnrollmentDetailPage } from './Features/Enrollments/Pages/Enrollment-de
 import { BeltTestPage } from './Features/BeltTests/Pages/BeltTest-page/BeltTest-page';
 import { BeltTestDetailPage } from './Features/BeltTests/Pages/BeltTest-detail-page/BeltTest-detail-page';
 import { BeltTestCreatePage } from './Features/BeltTests/Pages/BeltTest-create-page/BeltTest-create-page';
+import { SessionPage } from './Features/Sessions/Pages/Session-page/Session-page';
+import { SessionCreatePage } from './Features/Sessions/Pages/Session-create-page/Session-create-page';
+import { SessionDetailPage } from './Features/Sessions/Pages/session-detail-page/session-detail-page';
+import { AttendenceListPage } from './Features/Attendence/Pages/attendence-list-page/attendence-list-page';
+import { AttendencePage } from './Features/Attendence/Pages/attendence-page/attendence-page';
 
 export const routes: Routes = [
     {path:"",component:HomePageComponent,
@@ -64,6 +69,15 @@ export const routes: Routes = [
             {path:"EnrollmentCreatePage/:id",component:EnrollmentCreatePage},
             {path:"EnrollmentListPage",component:EnrollmentListPage},
             {path:"EnrollmentDetailPage/:id",component:EnrollmentDetailPage},
+        ]},
+    {path:"AttendencePage",component:AttendencePage,
+        children:[
+            {path:"AttendenceListPage/:id",component:AttendenceListPage},
+        ]},
+    {path:"SessionPage",component:SessionPage,
+        children:[
+            {path:"SessionCreatePage/:id",component:SessionCreatePage},
+            {path:"SessionDetailPage/:id",component:SessionDetailPage},
         ]},
         {path:"BeltTestPage",component:BeltTestPage,
         children:[

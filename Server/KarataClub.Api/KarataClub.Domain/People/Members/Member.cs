@@ -1,4 +1,5 @@
-﻿using KarataClub.Domain.Subscriptions;
+﻿using KarataClub.Domain.People.Members.MemberAttendencies;
+using KarataClub.Domain.Subscriptions;
 
 namespace KarataClub.Domain.People.Members;
 public class Member : AuditEntity
@@ -11,7 +12,8 @@ public class Member : AuditEntity
     public ICollection<CourseEnrollment> CourseEnrollments = default!;
 
     public ICollection<BeltTest> BeltTests=default!;
-    public ICollection<Attendance> Attendances = default!;
+    public ICollection<Attendence> Attendances = default!;
+    public ICollection<MemberAttendence> MemberAttendencies = default!;    
     public ICollection<Payment> Payments = [];
     public ICollection<Subscription> Subscriptions = [];
     private Member(){}

@@ -1,4 +1,5 @@
 ﻿
+using KarataClub.Domain.People.Members.MemberAttendencies;
 using KarataClub.Domain.Subscriptions;
 
 namespace KarataClub.Application.Common.Interfaces
@@ -6,7 +7,8 @@ namespace KarataClub.Application.Common.Interfaces
     public interface IAppDbContext
     {
         public DbSet<BeltTest> BeltTests { get; }
-        public DbSet<Attendance> Attendancies { get; }
+        public DbSet<Attendence> Attendancies { get; }
+        public DbSet<MemberAttendence> MemberAttendencies { get; }
         public DbSet<BeltRank> BeltRanks { get; }
         public DbSet<BeltRankFile> BeltRankFiles { get; }
         public DbSet<CourseFile> CourseFiles { get; }

@@ -15,6 +15,7 @@ public sealed class GetCourseHandler (
             logger.LogError("No Active Course found for id ={courseFileId}", request.CourseFileId);
             return ApplicationErrors.CourseNotFound(request.CourseFileId);
         }
+        course.Course.NumberOfEnrollments = await context.Enrollments.CountAsync(e=>e.CourseId==course.Course.Id);
         return course.ToDto();
     }
 }

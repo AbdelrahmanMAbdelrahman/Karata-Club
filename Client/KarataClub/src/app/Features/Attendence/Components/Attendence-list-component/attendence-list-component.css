@@ -1,0 +1,21 @@
+.Attendence-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.pagination{
+    display: flex;
+     
+}
+.list-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.attendence-footer{
+    display: flex;
+    justify-content: space-between;
+}
+.pagination{
+    display: flex;
+     
+}

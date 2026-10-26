@@ -19,15 +19,19 @@
             </div>
             <div class="form-group">
                 <label for="startAt" class="form-label">Start At</label>
-                <input type="text" id="startAt" [disabled]="true" [value]="Course?.startAt" class="form-control">
+                <input type="text" id="startAt" [disabled]="true" [value]="Course?.startAt | date:'dd - MM - yyyy'" class="form-control">
             </div>
             <div class="form-group">
                 <label for="endAt" class="form-label">End At</label>
-                <input type="text" id="endAt" [disabled]="true" [value]="Course?.endAt" class="form-control">
+                <input type="text" id="endAt" [disabled]="true" [value]="Course?.endAt | date:'dd - MM - yyyy'" class="form-control">
             </div>
             <div class="form-group">
                 <label for="active" class="form-label">Active</label>
                 <input type="text" id="active" [disabled]="true" [value]="Course?.active" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="subscribers" class="form-label">Subscribers</label>
+                <input type="text" id="subscribers" [disabled]="true" [value]="Course?.numberOfSubscribers" class="form-control">
             </div>
              
         </div>

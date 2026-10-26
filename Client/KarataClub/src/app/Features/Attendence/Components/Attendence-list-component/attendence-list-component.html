@@ -1,0 +1,53 @@
+<div class="card">
+    <div class="card-header">
+        <app-Course-detail-component [Course]="attendence?.session?.course"></app-Course-detail-component>
+    </div>
+    <div class="card-body">
+      <div class="list-header">
+        <p class="text-primary">member Attendence</p>
+     <button type="button" (click)="CreateAttendence()" 
+     class="btn btn-outline-primary">Create Attendendence</button>
+</div>
+<table class="table table-hover table-stripped">
+<thead>
+                <tr>
+                   <th>Serial</th>
+                   <th>Member </th>
+                   <th>Rank name</th>
+                   <th>Session Date</th>
+                   <th>Number Of Hours</th>
+                   <th>Exist</th>
+                   <th></th>
+                  
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let memberAttendence of memberAttendence?.items;let index=index">
+                    <td>
+                         
+                            {{index+1}}
+                        
+                    </td>
+                    <td>{{memberAttendence.member.person.name}}</td>
+                    <td>{{memberAttendence?.member?.beltRank?.rankName??'N/A'}}</td>
+                    <td>{{attendence?.session?.sessionDate|date:"dd-MM-yyyy"}} </td>
+                    <td>{{attendence?.session?.numberOfHours}} </td>
+                    <td>{{memberAttendence.exist?'Yes':'NO'}} </td>
+                    <td><input type="checkbox" 
+                        (change)="OnExistChanged(memberAttendence.member.memberId,$event)"></td>
+                
+                </tr>
+            </tbody>
+</table>
+<div class="attendence-footer">
+            <h6 class="text-info">Count : {{memberAttendence?.items?.length}}</h6>
+            <button class="btn btn-outline-primary" (click)="SaveAttendence()">Save Attendence</button>
+            <div class="pagination">
+                <button [disabled]="!memberAttendence?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <p class="text-light mt-2">Page {{memberAttendence?.totalPages}} / {{memberAttendence?.pageNumber}}</p>
+                <button [disabled]="memberAttendence?.hasNextPage" class="btn btn-outline-primary">Next</button> 
+            </div>
+        </div>
+    </div>
+     
+</div>

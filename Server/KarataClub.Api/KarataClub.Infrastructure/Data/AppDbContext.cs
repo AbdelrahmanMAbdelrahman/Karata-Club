@@ -3,6 +3,7 @@
 
 
 
+using KarataClub.Domain.People.Members.MemberAttendencies;
 using KarataClub.Domain.Subscriptions;
 
 namespace KarataClub.Infrastructure.Data
@@ -12,7 +13,7 @@ namespace KarataClub.Infrastructure.Data
     {
         public DbSet<BeltTest> BeltTests => Set<BeltTest>();
 
-        public DbSet<Attendance> Attendancies => Set<Attendance>();
+        public DbSet<Attendence> Attendancies => Set<Attendence>();
 
         public DbSet<BeltRank> BeltRanks => Set<BeltRank>();
 
@@ -38,6 +39,8 @@ namespace KarataClub.Infrastructure.Data
 
         public DbSet<UploadedFile> UploadedFiles => Set<UploadedFile>();
         public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
+
+        public DbSet<MemberAttendence> MemberAttendencies => Set<MemberAttendence>();
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

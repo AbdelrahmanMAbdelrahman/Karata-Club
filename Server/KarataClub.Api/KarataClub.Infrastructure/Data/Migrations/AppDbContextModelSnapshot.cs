@@ -487,7 +487,7 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.ToTable("Instructors");
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.People.Members.Attendencies.Attendance", b =>
+            modelBuilder.Entity("KarataClub.Domain.People.Members.Attendencies.Attendence", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -499,16 +499,10 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsExist")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime>("LastModifiedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid>("LastModifiedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("MemberId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("SessionId")
@@ -516,11 +510,9 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("MemberId");
-
                     b.HasIndex("SessionId");
 
-                    b.ToTable("Attendencies", (string)null);
+                    b.ToTable("Attendancies");
                 });
 
             modelBuilder.Entity("KarataClub.Domain.People.Members.Member", b =>
@@ -558,6 +550,47 @@ namespace KarataClub.Infrastructure.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("Members");
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.People.Members.MemberAttendencies.MemberAttendence", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AttendenceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Exist")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("LastModifiedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("MemberId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("SessionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AttendenceId");
+
+                    b.HasIndex("MemberId");
+
+                    b.HasIndex("SessionId");
+
+                    b.ToTable("MemberAttendencies", (string)null);
                 });
 
             modelBuilder.Entity("KarataClub.Domain.People.Person", b =>
@@ -949,21 +982,13 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Navigation("Person");
                 });
 
-            modelBuilder.Entity("KarataClub.Domain.People.Members.Attendencies.Attendance", b =>
+            modelBuilder.Entity("KarataClub.Domain.People.Members.Attendencies.Attendence", b =>
                 {
-                    b.HasOne("KarataClub.Domain.People.Members.Member", "Member")
-                        .WithMany("Attendances")
-                        .HasForeignKey("MemberId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("KarataClub.Domain.Courses.Sessions.Session", "Session")
-                        .WithMany("Attendances")
+                        .WithMany()
                         .HasForeignKey("SessionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Member");
 
                     b.Navigation("Session");
                 });
@@ -983,6 +1008,33 @@ namespace KarataClub.Infrastructure.Data.Migrations
                     b.Navigation("LastBeltRank");
 
                     b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("KarataClub.Domain.People.Members.MemberAttendencies.MemberAttendence", b =>
+                {
+                    b.HasOne("KarataClub.Domain.People.Members.Attendencies.Attendence", "Attendence")
+                        .WithMany()
+                        .HasForeignKey("AttendenceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KarataClub.Domain.People.Members.Member", "Member")
+                        .WithMany("MemberAttendencies")
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("KarataClub.Domain.Courses.Sessions.Session", "Session")
+                        .WithMany("MemberAttendencies")
+                        .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Attendence");
+
+                    b.Navigation("Member");
+
+                    b.Navigation("Session");
                 });
 
             modelBuilder.Entity("KarataClub.Domain.Subscriptions.Subscription", b =>
@@ -1073,7 +1125,7 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("KarataClub.Domain.Courses.Sessions.Session", b =>
                 {
-                    b.Navigation("Attendances");
+                    b.Navigation("MemberAttendencies");
                 });
 
             modelBuilder.Entity("KarataClub.Domain.Payments.Payment", b =>
@@ -1092,11 +1144,11 @@ namespace KarataClub.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("KarataClub.Domain.People.Members.Member", b =>
                 {
-                    b.Navigation("Attendances");
-
                     b.Navigation("BeltTests");
 
                     b.Navigation("CourseEnrollments");
+
+                    b.Navigation("MemberAttendencies");
 
                     b.Navigation("Subscriptions");
                 });

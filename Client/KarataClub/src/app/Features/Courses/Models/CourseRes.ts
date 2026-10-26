@@ -7,5 +7,6 @@ export interface CourseRes{
         startAt:string,
         endAt:string,
         priority:string,
-        active:boolean
+        active:boolean,
+        numberOfSubscribers:number
 }

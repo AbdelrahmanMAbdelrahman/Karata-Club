@@ -1,0 +1,45 @@
+<div class="card">
+    <div class="card-header">
+        <h3 class="text-info">Sessions</h3>
+    </div>
+    <div class="card-body">
+
+        <table class="table table-stripped table-hover">
+            <thead>
+                <tr>
+                   <th>Serial</th>
+                   <th>Course</th>
+                   <th>Total Period</th>
+                   <th>Session Date</th>
+                   <th>Start At</th>
+                   <th>End At</th>
+                   <th>Course Sessions</th>
+                </tr>
+            </thead>
+ 
+            <tbody>
+                <tr *ngFor="let Session of Sessions?.items;let index=index">
+                    <td>
+                        <a [routerLink]="['/AttendencePage','AttendenceListPage',Session.sessionId]">{{index+1}}</a></td>
+                    <td>{{Session.course.courseName}}</td>
+                    <td>{{Session.course.totalHours}}</td>
+                    <td>{{Session.sessionDate|date:'yyyy-MM-dd'}} </td>
+                    <td>{{Session.course.startAt|date:'yyyy-MM-dd'}} </td>
+                    <td>{{Session.course.endAt|date:'yyyy-MM-dd'}} </td>
+                    <td>{{Session.course.numberOfSessions}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer">
+        <div class="Session-footer">
+            <h6 class="text-info">Count : {{Sessions?.items?.length}}</h6>
+            <!-- <button class="btn btn-primary" [routerLink]="['/SessionPage','SessionCreatePage','0']">Add New</button> -->
+            <div class="pagination">
+                <button [disabled]="!Sessions?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <p class="text-light mt-2">Page {{Sessions?.totalPages}} / {{Sessions?.pageNumber}}</p>
+                <button [disabled]="!Sessions?.hasNextPage" class="btn btn-outline-primary">Next</button>
+            </div>
+        </div>
+    </div>
+</div>

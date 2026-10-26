@@ -7,18 +7,20 @@ public sealed class CreateSessionHandler
     (IAppDbContext context,ILogger<CreateSessionHandler>logger,TimeProvider timeProvider)
     : IRequestHandler<CreateSessionCommand, Result<SessionDto>>
 {
-    async Task<Result<SessionDto>> IRequestHandler<CreateSessionCommand, Result<SessionDto>>.Handle(CreateSessionCommand request, CancellationToken cancellationToken)
+    async Task<Result<SessionDto>> IRequestHandler<CreateSessionCommand, 
+        Result<SessionDto>>.Handle(CreateSessionCommand request, CancellationToken cancellationToken)
     {
-      Course? course = await context.Courses
+      CourseFile? courseFile = await context.CourseFiles
             .AsNoTracking()
-            .FirstOrDefaultAsync(c => c.Id == request.CourseId && c.Active);
-        if (course is null)
+            .Include(c=>c.Course)
+            .FirstOrDefaultAsync(c => c.Id == request.CourseId && c.Course.Active);
+        if (courseFile is null)
         {
             logger.LogError("No Course Available with id : {CourseId}", request.CourseId);
             return ApplicationErrors.CourseNotFound(request.CourseId);
         }
 
-        Result<Session> createSessionResult = Session.Create(request.CourseId,request.NumberOfHours,
+        Result<Session> createSessionResult = Session.Create(courseFile.Course.Id,request.NumberOfHours,
             timeProvider.GetUtcNow());
         if (createSessionResult.IsFailure)
         {
@@ -28,7 +30,7 @@ public sealed class CreateSessionHandler
 
         await context.Sessions.AddAsync(createSessionResult.Value);
         await context.SaveChangesAsync(cancellationToken);
-        createSessionResult.Value.Course = course;
+        createSessionResult.Value.Course = courseFile.Course;
         return createSessionResult.Value.ToDto();
 
     }

@@ -1,4 +1,5 @@
 ﻿using KarataClub.Domain.BeltTests.BeltRanks.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace KarataClub.Domain.Courses;
 
@@ -15,6 +16,8 @@ public class Course:AuditEntity
     public ICollection<CourseEnrollment> CourseEnrollments = [];
     public ICollection<CourseFile> CourseFiles = [];
     public ICollection<Session> Session { get; private set; }
+    [NotMapped]
+    public int NumberOfEnrollments { get; set; }
     public Course(){}
     public Course(Guid id,string courseName,decimal fees,int numberOfSessions,decimal totalHours,
         DateTimeOffset startAt,DateTimeOffset endAt,Priority priority

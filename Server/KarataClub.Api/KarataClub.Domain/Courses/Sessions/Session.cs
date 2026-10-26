@@ -1,4 +1,5 @@
 ﻿using KarataClub.Domain.People.Members.Attendencies;
+using KarataClub.Domain.People.Members.MemberAttendencies;
 
 namespace KarataClub.Domain.Courses.Sessions;
 
@@ -9,7 +10,7 @@ public sealed class Session: AuditEntity
     public int NumberOfHours { get; private set; }
     public DateTimeOffset SessionDate { get; private set; }
     public Course Course { get; set; } = default!;
-    public ICollection<Attendance> Attendances=default!;
+    public ICollection<MemberAttendence> MemberAttendencies=default!;
     public Session(){}
     public Session(Guid id,Guid courseId,int numberOfHours,DateTimeOffset sessionDate):base(id){
     CourseId = courseId;

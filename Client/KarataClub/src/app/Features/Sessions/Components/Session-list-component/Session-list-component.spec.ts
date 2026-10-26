@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { SessionListComponent } from './Session-list-component';
+
+describe('SessionListComponent', () => {
+  let component: SessionListComponent;
+  let fixture: ComponentFixture<SessionListComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [SessionListComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(SessionListComponent);
+    component = fixture.componentInstance;
+    await fixture.whenStable();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

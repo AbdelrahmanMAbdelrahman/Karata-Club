@@ -1,10 +1,14 @@
-﻿using KarataClub.Application.Features.Sessions.Dtos;
+﻿using KarataClub.Application.Features.MemberAttendencies.Dtos;
+using KarataClub.Application.Features.Sessions.Dtos;
 
 namespace KarataClub.Application.Common.Errors;
 
 public static class ApplicationErrors
 {
-    internal static Result<SubscriptionDto> SubscriptionAlreadyExist =>
+    internal static Error AttendenceAlreadyExist=> Error.Conlict("AttendenceErrors.AlreadyExist");
+    internal static Error AttendenceNotFound => Error.NotFound("AttendenceErrors.NotFound");
+
+    internal static Error SubscriptionAlreadyExist =>
         Error.Conlict("SubscriptionErrors.SubscriptionAlreadyExist", "Subscription Already Exist");
 
     public static Error InCorrectUserNameOrPassword => Error.BadRequest("Identity.BadRequest", "Incorrect username or passwrod");
@@ -51,8 +55,6 @@ public static class ApplicationErrors
         throw new NotImplementedException();
     }
 
-    internal static Result<SessionDto> SessionNotFound(Guid sessionId)
-    {
-        throw new NotImplementedException();
-    }
+    internal static Error SessionNotFound(Guid sessionId) =>
+        Error.NotFound("Session.NotFound","Session not found");
 }

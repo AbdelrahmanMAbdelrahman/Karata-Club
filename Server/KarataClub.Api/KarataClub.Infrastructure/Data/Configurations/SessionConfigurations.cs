@@ -10,7 +10,7 @@ public sealed class SessionConfigurations : IEntityTypeConfiguration<Session>
         builder.Property(s=>s.SessionDate).IsRequired();
         builder.Property(s=>s.NumberOfHours).IsRequired();
         builder.HasOne(s => s.Course).WithMany(c => c.Session);
-        builder.HasMany(s => s.Attendances).WithOne(a => a.Session);
+        builder.HasMany(s => s.MemberAttendencies).WithOne(a => a.Session);
 
     }
 }

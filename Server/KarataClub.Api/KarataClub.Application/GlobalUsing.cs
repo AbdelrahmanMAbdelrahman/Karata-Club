@@ -38,6 +38,11 @@ global using KarataClub.Application.Features.Courses.Queries.GetSubscriptions;
 global using KarataClub.Application.Features.BeltTests.Dtos;
 global using KarataClub.Application.Features.BeltTests.Mappers;
 global using KarataClub.Infrastructure.Settings;
+global using KarataClub.Application.Features.MemberAttendencies.Dtos;
+global using KarataClub.Application.Features.Sessions.Mappers;
+global using KarataClub.Domain.People.Members.MemberAttendencies;
+global using KarataClub.Application.Features.Sessions.Dtos;
+global using KarataClub.Application.Features.MemberAttendencies.Mappers;
 namespace KarataClub.Application;
 
 

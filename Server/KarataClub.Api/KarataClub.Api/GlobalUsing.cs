@@ -40,6 +40,10 @@ global using KarataClub.Application.Features.BeltTests.Commands.CreateBeltTests;
 global using KarataClub.Application.Features.BeltTests.Dtos;
 global using KarataClub.Application.Features.BeltTests.Queries.GetBeltTest;
 global using KarataClub.Application.Features.BeltTests.Queries.GetBeltRankBeltTests;
+global using KarataClub.Application.Features.MemberAttendencies.Commands;
+global using KarataClub.Application.Features.MemberAttendencies.Dtos;
+global using KarataClub.Application.Features.MemberAttendencies.Queries.GetMemberAttendence;
+
 namespace KarataClub.Api;
 
 
