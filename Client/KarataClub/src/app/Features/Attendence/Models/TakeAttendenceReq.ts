@@ -1,4 +1,4 @@
 export interface TakeAttendenceReq{
     sessionId:string,
-    memberAttndence:Map<string,boolean>
+    memberAttendence:Record<string,boolean>
 }

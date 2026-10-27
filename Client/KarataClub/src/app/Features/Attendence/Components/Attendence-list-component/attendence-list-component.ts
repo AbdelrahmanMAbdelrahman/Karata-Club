@@ -5,6 +5,7 @@ import { CourseDetailComponent } from '../../../Courses/Components/Course-detail
 import { RouterLink } from '@angular/router';
 import { PaginatedList } from '../../../Global/Models/PaginatedList';
 import { MemberAttendenceRes } from '../../Models/MemberAttendenceRes';
+import { TakeAttendenceReq } from '../../Models/TakeAttendenceReq';
  
 
 @Component({
@@ -17,7 +18,8 @@ export class AttendenceListComponent {
 @Input() attendence?: AttendenceRes;
 @Input() memberAttendence?:PaginatedList<MemberAttendenceRes>;
 @Output() OnCreateAttendence=new EventEmitter();
-MemberExistance=new Map<string,boolean>();
+@Output() OnTakeAttendence=new EventEmitter<TakeAttendenceReq>();
+MemberExistance:Record<string,boolean>={};
  CreateAttendence(){
 this.OnCreateAttendence.emit();
  }
@@ -27,10 +29,14 @@ OnExistChanged(
 ): void {
   debugger;
     const checkbox = event.target as HTMLInputElement;
-    this.MemberExistance.set(memberId,checkbox.checked);
+    this.MemberExistance[memberId]=checkbox.checked;
     // memberAttendence.exist = checkbox.checked;
 } 
 SaveAttendence(){
-  console.log(this.MemberExistance);
+  let req:TakeAttendenceReq={
+    sessionId: this.attendence?.session.sessionId??'0',
+    memberAttendence: this.MemberExistance
+  }
+  this.OnTakeAttendence.emit(req);
 }
 }

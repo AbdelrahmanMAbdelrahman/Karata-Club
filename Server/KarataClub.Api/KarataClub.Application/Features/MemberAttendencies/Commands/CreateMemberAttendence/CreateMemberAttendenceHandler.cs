@@ -1,4 +1,4 @@
-﻿namespace KarataClub.Application.Features.MemberAttendencies.Commands;
+﻿namespace KarataClub.Application.Features.MemberAttendencies.Commands.CreateMemberAttendence;
 
 public sealed class CreateMemberAttendenceHandler(
     IAppDbContext context, ILogger<CreateMemberAttendenceHandler> logger)

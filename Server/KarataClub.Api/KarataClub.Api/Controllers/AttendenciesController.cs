@@ -1,4 +1,7 @@
-﻿namespace KarataClub.Api.Controllers
+﻿using KarataClub.Application.Features.MemberAttendencies.Commands.CreateMemberAttendence;
+using KarataClub.Application.Features.MemberAttendencies.Commands.TakMemberAttendence;
+
+namespace KarataClub.Api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
@@ -9,7 +12,7 @@
         [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
         [EndpointName(nameof(CreateAttendence))]
         [EndpointSummary("Create new Attendence ")]
-        [EndpointDescription("This end piont responsible for create Attendence to be able to has Attendenceship in the system")]
+        [EndpointDescription("This end piont responsible for create Attendence ")]
         [HttpPost()]
 
         public async Task<IActionResult> CreateAttendence([FromBody] CreateMemberAttendenceCommand command, CancellationToken ct)
@@ -17,6 +20,19 @@
             var result = await mediator.Send(command, ct);
             return result.Match(res =>
             CreatedAtAction(nameof(GetAttendence), new { AttendenceId = res.AttendenceId }, res), Problem);
+        }
+        [ProducesResponseType( StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status404NotFound)]
+        [EndpointName(nameof(TakeMemberAttendence))]
+        [EndpointSummary("Take Member Attendence ")]
+        [EndpointDescription("This end piont responsible for take member Attendence to track member")]
+        [HttpPut()]
+
+        public async Task<IActionResult> TakeMemberAttendence([FromBody]TakMemberAttendenceCommand  command, CancellationToken ct)
+        {
+            var result = await mediator.Send(command, ct);
+            return result.Match(res =>NoContent(), Problem);
         }
 
         [ProducesResponseType(typeof(AttendenceDto), StatusCodes.Status200OK)]

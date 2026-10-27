@@ -27,5 +27,9 @@ public sealed class MemberAttendence : AuditEntity
         if (sessionId == Guid.Empty) return MemberAttendenceErrors.InvalidSessionId(sessionId);
         return new MemberAttendence(Guid.NewGuid(), sessionId,memberId, attendenceId, exist);
     }
-
+    public Result<Updated> SetExist(bool exist)
+    {
+        this.Exist = exist;
+        return Result.Updated;
+    }
 }

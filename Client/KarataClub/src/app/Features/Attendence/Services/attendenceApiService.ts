@@ -7,11 +7,12 @@ import { Failure } from "../../Global/Models/Failure";
 import { AttendenceReq } from "../Models/attendenceReq";
 import { AttendenceSearch } from "../Models/attendenceSearch";
 import { MemberAttendenceRes } from "../Models/MemberAttendenceRes";
+import { TakeAttendenceReq } from "../Models/TakeAttendenceReq";
 
 @Injectable({providedIn:"root"})
 export class AttendenceApiService{
     private url:string="https://localhost:7189/api/Attendencies";
-/**
+    /**
  *
  */
 constructor(private http:HttpClient) {}
@@ -24,9 +25,13 @@ GetMemberAttendence(search:AttendenceSearch):Observable<PaginatedList< MemberAtt
     .set('pageNumber',search.pageNumber)
     .set('pageSize',search.pageSize)
     .set('sessionId',search.sessionId)
-   
-   
+    
+    
     return this.http.get<PaginatedList<MemberAttendenceRes>>(this.url,{params})
+}
+TakeAttendence(req: TakeAttendenceReq):Observable<any> {
+    debugger;
+  return this.http.put<any>(this.url,req);
 }
 CreateAttendence(req:AttendenceReq):Observable<AttendenceRes>{
   debugger;

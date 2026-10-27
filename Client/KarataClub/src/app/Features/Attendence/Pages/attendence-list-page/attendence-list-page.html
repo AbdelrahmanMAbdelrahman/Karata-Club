@@ -1,6 +1,7 @@
  
         <app-Attendence-list-component 
         (OnCreateAttendence)="CreateAttendence()"
+        (OnTakeAttendence)="TakeAttendence($event)"
         [memberAttendence]="(MemberAttendence|async)!"
         [attendence]="(Attendence|async)!"></app-Attendence-list-component>
  

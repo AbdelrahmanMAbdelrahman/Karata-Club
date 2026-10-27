@@ -14,6 +14,7 @@ import { Failure } from '../../../Global/Models/Failure';
 import { fail } from 'assert';
 import { AttendenceReq } from '../../Models/attendenceReq';
 import { MemberAttendenceRes } from '../../Models/MemberAttendenceRes';
+import { TakeAttendenceReq } from '../../Models/TakeAttendenceReq';
 
 @Component({
   selector: 'app-Attendence-list-page',
@@ -58,6 +59,9 @@ this.router.navigate(['AttendencePage','AttendenceListPage',this.Id])
       console.log(failure);
     }
   );
+}
+TakeAttendence(req:TakeAttendenceReq){
+  this.AttendenceService.TakeAttendence(req).subscribe();
 }
 get Id(){
   debugger;
