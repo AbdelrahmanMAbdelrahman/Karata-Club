@@ -1,10 +1,10 @@
-﻿using KarataClub.Application.Features.MemberAttendencies.Dtos;
-using KarataClub.Application.Features.Sessions.Dtos;
-
-namespace KarataClub.Application.Common.Errors;
+﻿namespace KarataClub.Application.Common.Errors;
 
 public static class ApplicationErrors
 {
+    internal static Error SessionAlreadyExist =>
+        Error.Conlict("Session.AlreadyExist"," Session Already Exist");
+
     internal static Error AttendenceAlreadyExist=> Error.Conlict("AttendenceErrors.AlreadyExist");
     internal static Error AttendenceNotFound => Error.NotFound("AttendenceErrors.NotFound");
 
@@ -50,11 +50,12 @@ public static class ApplicationErrors
     internal static Error BeltTestNotFound(Guid beltTestId)
     => Error.NotFound("BeltTest.NotFound", $"No Belt Test found for id {beltTestId}");
 
-    internal static void BeltTestAlreadyPassed(Guid beltTestId)
-    {
-        throw new NotImplementedException();
-    }
+    internal static Error BeltTestAlreadyPassed(Guid beltTestId)
+    => Error.Conlict("BeltTest.Conflict",$"no belt test found for id {beltTestId}");
 
     internal static Error SessionNotFound(Guid sessionId) =>
         Error.NotFound("Session.NotFound","Session not found");
+
+    internal static Error NoMemberEnrolledInCourse(Guid courseId)
+    => Error.NotFound("MemberEnrollment.NoMemberFound",$"No member has enrolled in course with id {courseId}");
 }

@@ -19,7 +19,15 @@ public sealed class CreateSessionHandler
             logger.LogError("No Course Available with id : {CourseId}", request.CourseId);
             return ApplicationErrors.CourseNotFound(request.CourseId);
         }
-
+        bool IsSessionExist = await context.Sessions.AnyAsync(
+            s=>s.SessionDate.Day==DateTime.UtcNow.Day&&
+            s.CourseId==request.CourseId
+            );
+        if (IsSessionExist)
+        {
+            logger.LogError("Session Already Exist");
+            return ApplicationErrors.SessionAlreadyExist;
+        }
         Result<Session> createSessionResult = Session.Create(courseFile.Course.Id,request.NumberOfHours,
             timeProvider.GetUtcNow());
         if (createSessionResult.IsFailure)

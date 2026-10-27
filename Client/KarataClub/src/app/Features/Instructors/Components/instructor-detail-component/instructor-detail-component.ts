@@ -1,9 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { InstructorRes } from '../../Models/InstructorRes';
 
 @Component({
-  selector: 'app-instructor-detail-component',
+  selector: 'app-Instructor-detail-component',
   imports: [],
-  templateUrl: './instructor-detail-component.html',
-  styleUrl: './instructor-detail-component.css',
+  templateUrl: './Instructor-detail-component.html',
+  styleUrl: './Instructor-detail-component.css',
 })
-export class InstructorDetailComponent {}
+export class InstructorDetailComponent {
+  @Input()Instructor?:InstructorRes;
+}

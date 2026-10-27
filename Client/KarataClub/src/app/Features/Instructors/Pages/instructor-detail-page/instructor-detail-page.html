@@ -1,1 +1,16 @@
-<p>instructor-detail-page works!</p>
+<div class="card">
+<div class="card-body">
+
+    <app-Instructor-detail-component
+    [Instructor]="(Instructor|async)!"></app-Instructor-detail-component>
+</div>
+<div class="card-footer">
+    
+    <div class="card-footer">
+        <div class="footer-btns">
+            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-danger">Delete</button>
+        </div>
+    </div>
+ 
+</div>

@@ -37,9 +37,9 @@
             <h6 class="text-info">Count : {{Members?.items?.length}}</h6>
             <button class="btn btn-primary" [routerLink]="['/MemberPage','MemberCreatePage','0']">Add New</button>
             <div class="pagination">
-                <button [disabled]="!Members?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <button (click)="GetPrev()" [disabled]="!Members?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
                 <p class="text-light mt-2">Page {{Members?.totalPages}} / {{Members?.pageNumber}}</p>
-                <button [disabled]="!Members?.hasNextPage" class="btn btn-outline-primary">Next</button>
+                <button (click)="GetNext()" [disabled]="!Members?.hasNextPage" class="btn btn-outline-primary">Next</button>
             </div>
         </div>
     </div>

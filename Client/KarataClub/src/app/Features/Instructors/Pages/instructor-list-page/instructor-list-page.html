@@ -7,6 +7,7 @@
     <div class="instructor-list">
         <app-instructor-list-component
         [Instructors]="(instructors|async)!"
+        (OnPaginate)="paginate($event)"
         ></app-instructor-list-component>
     </div>
 </div>

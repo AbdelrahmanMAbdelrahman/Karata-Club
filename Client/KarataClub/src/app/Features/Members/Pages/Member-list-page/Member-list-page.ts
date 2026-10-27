@@ -43,4 +43,8 @@ Search(searchModel:MemberSearch) {
   }
   this.Members=this.MemberService.GetMembers(searchModel);
 }
+paginate(search: MemberSearch) {
+  debugger;
+  this.Members=this.MemberService.GetMembers(search);
+}
 }

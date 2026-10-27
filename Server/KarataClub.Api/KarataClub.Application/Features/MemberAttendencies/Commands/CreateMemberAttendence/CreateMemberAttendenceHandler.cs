@@ -38,6 +38,11 @@ public sealed class CreateMemberAttendenceHandler(
             e.Member.Active)
             .Select(e => e.MemberId)
             .ToListAsync(cancellationToken);
+        if (membersIds.Count == 0)
+        {
+            logger.LogError("NO Members have been enrolled in this course");
+            return ApplicationErrors.NoMemberEnrolledInCourse(session.CourseId);
+        }
         List<MemberAttendence> memberAttendencies = [];
         Result<MemberAttendence> createMemberAttendence;
         foreach (Guid id in membersIds)

@@ -17,7 +17,8 @@
             </thead>
             <tbody>
                 <tr *ngFor="let instructor of Instructors?.items;let index=index">
-                    <td>{{index+1}}</td>
+                    <td>
+                        <a [routerLink]="['/InstructorPage','InstructorDetailPage',instructor.instructorId]">{{index+1}}</a></td>
                     <td>{{instructor.person.name}}</td>
                     <td>{{instructor.person.email}}</td>
                     <td>{{instructor.person.phone}}</td>
@@ -32,9 +33,9 @@
             <h6 class="text-info">Count : {{Instructors?.items?.length}}</h6>
             <button class="btn btn-primary" [routerLink]="['/InstructorPage','InstructorCreatePage','0']">Add New</button>
             <div class="pagination">
-                <button [disabled]="!Instructors?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <button (click)="GetPrev()" [disabled]="!Instructors?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
                 <p class="text-light mt-2">Page {{Instructors?.totalPages}} / {{Instructors?.pageNumber}}</p>
-                <button [disabled]="!Instructors?.hasNextPage" class="btn btn-outline-primary">Next</button>
+                <button (click)="GetNext()" [disabled]="!Instructors?.hasNextPage" class="btn btn-outline-primary">Next</button>
             </div>
         </div>
     </div>

@@ -21,7 +21,7 @@ export class InstructorListPage implements OnInit {
   */
  constructor(private instructorService:InstructorApiService) {}
  ngOnInit(): void {
-  let search:InstructorSearch={
+   let search:InstructorSearch={
     name: '',
     qualifications: '',
     pageNumber: 1,
@@ -42,5 +42,9 @@ Search(searchModel:InstructorSearch) {
     sortDirection: ''
   }
   this.instructors=this.instructorService.GetInstructors(searchModel);
+}
+paginate(search: InstructorSearch) {
+  debugger;
+  this.instructors=this.instructorService.GetInstructors(search);
 }
 }

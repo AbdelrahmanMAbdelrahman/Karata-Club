@@ -31,4 +31,7 @@ CreateInstructor(req:InstructorReq):Observable<InstructorRes>{
   debugger;
 return this.http.post<InstructorRes>(this.url,req);
 }
+ GetInstructor(Id: string): Observable<InstructorRes> {
+   return this.http.get<InstructorRes>(`${this.url}/${Id}`);
+ }
 }
