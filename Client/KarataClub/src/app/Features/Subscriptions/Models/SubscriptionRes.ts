@@ -1,4 +1,5 @@
 import { BeltRankFileRes } from "../../BeltRank/Models/BeltRankFileRes";
+import { BeltRankRes } from "../../BeltRank/Models/BeltRankRes";
 import { MemberRes } from "../../Members/Models/MemberRes";
 
 export interface SubscriptionRes{
@@ -7,6 +8,6 @@ export interface SubscriptionRes{
     startDate:string,
     endDate:string,
     active:boolean,
-    beltRank:BeltRankFileRes,
+    // beltRank:BeltRankRes,
     member:MemberRes
 }

@@ -21,7 +21,6 @@ export class BeltRankListPage implements OnInit {
  ngOnInit(): void {
   let search:BeltRankSearch={
     BeltRankName: '',
-    active: false,
     pageNumber: 1,
     pageSize: 10,
     sortColumn: '',
@@ -33,12 +32,15 @@ Search(searchModel:BeltRankSearch) {
   debugger;
   let search:BeltRankSearch={
     BeltRankName: searchModel.BeltRankName,
-    active: searchModel.active,
     pageNumber: 1,
     pageSize: 10,
     sortColumn: '',
     sortDirection: ''
   }
   this.BeltRanks=this.BeltRankService.GetBeltRanks(searchModel);
+}
+Paginate(search: BeltRankSearch) {
+  debugger;
+  this.BeltRanks=this.BeltRankService.GetBeltRanks(search);
 }
 }

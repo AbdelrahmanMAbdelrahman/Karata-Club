@@ -19,9 +19,15 @@ public sealed class CreateSessionHandler
             logger.LogError("No Course Available with id : {CourseId}", request.CourseId);
             return ApplicationErrors.CourseNotFound(request.CourseId);
         }
+        bool hasEnrollments = await context.Enrollments.AnyAsync(e => e.CourseId == courseFile.CourseId && e.Course.Active);
+        if (!hasEnrollments)
+        {
+            logger.LogError("this course has no enrollment yet");
+            return ApplicationErrors.NoEnrollmentsForThisCourse(request.CourseId);
+        }
         bool IsSessionExist = await context.Sessions.AnyAsync(
             s=>s.SessionDate.Day==DateTime.UtcNow.Day&&
-            s.CourseId==request.CourseId
+            s.CourseId== courseFile.CourseId
             );
         if (IsSessionExist)
         {

@@ -3,7 +3,10 @@
         <app-Course-detail-component [Course]="Session?.course"></app-Course-detail-component>
     </div>
     <div class="card-body">
-<app-Session-list-component [Sessions]="(Sessions|async)!"></app-Session-list-component>
+<app-Session-list-component 
+[Sessions]="(Sessions|async)!"
+(OnPaginate)="paginate($event)"
+></app-Session-list-component>
     </div>
      
 </div>

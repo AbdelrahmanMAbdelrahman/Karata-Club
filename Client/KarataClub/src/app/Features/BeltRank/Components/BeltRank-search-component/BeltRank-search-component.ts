@@ -15,17 +15,15 @@ export class BeltRankSearchComponent implements OnInit{
   @Output() OnSearch=new EventEmitter<BeltRankSearch>();
   ngOnInit(): void {
     this.searchForm=new FormGroup({
-      'BeltRankName': new FormControl(null),
-      'active': new FormControl(null),
+      'rankName': new FormControl(null),
     })
   }
   Search() {
     let search:BeltRankSearch={
-      BeltRankName: this.searchForm?.get('BeltRankName')?.value,
-      active: this.searchForm?.get('active')?.value,
+      BeltRankName: this.searchForm?.get('rankName')?.value,
       pageNumber: 1,
       pageSize: GlobalConst.pageSize,
-      sortColumn: 'name',
+      sortColumn: 'rankName',
       sortDirection: 'asc'
     }
 this.OnSearch.emit(search);

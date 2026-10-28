@@ -27,7 +27,7 @@ GetSubscriptions(search:SubscriptionSearch):Observable<PaginatedList<Subscriptio
     if(search.name)
       params=  params.set("name",search.name);
     if(search.rankName)
-      params=  params.set("qualifications",search.rankName);
+      params=  params.set("rankName",search.rankName);
     return this.http.get<PaginatedList<SubscriptionRes>>(this.url,{params})
 }
 CreateSubscription(req:SubscriptionReq):Observable<SubscriptionRes>{

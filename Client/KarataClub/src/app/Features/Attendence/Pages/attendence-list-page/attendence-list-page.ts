@@ -61,7 +61,10 @@ this.router.navigate(['AttendencePage','AttendenceListPage',this.Id])
   );
 }
 TakeAttendence(req:TakeAttendenceReq){
-  this.AttendenceService.TakeAttendence(req).subscribe();
+  this.AttendenceService.TakeAttendence(req).subscribe(
+    (res)=>{
+      this.router.navigate(['/CoursePage','CourseListPage'])
+    });
 }
 get Id(){
   debugger;

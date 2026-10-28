@@ -28,7 +28,7 @@ export class BeltRankApiService{
     .set('sortColumn',search.sortColumn)
     .set('sortDirection',search.sortDirection);
     if(search.BeltRankName)
-      params=  params.set("BeltRankName",search.BeltRankName);
+      params=  params.set("RankName",search.BeltRankName);
 
     return this.http.get<PaginatedList<BeltRankFileRes>>(this.url,{params})
   }

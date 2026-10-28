@@ -25,9 +25,9 @@
             <h6 class="text-info">Count : {{BeltRanks?.items?.length}}</h6>
             <button class="btn btn-primary" [routerLink]="['/BeltRankPage','BeltRankCreatePage','0']">Add New</button>
             <div class="pagination">
-                <button [disabled]="!BeltRanks?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <button (click)="GetPrev()" [disabled]="!BeltRanks?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
                 <p class="text-light mt-2">Page {{BeltRanks?.totalPages}} / {{BeltRanks?.pageNumber}}</p>
-                <button [disabled]="!BeltRanks?.hasNextPage" class="btn btn-outline-primary">Next</button>
+                <button (click)="GetNext()" [disabled]="!BeltRanks?.hasNextPage" class="btn btn-outline-primary">Next</button>
             </div>
         </div>
     </div>

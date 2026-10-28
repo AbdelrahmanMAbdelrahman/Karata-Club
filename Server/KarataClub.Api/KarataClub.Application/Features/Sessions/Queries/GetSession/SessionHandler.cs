@@ -1,7 +1,4 @@
-﻿using KarataClub.Application.Features.Sessions.Dtos;
-using KarataClub.Application.Features.Sessions.Mappers;
-
-namespace KarataClub.Application.Features.Sessions.Queries.GetSession;
+﻿namespace KarataClub.Application.Features.Sessions.Queries.GetSession;
 
 public sealed class SessionHandler (
     IAppDbContext context,ILogger<SessionHandler> logger
@@ -13,12 +10,14 @@ public sealed class SessionHandler (
              .AsNoTracking()
              .Include(s => s.Course)
              .FirstOrDefaultAsync(s=>s.Id==request.SessionId);
+
         if(session is null)
         {
             logger.LogError("No Session found with id : {SessionId}", request.SessionId);
             return ApplicationErrors.SessionNotFound(request.SessionId);
         }
-
+        session.Course.NumberOfEnrollments = await context.Enrollments.CountAsync(
+            e=>e.CourseId==session.CourseId,cancellationToken);
         return session.ToDto();
     }
 }

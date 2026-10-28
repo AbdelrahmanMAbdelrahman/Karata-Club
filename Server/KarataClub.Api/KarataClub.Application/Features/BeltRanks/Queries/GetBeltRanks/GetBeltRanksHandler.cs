@@ -14,7 +14,7 @@ public sealed class GetBeltRanksHandler
         query = ApplyFilter(query, request.RankName, request.FeesFrom,request.FeesTo);
         query = ApplySorting(query, request.SortColumn, request.SortDirection);
         Result<PaginatedList<BeltRankFileDto>> BeltRank = await PaginatedList<BeltRankFileDto>.Create(
-             query.ToDto(), request.PageNumber, request.PageSize
+             query.OrderBy(b=>b.BeltRank.RankPriority).ToDto(), request.PageNumber, request.PageSize
              );
 
         return BeltRank;

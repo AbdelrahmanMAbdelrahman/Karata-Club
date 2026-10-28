@@ -1,4 +1,5 @@
-﻿namespace KarataClub.Application.Common.Errors;
+﻿
+namespace KarataClub.Application.Common.Errors;
 
 public static class ApplicationErrors
 {
@@ -58,4 +59,9 @@ public static class ApplicationErrors
 
     internal static Error NoMemberEnrolledInCourse(Guid courseId)
     => Error.NotFound("MemberEnrollment.NoMemberFound",$"No member has enrolled in course with id {courseId}");
+
+    internal static Result<SessionDto> NoEnrollmentsForThisCourse(Guid courseId)
+    {
+        throw new NotImplementedException();
+    }
 }

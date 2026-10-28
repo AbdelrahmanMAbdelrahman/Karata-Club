@@ -45,4 +45,8 @@ Search(searchModel:EnrollmentSearch) {
   }
   this.Enrollments=this.EnrollmentService.GetEnrollments(searchModel);
 }
+Paginate(search: EnrollmentSearch) {
+  debugger;
+  this.Enrollments=this.EnrollmentService.GetEnrollments(search);
+}
 }

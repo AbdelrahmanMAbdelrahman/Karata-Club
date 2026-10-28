@@ -13,7 +13,7 @@ public sealed class GetCoursesHandler
         query = ApplyFilter(query, request.CourseName, request.FeesFrom,request.FeesTo);
         query = ApplySorting(query, request.SortColumn, request.SortDirection);
         Result<PaginatedList<CourseFileDto>> Courses = await PaginatedList<CourseFileDto>.Create(
-             query.ToDto(), request.PageNumber, request.PageSize
+             query.OrderBy(c=>c.Course.Priority).ToDto(), request.PageNumber, request.PageSize
              );
 
         return Courses;

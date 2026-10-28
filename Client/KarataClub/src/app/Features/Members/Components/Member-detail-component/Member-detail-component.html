@@ -23,7 +23,7 @@
             </div>
             <div class="form-group">
                 <label for="beltRank" class="form-label">Last Belt Rank</label>
-                <input type="text" id="beltRank" [disabled]="true" [value]="Member?.beltRank?.rankName" class="form-control">
+                <input type="text" id="beltRank" [disabled]="true" [value]="Member?.beltRank?.rankName??'N/A'" class="form-control">
             </div>
         </div>
     </div>

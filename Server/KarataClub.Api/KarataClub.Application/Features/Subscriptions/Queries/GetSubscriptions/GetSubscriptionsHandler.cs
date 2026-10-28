@@ -15,9 +15,10 @@ public sealed class GetSubscriptionsHandler
         IQueryable<Subscription> query = context.Subscriptions
             .Include(s => s.Member)
               .ThenInclude(m=>m.Person)
-            
+            .Include(s=>s.Member)
+              .ThenInclude(s=>s.LastBeltRank)
             .AsNoTracking();
-        query = ApplyFilter(query, request.Name, request.FeesFrom,request.FeesTo);
+        query = ApplyFilter(query, request.Name,request.RankName, request.FromDate,request.ToDate);
         query = ApplySorting(query, request.SortColumn, request.SortDirection);
         Result<PaginatedList<SubscriptionDto>> Courses = await PaginatedList<SubscriptionDto>.Create(
              query.ToDto(), request.PageNumber, request.PageSize
@@ -26,19 +27,21 @@ public sealed class GetSubscriptionsHandler
         return Courses;
     }
 
-    private IQueryable<Subscription> ApplyFilter(IQueryable<Subscription> query, string? courseName, 
-         decimal? feesFrom, decimal? feesTo)
+    private IQueryable<Subscription> ApplyFilter(IQueryable<Subscription> query, string? memberName, 
+         string?rankName,DateTime? fromDate, DateTime? toDate)
     {
-        if (!string.IsNullOrWhiteSpace(courseName))
-            query = query.Where(q => q.Member.Person.Name.Contains(courseName));
+        if (!string.IsNullOrWhiteSpace(memberName))
+            query = query.Where(q => q.Member.Person.Name.Contains(memberName));
+        if (!string.IsNullOrWhiteSpace(rankName))
+            query = query.Where(q => q.Member.LastBeltRank.RankName.Contains(rankName));
         
-        if (feesFrom.HasValue)
+        if (fromDate.HasValue)
         {
-            query=query.Where(q=>q.Fees>=feesFrom.Value); 
+            query=query.Where(q=>q.StartDate>=fromDate.Value); 
         }
-        if (feesTo.HasValue)
+        if (toDate.HasValue)
         {
-            query=query.Where(q=>q.Fees<=feesTo.Value); 
+            query=query.Where(q=>q.StartDate<=toDate.Value); 
         }
         return query;
     }

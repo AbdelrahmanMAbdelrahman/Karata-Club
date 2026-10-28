@@ -32,6 +32,9 @@ export class SessionDetailComponent implements OnInit{
     }
      this.Sessions=this.sessionService.GetSessions(search);
   }
- 
+ paginate(search: SessionSearch) {
+   debugger;
+   this.Sessions=this.sessionService.GetSessions(search);
+ }
 
 }

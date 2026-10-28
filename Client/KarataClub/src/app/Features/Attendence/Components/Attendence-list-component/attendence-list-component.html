@@ -5,8 +5,11 @@
     <div class="card-body">
       <div class="list-header">
         <p class="text-primary">member Attendence</p>
-     <button type="button" (click)="CreateAttendence()" 
-     class="btn btn-outline-primary">Create Attendendence</button>
+     <button type="button" 
+     (click)="CreateAttendence()" 
+     class="btn btn-outline-primary"
+     [disabled]="memberAttendence?.items?.length!==0"
+     >Create Attendendence</button>
 </div>
 <table class="table table-hover table-stripped">
 <thead>
@@ -41,11 +44,14 @@
 </table>
 <div class="attendence-footer">
             <h6 class="text-info">Count : {{memberAttendence?.items?.length}}</h6>
-            <button class="btn btn-outline-primary" (click)="SaveAttendence()">Save Attendence</button>
+            <button [disabled]="memberAttendence?.items?.length==0" 
+            class="btn btn-outline-primary" 
+            (click)="SaveAttendence()">Save Attendence</button>
             <div class="pagination">
                 <button [disabled]="!memberAttendence?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
                 <p class="text-light mt-2">Page {{memberAttendence?.totalPages}} / {{memberAttendence?.pageNumber}}</p>
-                <button [disabled]="memberAttendence?.hasNextPage" class="btn btn-outline-primary">Next</button> 
+                <button [disabled]="!memberAttendence?.hasNextPage" 
+                class="btn btn-outline-primary">Next</button> 
             </div>
         </div>
     </div>

@@ -27,8 +27,8 @@
                     <td>{{Enrollment.member.person.name}}</td>
                     <td>{{Enrollment.course.courseName}}</td>
                     <td>{{Enrollment.course.fees}} </td>
-                    <td>{{Enrollment.enrollmentDate|date:"yyyyMMdd"}} </td>
-                    <td>{{Enrollment.endDate|date:"yyyyMMdd"}} </td>
+                    <td>{{Enrollment.enrollmentDate|date:"dd-MM-yyyy"}} </td>
+                    <td>{{Enrollment.endDate|date:"dd-MM-yyyy"}} </td>
                     <td>{{Enrollment.course.numberOfSessions}}</td>
                     <td>{{Enrollment.course.totalHours}}</td>
                 </tr>
@@ -40,9 +40,9 @@
             <h6 class="text-info">Count : {{Enrollments?.items?.length}}</h6>
             <!-- <button class="btn btn-primary" [routerLink]="['/EnrollmentPage','EnrollmentCreatePage','0']">Add New</button> -->
             <div class="pagination">
-                <button [disabled]="!Enrollments?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <button (click)="GetPrev()" [disabled]="!Enrollments?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
                 <p class="text-light mt-2">Page {{Enrollments?.totalPages}} / {{Enrollments?.pageNumber}}</p>
-                <button [disabled]="!Enrollments?.hasNextPage" class="btn btn-outline-primary">Next</button>
+                <button (click)="GetNext()" [disabled]="!Enrollments?.hasNextPage" class="btn btn-outline-primary">Next</button>
             </div>
         </div>
     </div>

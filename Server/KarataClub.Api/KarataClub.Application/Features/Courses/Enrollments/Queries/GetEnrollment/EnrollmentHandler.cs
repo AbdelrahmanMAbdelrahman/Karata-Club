@@ -1,4 +1,6 @@
-﻿namespace KarataClub.Application.Features.Courses.Enrollments.Queries.GetEnrollment;
+﻿using KarataClub.Domain.Courses.Sessions;
+
+namespace KarataClub.Application.Features.Courses.Enrollments.Queries.GetEnrollment;
 
 public sealed class EnrollmentHandler(
     IAppDbContext context,ILogger<EnrollmentHandler> logger
@@ -17,7 +19,8 @@ public sealed class EnrollmentHandler(
             logger.LogError("no Enrollment found for Enrollment id = {EnrollmentId}",request.EnrollmentId);
             return ApplicationErrors.EnrollmentNotFound(request.EnrollmentId);
         }
-
+        enrollment.Course.NumberOfEnrollments = await context.Enrollments.CountAsync(
+            e => e.CourseId == enrollment.CourseId, cancellationToken);
         return enrollment.ToDto();
     }
 }

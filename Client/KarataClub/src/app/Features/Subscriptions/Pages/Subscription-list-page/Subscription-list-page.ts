@@ -47,4 +47,8 @@ Search(searchModel:SubscriptionSearch) {
   }
   this.Subscriptions=this.SubscriptionService.GetSubscriptions(searchModel);
 }
+Paginate(search: SubscriptionSearch) {
+  debugger;
+  this.Subscriptions=this.SubscriptionService.GetSubscriptions(search);
+}
 }

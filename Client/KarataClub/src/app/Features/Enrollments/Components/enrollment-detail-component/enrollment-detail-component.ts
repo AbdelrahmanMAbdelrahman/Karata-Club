@@ -14,20 +14,21 @@ import { Proiority } from '../../../BeltRank/Models/Enums/Priority';
   templateUrl: './enrollment-detail-component.html',
   styleUrl: './enrollment-detail-component.css',
 })
-export class EnrollmentDetailComponent implements OnInit ,OnChanges{
+export class EnrollmentDetailComponent// implements OnInit ,OnChanges
+{
   Course?:CourseFileRes;
   
   @Input()EnrollmentRes?:EnrollmentRes;
-ngOnInit(): void {
-  console.log('Enrollment:', this.EnrollmentRes);
-  console.log('Course:', this.EnrollmentRes?.course);
-  console.log('Member:', this.EnrollmentRes?.member);
-}
- ngOnChanges(changes: SimpleChanges): void {
-    if (changes['EnrollmentRes']) {
-      console.log('Enrollment:', this.EnrollmentRes);
-      console.log('Course:', this.EnrollmentRes?.course);
-      console.log('Member:', this.EnrollmentRes?.member);
-    }
-}
+// ngOnInit(): void {
+//   console.log('Enrollment:', this.EnrollmentRes);
+//   console.log('Course:', this.EnrollmentRes?.course);
+//   console.log('Member:', this.EnrollmentRes?.member);
+// }
+//  ngOnChanges(changes: SimpleChanges): void {
+//     if (changes['EnrollmentRes']) {
+//       console.log('Enrollment:', this.EnrollmentRes);
+//       console.log('Course:', this.EnrollmentRes?.course);
+//       console.log('Member:', this.EnrollmentRes?.member);
+//     }
+// }
 }

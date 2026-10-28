@@ -16,7 +16,7 @@ export class CourseSearchComponent implements OnInit{
   ngOnInit(): void {
     this.searchForm=new FormGroup({
       'courseName': new FormControl(null),
-      'active': new FormControl(null),
+      // 'active': new FormControl(null),
     })
   }
   Search() {

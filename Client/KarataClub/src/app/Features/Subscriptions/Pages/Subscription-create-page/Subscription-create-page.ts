@@ -26,7 +26,7 @@ export class SubscriptionCreatePage {
 SaveSubscription(req: SubscriptionReq) {
  this.SubscriptionService.CreateSubscription(req).subscribe(
   (res)=>{
-this.router.navigate(['/SubscriptionPage','SubscriptionDetailPage',res.id])
+this.router.navigate(['/SubscriptionPage','SubscriptionListPage'])
   },
 (err:HttpErrorResponse)=>{
 let failure:Failure=err.error as Failure;

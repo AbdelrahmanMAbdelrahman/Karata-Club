@@ -7,6 +7,7 @@
     <div class="Subscription-list">
         <app-Subscription-list-component
         [Subscriptions]="(Subscriptions|async)!"
+        (OnPaginate)="Paginate($event)"
         ></app-Subscription-list-component>
     </div>
 </div>

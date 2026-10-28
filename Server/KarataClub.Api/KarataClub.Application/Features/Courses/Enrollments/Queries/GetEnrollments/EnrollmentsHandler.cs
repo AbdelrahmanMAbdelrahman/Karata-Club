@@ -9,14 +9,14 @@ public sealed class EnrollmentsHandler
              .Include(e => e.Course)
              .Include(e => e.Member)
                .ThenInclude(m=>m.Person)
-             .AsNoTracking();
+             .AsNoTracking().OrderBy(e=>e.EnrollmentDate);
         query = ApplyFilter(query, request.CourseName,request.MemberName, request.FeesFrom, request.FeesTo);
         query = ApplySorting(query, request.SortColumn, request.SortDirection);
-        Result<PaginatedList<EnrollmentDto>> Courses = await PaginatedList<EnrollmentDto>.Create(
+        Result<PaginatedList<EnrollmentDto>> enrollments = await PaginatedList<EnrollmentDto>.Create(
              query.ToDto(), request.PageNumber, request.PageSize
              );
 
-        return Courses;
+        return enrollments;
     }
 
     private IQueryable<CourseEnrollment> ApplyFilter(IQueryable<CourseEnrollment> query, string? courseName,

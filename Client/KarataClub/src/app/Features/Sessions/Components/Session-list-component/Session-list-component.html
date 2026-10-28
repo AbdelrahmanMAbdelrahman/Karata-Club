@@ -36,9 +36,9 @@
             <h6 class="text-info">Count : {{Sessions?.items?.length}}</h6>
             <!-- <button class="btn btn-primary" [routerLink]="['/SessionPage','SessionCreatePage','0']">Add New</button> -->
             <div class="pagination">
-                <button [disabled]="!Sessions?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <button (click)="GetPrev()" [disabled]="!Sessions?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
                 <p class="text-light mt-2">Page {{Sessions?.totalPages}} / {{Sessions?.pageNumber}}</p>
-                <button [disabled]="!Sessions?.hasNextPage" class="btn btn-outline-primary">Next</button>
+                <button (click)="GetNext()" [disabled]="!Sessions?.hasNextPage" class="btn btn-outline-primary">Next</button>
             </div>
         </div>
     </div>
