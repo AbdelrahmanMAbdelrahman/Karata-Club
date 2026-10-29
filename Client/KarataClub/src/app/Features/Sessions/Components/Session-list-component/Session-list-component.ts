@@ -40,4 +40,11 @@ export class SessionListComponent {
      }
      return search;
    }
+   IsToday(date:string|Date):boolean{
+    let today=new Date();
+    let sessionDate=new Date(date);
+    return today.getFullYear()===sessionDate.getFullYear()&&
+     today.getMonth()===sessionDate.getMonth()&&
+     today.getDay()===sessionDate.getDay();
+   }
 }

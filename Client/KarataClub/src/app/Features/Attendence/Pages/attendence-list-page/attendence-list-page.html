@@ -3,5 +3,6 @@
         (OnCreateAttendence)="CreateAttendence()"
         (OnTakeAttendence)="TakeAttendence($event)"
         [memberAttendence]="(MemberAttendence|async)!"
+        (OnPaginate)="Paginate($event)"
         [attendence]="(Attendence|async)!"></app-Attendence-list-component>
  

@@ -1,7 +1,10 @@
-﻿namespace KarataClub.Api.Controllers
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace KarataClub.Api.Controllers
 {
     [ApiController()]
     [Route("Api/[Controller]")]
+    [Authorize(Roles = "Admin")]
     public class IdentityController(IMediator mediator):ApiController
     {
         [ProducesResponseType(typeof(TokenResponse),StatusCodes.Status200OK)]

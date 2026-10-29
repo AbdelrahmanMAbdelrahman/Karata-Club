@@ -20,7 +20,15 @@
             <tbody>
                 <tr *ngFor="let Session of Sessions?.items;let index=index">
                     <td>
-                        <a [routerLink]="['/AttendencePage','AttendenceListPage',Session.sessionId]">{{index+1}}</a></td>
+                        <a
+  [attr.aria-disabled]="!IsToday(Session.sessionDate)"
+  [class.disabled]="!IsToday(Session.sessionDate)"
+  [routerLink]="IsToday(Session.sessionDate)
+    ? ['/AttendencePage', 'AttendenceListPage', Session.sessionId]
+    : null"
+  (click)="!IsToday(Session.sessionDate) && $event.preventDefault()">
+  {{ index + 1 }}
+</a></td>
                     <td>{{Session.course.courseName}}</td>
                     <td>{{Session.course.totalHours}}</td>
                     <td>{{Session.sessionDate|date:'yyyy-MM-dd'}} </td>

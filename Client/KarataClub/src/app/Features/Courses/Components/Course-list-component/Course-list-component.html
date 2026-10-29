@@ -24,9 +24,9 @@
             <h6 class="text-info">Count : {{Courses?.items?.length}}</h6>
             <button class="btn btn-primary" [routerLink]="['/CoursePage','CourseCreatePage','0']">Add New</button>
             <div class="pagination">
-                <button [disabled]="!Courses?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <button (click)="GetPrev()" [disabled]="!Courses?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
                 <p class="text-light mt-2">Page {{Courses?.totalPages}} / {{Courses?.pageNumber}}</p>
-                <button [disabled]="!Courses?.hasNextPage" class="btn btn-outline-primary">Next</button>
+                <button (click)="GetNext()" [disabled]="!Courses?.hasNextPage" class="btn btn-outline-primary">Next</button>
             </div>
         </div>
     </div>

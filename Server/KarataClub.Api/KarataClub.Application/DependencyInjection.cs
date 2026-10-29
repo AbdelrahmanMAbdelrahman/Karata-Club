@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using KarataClub.Application.Common.Behaviors;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -12,6 +13,7 @@ public static class DependencyInjection
         servicies.AddMediatR(config =>
         {
             config.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            config.AddOpenBehavior(typeof(CachingBehavior<,>));
         });
         return servicies;
     }

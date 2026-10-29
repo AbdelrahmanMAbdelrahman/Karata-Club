@@ -2,7 +2,7 @@
 
 namespace KarataClub.Application.Common.Behaviors;
 
-public sealed class CachingBehavior<TReq, TRes>(ILogger<CachingBehavior<TReq, TRes>> logger,
+public sealed class CachingBehavior<TReq, TRes>(
     HybridCache hybridCache) : IPipelineBehavior<TReq, TRes>
 {
     public async Task<TRes> Handle(TReq request, RequestHandlerDelegate<TRes> next, CancellationToken cancellationToken)
@@ -18,9 +18,7 @@ public sealed class CachingBehavior<TReq, TRes>(ILogger<CachingBehavior<TReq, TR
                 Expiration = cachedQuery.Expiration
             },
             cachedQuery.Tags,
-            cancellationToken
-
-            );
+            cancellationToken);
         return  res;
     }
 }

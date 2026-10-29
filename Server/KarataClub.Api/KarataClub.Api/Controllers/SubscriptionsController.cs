@@ -1,7 +1,10 @@
-﻿namespace KarataClub.Api.Controllers;
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace KarataClub.Api.Controllers;
 
 [ApiController()]
 [Route("api/[Controller]")]
+[Authorize(Roles = "Admin")]
 public class SubscriptionsController(IMediator mediator):ApiController
 {
     [ProducesResponseType(typeof(SubscriptionDto), StatusCodes.Status200OK)]

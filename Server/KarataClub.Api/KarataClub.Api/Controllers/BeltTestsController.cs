@@ -1,9 +1,11 @@
 ﻿using KarataClub.Application.Features.BeltTests.Commands.PassBeltTest;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KarataClub.Api.Controllers;
 
 [ApiController()]
 [Route("Api/[Controller]")]
+[Authorize(Roles = "Admin")]
 
 public class BeltTestsController(IMediator mediator) : ApiController
 {

@@ -63,11 +63,15 @@ this.router.navigate(['AttendencePage','AttendenceListPage',this.Id])
 TakeAttendence(req:TakeAttendenceReq){
   this.AttendenceService.TakeAttendence(req).subscribe(
     (res)=>{
-      this.router.navigate(['/CoursePage','CourseListPage'])
+      // this.router.navigate(['/CoursePage','CourseListPage'])
     });
 }
 get Id(){
   debugger;
 return this.route.snapshot.paramMap.get('id')?? '0';
+}
+Paginate(search: AttendenceSearch) {
+  debugger;
+  this.MemberAttendence=this.AttendenceService.GetMemberAttendence(search);
 }
 }

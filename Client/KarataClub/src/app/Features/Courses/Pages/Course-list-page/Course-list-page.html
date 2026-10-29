@@ -7,6 +7,7 @@
     <div class="Course-list">
         <app-Course-list-component
         [Courses]="(Courses|async)!"
+        (OnPaginate)="Paginate($event)"
         ></app-Course-list-component>
     </div>
 </div>

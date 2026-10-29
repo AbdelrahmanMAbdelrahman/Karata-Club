@@ -1,12 +1,13 @@
 ﻿using KarataClub.Application.Features.BeltRanks.Queries.GetAllowedBeltRank;
 using KarataClub.Application.Features.BeltTests.Queries.GetMemberBeltTests;
 using KarataClub.Application.Features.Courses.Queries.GetAvailableCourses;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KarataClub.Api.Controllers;
 
 [ApiController()]
 [Route("Api/[Controller]")]
-
+[Authorize(Roles ="Admin")]
 public class MembersController(IMediator mediator) : ApiController
 {
     [ProducesResponseType(typeof(MemberDto), StatusCodes.Status200OK)]

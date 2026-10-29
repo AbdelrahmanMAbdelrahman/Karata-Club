@@ -2,10 +2,12 @@
 using KarataClub.Application.Features.Sessions.Dtos;
 using KarataClub.Application.Features.Sessions.Queries.GetSession;
 using KarataClub.Application.Features.Sessions.Queries.GetSessions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KarataClub.Api.Controllers;
 [ApiController]
 [Route("Api/[Controller]")]
+[Authorize(Roles = "Admin")]
 public class SessionsController(IMediator mediator) : ApiController
 {
 

@@ -1,4 +1,6 @@
 ﻿using KarataClub.Domain.Common.Results.Abstraction;
+using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace KarataClub.Domain.Common.Results;
 
@@ -17,27 +19,33 @@ public class Result<T> : IResult<T>
     public List<Error> Errors { get; }
     public bool IsFailure => !IsSuccess;
     public Error TopError =>IsFailure? Errors[0]:default!;
-    public Result(T val,List<Error>errors,bool isSuccess)
+
+    [JsonConstructor]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public Result(T value,List<Error>errors,bool isSuccess)
     {
-        if (!errors.Any() && !isSuccess || isSuccess && errors.Any()) throw new InvalidOperationException();
-        Value = val;
+        errors ??= [];
+        if (errors.Any() && !isSuccess || isSuccess && errors.Any()) throw new InvalidOperationException();
+        Value = value;
         Errors = errors;
         IsSuccess = isSuccess;
     }
+
     public Result(Error error)
     {
         Errors = [error];
         IsSuccess = false;
     }
+
     public Result(List<Error> errors)
     {
         Errors = errors;
         IsSuccess = false;
     }
-    public Result(T val)
+    public Result(T value)
     {
-        if (val is null) throw new InvalidOperationException();
-        Value = val;
+        if (value is null) throw new InvalidOperationException();
+        Value = value;
         IsSuccess = true;
     }
 

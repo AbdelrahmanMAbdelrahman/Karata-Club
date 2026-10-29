@@ -1,9 +1,11 @@
 ﻿using KarataClub.Application.Features.BeltTests.Queries.GetBeltRankBeltTests;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KarataClub.Api.Controllers;
 
 [ApiController()]
 [Route("Api/[Controller]")]
+[Authorize(Roles = "Admin")]
 
 public class BeltRanksController(IMediator mediator) : ApiController
 {

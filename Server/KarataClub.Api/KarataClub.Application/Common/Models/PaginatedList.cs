@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace KarataClub.Domain.Common.Models;
 
@@ -9,7 +10,15 @@ public sealed class PaginatedList<T>
     public int PageNumber { get; set; }
     public bool HasNextPage { get; set; }
     public bool HasPreviousPage { get; set; }
-
+    [JsonConstructor]
+    public PaginatedList(List<T> items, int pageNumber,bool hasNextPage,bool hasPreviousPage,int totalPages)
+    {
+        Items = items;
+        TotalPages = totalPages;
+        PageNumber = pageNumber;
+        this.HasNextPage = hasNextPage;
+        this.HasPreviousPage = hasPreviousPage;
+    }
     public PaginatedList(List<T>items,int pageNumber,int pageSize,int count)
     {
         this.Items = items;

@@ -1,10 +1,12 @@
 ﻿using KarataClub.Application.Features.MemberAttendencies.Commands.CreateMemberAttendence;
 using KarataClub.Application.Features.MemberAttendencies.Commands.TakMemberAttendence;
+using Microsoft.AspNetCore.Authorization;
 
 namespace KarataClub.Api.Controllers
 {
     [ApiController]
     [Route("api/[Controller]")]
+    [Authorize(Roles = "Admin")]
     public class AttendenciesController(IMediator mediator):ApiController
     {
         [ProducesResponseType(typeof(AttendenceDto), StatusCodes.Status200OK)]

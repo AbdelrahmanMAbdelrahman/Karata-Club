@@ -29,6 +29,10 @@ export class CourseListPage implements OnInit {
   }
   this.Courses=this.CourseService.GetCourses(search);
 }
+Paginate(search: CourseSearch) {
+  debugger;
+  this.Courses=this.CourseService.GetCourses(search);
+}
 Search(searchModel:CourseSearch) {
   debugger;
   let search:CourseSearch={

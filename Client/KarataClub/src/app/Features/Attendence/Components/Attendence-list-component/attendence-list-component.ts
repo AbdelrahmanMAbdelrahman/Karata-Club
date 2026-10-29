@@ -6,6 +6,8 @@ import { RouterLink } from '@angular/router';
 import { PaginatedList } from '../../../Global/Models/PaginatedList';
 import { MemberAttendenceRes } from '../../Models/MemberAttendenceRes';
 import { TakeAttendenceReq } from '../../Models/TakeAttendenceReq';
+import { AttendenceSearch } from '../../Models/attendenceSearch';
+import { GlobalConst } from '../../../Global/Models/GlobalConsts';
  
 
 @Component({
@@ -20,6 +22,25 @@ export class AttendenceListComponent {
 @Output() OnCreateAttendence=new EventEmitter();
 @Output() OnTakeAttendence=new EventEmitter<TakeAttendenceReq>();
 MemberExistance:Record<string,boolean>={};
+@Output() OnPaginate=new EventEmitter<AttendenceSearch>();
+  GetNext() {
+  let search=this.LoadSearchObject();
+  ++search.pageNumber;
+  this.OnPaginate.emit(search);
+  }
+  GetPrev() {
+   let search=this.LoadSearchObject();
+  --search.pageNumber;
+  this.OnPaginate.emit(search);
+  }
+  LoadSearchObject():AttendenceSearch{
+    let search:AttendenceSearch={
+      pageNumber: this.memberAttendence?.pageNumber ?? 0,
+      pageSize: GlobalConst.pageSize,
+      sessionId: this.attendence?.session.sessionId??"0"
+    }
+    return search;
+  }
  CreateAttendence(){
 this.OnCreateAttendence.emit();
  }

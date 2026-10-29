@@ -1,6 +1,9 @@
-﻿namespace KarataClub.Api.Controllers;
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace KarataClub.Api.Controllers;
 [ApiController]
 [Route("Api/[Controller]")]
+[Authorize(Roles = "Admin")]
 public class InstructorsController(IMediator mediator):ApiController
 {
 

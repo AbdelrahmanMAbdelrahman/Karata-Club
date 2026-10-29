@@ -15,7 +15,7 @@ public sealed class SessionsHandler
         query = ApplyFilter(query, request.CourseName,request.FromSessionDate,request.ToSessionDate);
         query = ApplySorting(query, request.SortColumn, request.SortDirection);
         Result<PaginatedList<SessionDto>> sessions = await PaginatedList<SessionDto>.Create(
-             query.ToDto(), request.PageNumber, request.PageSize
+             query.OrderBy(s=>s.SessionDate).ToDto(), request.PageNumber, request.PageSize
              );
 
         return sessions;

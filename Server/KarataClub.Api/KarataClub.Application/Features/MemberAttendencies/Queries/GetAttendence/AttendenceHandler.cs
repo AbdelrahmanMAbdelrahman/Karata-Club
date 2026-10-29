@@ -18,7 +18,8 @@ public sealed class AttendenceHandler
             logger.LogError("no attendence found with session id {SessionId}", request.SessionId);
             return ApplicationErrors.AttendenceNotFound;
         }
-         
+        attendence.Session.Course.NumberOfEnrollments = 
+            await context.Enrollments.CountAsync(e=>e.CourseId==attendence.Session.CourseId,cancellationToken);
 
         return attendence.ToDto();
     }

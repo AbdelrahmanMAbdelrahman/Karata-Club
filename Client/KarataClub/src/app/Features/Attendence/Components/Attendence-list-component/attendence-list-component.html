@@ -37,6 +37,7 @@
                     <td>{{attendence?.session?.numberOfHours}} </td>
                     <td>{{memberAttendence.exist?'Yes':'NO'}} </td>
                     <td><input type="checkbox" 
+                    [checked]="memberAttendence.exist"
                         (change)="OnExistChanged(memberAttendence.member.memberId,$event)"></td>
                 
                 </tr>
@@ -48,9 +49,9 @@
             class="btn btn-outline-primary" 
             (click)="SaveAttendence()">Save Attendence</button>
             <div class="pagination">
-                <button [disabled]="!memberAttendence?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
+                <button (click)="GetPrev();" [disabled]="!memberAttendence?.hasPreviousPage" class="btn btn-outline-primary">Previous</button>
                 <p class="text-light mt-2">Page {{memberAttendence?.totalPages}} / {{memberAttendence?.pageNumber}}</p>
-                <button [disabled]="!memberAttendence?.hasNextPage" 
+                <button (click)="GetNext()" [disabled]="!memberAttendence?.hasNextPage" 
                 class="btn btn-outline-primary">Next</button> 
             </div>
         </div>

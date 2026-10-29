@@ -31,59 +31,66 @@ import { SessionCreatePage } from './Features/Sessions/Pages/Session-create-page
 import { SessionDetailPage } from './Features/Sessions/Pages/session-detail-page/session-detail-page';
 import { AttendenceListPage } from './Features/Attendence/Pages/attendence-list-page/attendence-list-page';
 import { AttendencePage } from './Features/Attendence/Pages/attendence-page/attendence-page';
+import { AuthPage } from './Features/Auth/Pages/auth-page/auth-page';
+import { LoginPage } from './Features/Auth/Pages/login-page/login-page';
+import { AuthGuard } from './AuthGuard';
 
 export const routes: Routes = [
-    {path:"",component:HomePageComponent,
+    {path:"",component:HomePageComponent,canActivate:[AuthGuard],
         children:[
-    {path:"InstructorPage",component:InstructorPage,
+    {path:"InstructorPage",
         children:[
-            {path:"InstructorCreatePage/:id",component:InstructorCreatePage},
-            {path:"InstructorListPage",component:InstructorListPage},
-            {path:"InstructorDetailPage/:id",component:InstructorDetailPage},
+            {path:"InstructorCreatePage/:id",component:InstructorCreatePage,canActivate:[AuthGuard]},
+            {path:"InstructorListPage",component:InstructorListPage,canActivate:[AuthGuard]},
+            {path:"InstructorDetailPage/:id",component:InstructorDetailPage,canActivate:[AuthGuard]},
         ]},
-    {path:"MemberPage",component:MemberPage,
+    {path:"MemberPage",
         children:[
-            {path:"MemberCreatePage/:id",component:MemberCreatePage},
-            {path:"MemberListPage",component:MemberListPage},
-            {path:"MemberDetailPage/:id",component:MemberDetailPage},
+            {path:"MemberCreatePage/:id",component:MemberCreatePage,canActivate:[AuthGuard]},
+            {path:"MemberListPage",component:MemberListPage,canActivate:[AuthGuard]},
+            {path:"MemberDetailPage/:id",component:MemberDetailPage,canActivate:[AuthGuard]},
         ]},
-    {path:"CoursePage",component:CoursePage,
+    {path:"CoursePage",
         children:[
-            {path:"CourseCreatePage/:id",component:CourseCreatePage},
-            {path:"CourseListPage",component:CourseListPage},
-            {path:"CourseDetailPage/:id",component:CourseDetailPage},
+            {path:"CourseCreatePage/:id",component:CourseCreatePage,canActivate:[AuthGuard]},
+            {path:"CourseListPage",component:CourseListPage,canActivate:[AuthGuard]},
+            {path:"CourseDetailPage/:id",component:CourseDetailPage,canActivate:[AuthGuard]},
         ]},
-        {path:"BeltRankPage",component:BeltRankPage,
+        {path:"BeltRankPage",
         children:[
-            {path:"BeltRankCreatePage/:id",component:BeltRankCreatePage},
-            {path:"BeltRankListPage",component:BeltRankListPage},
-            {path:"BeltRankDetailPage/:id",component:BeltRankDetailPage},
+            {path:"BeltRankCreatePage/:id",component:BeltRankCreatePage,canActivate:[AuthGuard]},
+            {path:"BeltRankListPage",component:BeltRankListPage,canActivate:[AuthGuard]},
+            {path:"BeltRankDetailPage/:id",component:BeltRankDetailPage,canActivate:[AuthGuard]},
         ]},
-    {path:"SubscriptionPage",component:SubscriptionPage,
+    {path:"SubscriptionPage",
         children:[
-            {path:"SubscriptionCreatePage/:id",component:SubscriptionCreatePage},
-            {path:"SubscriptionListPage",component:SubscriptionListPage},
+            {path:"SubscriptionCreatePage/:id",component:SubscriptionCreatePage,canActivate:[AuthGuard]},
+            {path:"SubscriptionListPage",component:SubscriptionListPage,canActivate:[AuthGuard]},
         ]},
-    {path:"EnrollmentPage",component:EnrollmentPage,
+    {path:"EnrollmentPage",
         children:[
-            {path:"EnrollmentCreatePage/:id",component:EnrollmentCreatePage},
-            {path:"EnrollmentListPage",component:EnrollmentListPage},
-            {path:"EnrollmentDetailPage/:id",component:EnrollmentDetailPage},
+            {path:"EnrollmentCreatePage/:id",component:EnrollmentCreatePage,canActivate:[AuthGuard]},
+            {path:"EnrollmentListPage",component:EnrollmentListPage,canActivate:[AuthGuard]},
+            {path:"EnrollmentDetailPage/:id",component:EnrollmentDetailPage,canActivate:[AuthGuard]},
         ]},
-    {path:"AttendencePage",component:AttendencePage,
+    {path:"AttendencePage",
         children:[
-            {path:"AttendenceListPage/:id",component:AttendenceListPage},
+            {path:"AttendenceListPage/:id",component:AttendenceListPage,canActivate:[AuthGuard]},
         ]},
-    {path:"SessionPage",component:SessionPage,
+    {path:"SessionPage",
         children:[
-            {path:"SessionCreatePage/:id",component:SessionCreatePage},
-            {path:"SessionDetailPage/:id",component:SessionDetailPage},
+            {path:"SessionCreatePage/:id",component:SessionCreatePage,canActivate:[AuthGuard]},
+            {path:"SessionDetailPage/:id",component:SessionDetailPage,canActivate:[AuthGuard]},
         ]},
-        {path:"BeltTestPage",component:BeltTestPage,
+        {path:"BeltTestPage",
         children:[
-            {path:"BeltTestCreatePage/:id",component:BeltTestCreatePage},
-            {path:"BeltTestDetailPage/:id",component:BeltTestDetailPage},
+            {path:"BeltTestCreatePage/:id",component:BeltTestCreatePage,canActivate:[AuthGuard]},
+            {path:"BeltTestDetailPage/:id",component:BeltTestDetailPage,canActivate:[AuthGuard]},
         ]},
-        ]
-    }
+    ]
+},
+{path:"AuthPage",component:AuthPage,
+children:[
+    {path:"Login",component:LoginPage},
+]},
 ];
