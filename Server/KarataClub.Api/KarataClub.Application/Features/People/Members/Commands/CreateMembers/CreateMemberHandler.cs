@@ -1,9 +1,12 @@
 ﻿using KarataClub.Application.Features.People.Members.Dtos;
 using KarataClub.Application.Features.People.Members.Mappers;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace KarataClub.Application.Features.People.Members.Commands.CreateMembers;
 
-public sealed class CreateMemberHandler(IAppDbContext context, ILogger<CreateMemberHandler> logger)
+public sealed class CreateMemberHandler(IAppDbContext context,
+    HybridCache hybridCache,
+    ILogger<CreateMemberHandler> logger)
     : IRequestHandler<CreateMemberCommand, Result<MemberDto>>
 {
     public async Task<Result<MemberDto>> Handle(CreateMemberCommand request, CancellationToken cancellationToken)
@@ -35,7 +38,7 @@ public sealed class CreateMemberHandler(IAppDbContext context, ILogger<CreateMem
         member.Person = person;
         await context.Members.AddAsync(member,cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-
+        await hybridCache.RemoveByTagAsync("Member");
         return member.ToDto();
     }
 }

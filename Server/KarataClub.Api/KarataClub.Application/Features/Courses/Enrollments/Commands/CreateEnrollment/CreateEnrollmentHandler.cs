@@ -1,9 +1,12 @@
 ﻿
 
+using Microsoft.Extensions.Caching.Hybrid;
+
 namespace KarataClub.Application.Features.Courses.Enrollments.Commands.CreateEnrollment;
 
 public sealed class CreateEnrollmentHandler (
-    IAppDbContext context,ILogger<CreateEnrollmentHandler>logger,TimeProvider timeProvider
+    IAppDbContext context,HybridCache hybridCache,
+    ILogger<CreateEnrollmentHandler>logger,TimeProvider timeProvider
     ): IRequestHandler<EnrollmentCommand, Result<EnrollmentDto>>
 {
     public async Task<Result<EnrollmentDto>> Handle(EnrollmentCommand request, CancellationToken cancellationToken)
@@ -63,6 +66,8 @@ public sealed class CreateEnrollmentHandler (
 
         await context.Enrollments.AddAsync(courseEnrollment,cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
+        await hybridCache.RemoveByTagAsync("Enrollment");
+        await hybridCache.RemoveByTagAsync("Course");
         return courseEnrollment.ToDto();
 
 

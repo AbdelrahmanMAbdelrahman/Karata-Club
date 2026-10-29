@@ -1,7 +1,4 @@
-﻿using KarataClub.Application.Features.BeltRanks.Dtos;
-using KarataClub.Application.Features.BeltRanks.Mappers;
-
-namespace KarataClub.Application.Features.BeltRanks.Queries.GetBeltRank;
+﻿namespace KarataClub.Application.Features.BeltRanks.Queries.GetBeltRank;
 
 public sealed class GetBeltRankHandler (
     IAppDbContext context,ILogger<GetBeltRankHandler>logger

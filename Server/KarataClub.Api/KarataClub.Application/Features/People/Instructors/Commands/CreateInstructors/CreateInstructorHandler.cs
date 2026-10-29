@@ -1,11 +1,8 @@
-﻿
-using KarataClub.Application.Features.People.Instructors.Mappers;
-using Microsoft.Extensions.Logging;
-
+﻿using Microsoft.Extensions.Caching.Hybrid;
 namespace KarataClub.Application.Features.People.Instructors.Commands.CreateInstructors;
 
 public sealed class CreateInstructorHandler
-    (IAppDbContext context,ILogger<CreateInstructorHandler>logger)
+    (IAppDbContext context,ILogger<CreateInstructorHandler>logger,HybridCache hybridCache)
     : IRequestHandler<CreateInstructorCommand, Result<InstructorDto>>
 {
     public async Task<Result<InstructorDto>> Handle(CreateInstructorCommand request, CancellationToken cancellationToken)
@@ -37,7 +34,7 @@ public sealed class CreateInstructorHandler
         instructor.Person = person;
         await context.Instructors.AddAsync(instructor, cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-
+        await hybridCache.RemoveByTagAsync("Instructor");
         return instructor.ToDto();
     }
 }

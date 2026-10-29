@@ -1,11 +1,10 @@
-﻿using KarataClub.Application.Features.Subscriptions.Dtos;
-using KarataClub.Application.Features.Subscriptions.Mappers;
-using KarataClub.Domain.Subscriptions;
+﻿using Microsoft.Extensions.Caching.Hybrid;
 
 namespace KarataClub.Application.Features.Subscriptions.Commands.CreateSubscriptions;
 
 public class CreateSubscriptionHandler(
-    IAppDbContext context, ILogger<CreateSubscriptionHandler> logger,TimeProvider timeProvider
+    IAppDbContext context, HybridCache hybridCache,
+    ILogger<CreateSubscriptionHandler> logger,TimeProvider timeProvider
     ) : IRequestHandler<CreateSubscriptionCommand, Result<SubscriptionDto>>
 {
     async Task<Result<SubscriptionDto>> IRequestHandler<CreateSubscriptionCommand,
@@ -52,7 +51,7 @@ public class CreateSubscriptionHandler(
         subscription.Payment = createPaymentResult.Value;
         await context.Subscriptions.AddAsync(subscription,cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-
+        await hybridCache.RemoveByTagAsync("Subscription");
         return subscription.ToDto();
 
     }

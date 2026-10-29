@@ -1,10 +1,13 @@
 ﻿using KarataClub.Application.Features.Sessions.Dtos;
 using KarataClub.Application.Features.Sessions.Mappers;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace KarataClub.Application.Features.Sessions.Commands.CreateSession;
 
 public sealed class CreateSessionHandler 
-    (IAppDbContext context,ILogger<CreateSessionHandler>logger,TimeProvider timeProvider)
+    (IAppDbContext context,
+    ILogger<CreateSessionHandler>logger,
+    TimeProvider timeProvider,HybridCache hybridCache)
     : IRequestHandler<CreateSessionCommand, Result<SessionDto>>
 {
     async Task<Result<SessionDto>> IRequestHandler<CreateSessionCommand, 
@@ -45,6 +48,7 @@ public sealed class CreateSessionHandler
         await context.Sessions.AddAsync(createSessionResult.Value);
         await context.SaveChangesAsync(cancellationToken);
         createSessionResult.Value.Course = courseFile.Course;
+        await hybridCache.RemoveByTagAsync("session");
         return createSessionResult.Value.ToDto();
 
     }

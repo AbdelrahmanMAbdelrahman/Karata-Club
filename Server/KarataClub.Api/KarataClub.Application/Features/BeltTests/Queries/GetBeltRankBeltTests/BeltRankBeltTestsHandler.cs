@@ -1,7 +1,4 @@
-﻿
-
-
-namespace KarataClub.Application.Features.BeltTests.Queries.GetBeltRankBeltTests
+﻿namespace KarataClub.Application.Features.BeltTests.Queries.GetBeltRankBeltTests
 {
     internal class MemberBeltTestsHandler(
         IAppDbContext context, ILogger<MemberBeltTestsHandler> logger

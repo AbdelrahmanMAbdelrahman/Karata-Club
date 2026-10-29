@@ -1,10 +1,12 @@
 ﻿using KarataClub.Application.Features.UploadedFiles.Dtos;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace KarataClub.Application.Features.BeltRanks.Commands.CreateBeltRanks;
 
 public sealed class CreateBeltRankHandler(
     IAppDbContext context,
     ILogger<CreateBeltRankHandler> logger,
+    HybridCache hybridCache,
     IFileStorage fileStorage
     ) : IRequestHandler<CreateBeltRankCommand, Result<BeltRankFileDto>>
 {
@@ -57,12 +59,12 @@ public sealed class CreateBeltRankHandler(
         }
         BeltRankFile beltRankFile = createBeltRankFileResult.Value;
         beltRankFile.BeltRank = beltRank;
-        beltRankFile.UploadedFile = createFileResult.Value??null;
+        beltRankFile.UploadedFile = createFileResult!.Value??null;
        
 
         await context.BeltRankFiles.AddAsync(beltRankFile,cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-
+        await hybridCache.RemoveByTagAsync("BeltRank",cancellationToken);
         return beltRankFile.ToDto()!;
     }
 }

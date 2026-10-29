@@ -1,12 +1,13 @@
 ﻿
 using KarataClub.Application.Features.UploadedFiles.Dtos;
+using Microsoft.Extensions.Caching.Hybrid;
 
 namespace KarataClub.Application.Features.Courses.Commands.CreateCourses;
 
 public sealed class CreateCourseHandler(
     IAppDbContext context,
     ILogger<CreateCourseHandler> logger,
-    IFileStorage fileStorage
+    IFileStorage fileStorage,HybridCache hybridCache
     ) : IRequestHandler<CreateCourseCommand, Result<CourseFileDto>>
 {
     public async Task<Result<CourseFileDto>> Handle(CreateCourseCommand request, CancellationToken cancellationToken)
@@ -62,7 +63,7 @@ public sealed class CreateCourseHandler(
 
         await context.CourseFiles.AddAsync(courseFile,cancellationToken);
         await context.SaveChangesAsync(cancellationToken);
-
+        await hybridCache.RemoveByTagAsync("Course");
         return courseFile.ToDto();
     }
 }

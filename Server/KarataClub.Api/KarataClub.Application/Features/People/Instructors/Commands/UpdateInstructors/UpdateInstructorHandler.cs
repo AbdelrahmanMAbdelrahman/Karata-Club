@@ -1,13 +1,15 @@
 ﻿
+using Microsoft.Extensions.Caching.Hybrid;
 using Microsoft.Extensions.Logging;
 
 namespace KarataClub.Application.Features.People.Instructors.Commands.UpdateInstructors;
 
 public sealed class UpdateInstructorHandler
-    (IAppDbContext context,ILogger<UpdateInstructorHandler> logger)
+    (IAppDbContext context,ILogger<UpdateInstructorHandler> logger,HybridCache hybridCache)
     : IRequestHandler<UpdateInstructorCommand, Result<Updated>>
 {
-    public async Task<Result<Updated>> Handle(UpdateInstructorCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Updated>> Handle(
+        UpdateInstructorCommand request, CancellationToken cancellationToken)
     {
         var instructor = await context.Instructors.Include(m => m.Person)
                  .FirstOrDefaultAsync(i => i.Id == request.InstructorId);
@@ -29,6 +31,7 @@ public sealed class UpdateInstructorHandler
             return updateInstructorResult.Errors;
         }
         await context.SaveChangesAsync(cancellationToken);
+        await hybridCache.RemoveByTagAsync("Instructor");
         return Result.Updated;
     }
 }

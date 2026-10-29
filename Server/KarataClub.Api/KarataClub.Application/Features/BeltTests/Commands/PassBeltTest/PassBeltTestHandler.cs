@@ -1,10 +1,9 @@
-﻿
-using System.Reflection.Metadata.Ecma335;
+﻿using Microsoft.Extensions.Caching.Hybrid;
 
 namespace KarataClub.Application.Features.BeltTests.Commands.PassBeltTest;
 
 public sealed class PassBeltTestHandler (
-    IAppDbContext context,ILogger<PassBeltTestHandler> logger
+    IAppDbContext context,ILogger<PassBeltTestHandler> logger,HybridCache hybridCache
     ): IRequestHandler<PassBeltCommand, Result<Updated>>
 {
     public async Task<Result<Updated>> Handle(PassBeltCommand request, CancellationToken cancellationToken)
@@ -38,6 +37,8 @@ public sealed class PassBeltTestHandler (
         }
 
         await context.SaveChangesAsync(cancellationToken);
+        await hybridCache.RemoveByTagAsync("BeltTest");
+        await hybridCache.RemoveByTagAsync("Member");
         return Result.Updated;
 
     }

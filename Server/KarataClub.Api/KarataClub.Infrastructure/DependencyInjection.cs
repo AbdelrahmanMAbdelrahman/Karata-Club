@@ -1,6 +1,5 @@
 ﻿using KarataClub.Infrastructure.Services;
-using Microsoft.Extensions.DependencyInjection;
-
+using Microsoft.Extensions.Caching.Hybrid; 
 namespace KarataClub.Infrastructure;
 
 public static class DependencyInjection
@@ -34,6 +33,16 @@ public static class DependencyInjection
         servicies.AddScoped<ITokenProvider, TokenProvider>();
         servicies.AddScoped<IFileStorage, FileStorage>();
         servicies.AddScoped<AppDbContextInitializer>();
+        servicies.AddHybridCache(options =>
+        {
+            options.DefaultEntryOptions = new HybridCacheEntryOptions
+            {
+                Expiration = TimeSpan.FromMinutes(10),
+                LocalCacheExpiration = TimeSpan.FromSeconds(30)
+            };
+
+
+        });
         return servicies;
 
     }

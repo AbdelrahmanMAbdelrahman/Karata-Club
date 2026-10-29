@@ -1,8 +1,11 @@
 ﻿
+using Microsoft.Extensions.Caching.Hybrid;
+using System.Collections.Specialized;
+
 namespace KarataClub.Application.Features.People.Members.Commands.UpdateMembers
 {
     public class UpdateMemberHandler 
-        (IAppDbContext context,ILogger<UpdateMemberHandler>logger)
+        (IAppDbContext context,ILogger<UpdateMemberHandler>logger,HybridCache hybridCache)
         : IRequestHandler<UpdateMemberCommand, Result<Updated>>
     {
         public async Task<Result<Updated>> Handle(UpdateMemberCommand request, CancellationToken cancellationToken)
@@ -21,6 +24,7 @@ namespace KarataClub.Application.Features.People.Members.Commands.UpdateMembers
                 return updatePersonResult.Errors;
             }
             await context.SaveChangesAsync(cancellationToken);
+            await hybridCache.RemoveByTagAsync("Member");
             return Result.Updated;
         }
     }

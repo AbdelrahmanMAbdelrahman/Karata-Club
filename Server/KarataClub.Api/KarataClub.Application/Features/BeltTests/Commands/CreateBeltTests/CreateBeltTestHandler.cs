@@ -1,7 +1,12 @@
-﻿namespace KarataClub.Application.Features.BeltTests.Commands.CreateBeltTests;
+﻿using Microsoft.Extensions.Caching.Hybrid;
+
+namespace KarataClub.Application.Features.BeltTests.Commands.CreateBeltTests;
 
 public sealed class CreateBeltTestHandler(
-    IAppDbContext context,ILogger<CreateBeltTestHandler>logger,TimeProvider timeProvider
+    IAppDbContext context,ILogger<
+        CreateBeltTestHandler>logger,
+    TimeProvider timeProvider,
+    HybridCache hybridCache
     ) : IRequestHandler<CreateBeltTestCommand, Result<BeltTestDto>>
 {
     public async Task<Result<BeltTestDto>> Handle(CreateBeltTestCommand request, CancellationToken cancellationToken)
@@ -78,6 +83,7 @@ public sealed class CreateBeltTestHandler(
         beltTest.Member= member;
         beltTest.Instructor= instructor;
         beltTest.BeltRank= beltRank;
+        await hybridCache.RemoveByTagAsync("BeltTest");
         return beltTest.ToDto();
     }
 }

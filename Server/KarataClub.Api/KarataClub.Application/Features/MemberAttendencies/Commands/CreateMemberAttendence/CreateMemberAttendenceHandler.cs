@@ -1,7 +1,11 @@
-﻿namespace KarataClub.Application.Features.MemberAttendencies.Commands.CreateMemberAttendence;
+﻿using Microsoft.Extensions.Caching.Hybrid;
+
+namespace KarataClub.Application.Features.MemberAttendencies.Commands.CreateMemberAttendence;
 
 public sealed class CreateMemberAttendenceHandler(
-    IAppDbContext context, ILogger<CreateMemberAttendenceHandler> logger)
+    IAppDbContext context, ILogger<CreateMemberAttendenceHandler> logger,
+    HybridCache hybridCache
+    )
     : IRequestHandler<CreateMemberAttendenceCommand, Result<AttendenceDto>>
 {
     async Task<Result<AttendenceDto>> IRequestHandler<CreateMemberAttendenceCommand,
@@ -67,6 +71,7 @@ public sealed class CreateMemberAttendenceHandler(
             .Include(ma=>ma.Member)
               .ThenInclude(m=>m.LastBeltRank)
             .Where(ma=>membersIds.Contains(ma.MemberId)).ToListAsync(cancellationToken);
+        await hybridCache.RemoveByTagAsync("Attendence",cancellationToken);
         return attendence.ToDto();
     }
 }
