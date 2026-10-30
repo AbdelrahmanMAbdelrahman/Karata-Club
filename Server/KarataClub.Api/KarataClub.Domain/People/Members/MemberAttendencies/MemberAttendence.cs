@@ -20,7 +20,8 @@ public sealed class MemberAttendence : AuditEntity
         this.SessionId = sessionId;
         this.Exist = exist;
     }
-    public static Result<MemberAttendence> Create(Guid memberId, Guid sessionId, Guid attendenceId, bool exist = false)
+    public static Result<MemberAttendence> Create(
+        Guid memberId, Guid sessionId, Guid attendenceId, bool exist = false)
     {
         if (memberId == Guid.Empty) return MemberAttendenceErrors.InvalidMemberId(memberId);
         if (attendenceId == Guid.Empty) return MemberAttendenceErrors.InvalidAttendenceId(attendenceId);

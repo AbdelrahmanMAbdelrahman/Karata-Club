@@ -18,7 +18,8 @@ public sealed class AppUser:IdentityUser
         UserName = userName;
     }
 
-    public static Result<AppUser> Create(string firstName, string lastName, string email, string phone, string userName)
+    public static Result<AppUser> Create(
+        string firstName, string lastName, string email, string phone, string userName)
     {
         if (string.IsNullOrWhiteSpace(firstName)) return AppUserErrors.InvalidFirstName;
         if (string.IsNullOrWhiteSpace(lastName)) return AppUserErrors.InvalidLastName;
