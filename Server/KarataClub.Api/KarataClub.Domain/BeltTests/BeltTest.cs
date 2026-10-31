@@ -42,6 +42,7 @@ public class BeltTest:AuditEntity
         if (beltRankId == Guid.Empty) return BeltTestErrors.InvalidBeltRankId;
         if (memberId == Guid.Empty) return BeltTestErrors.InvalidMemberId;
         if (paymentId == Guid.Empty) return BeltTestErrors.InvalidPaymentId;
+        if (instructorId == Guid.Empty) return BeltTestErrors.InvalidInstructorId;
 
         return new BeltTest(Guid.NewGuid(),testDate,beltRankId,reservationDate,instructorId,memberId,passed,paymentId);
     }

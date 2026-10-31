@@ -10,7 +10,7 @@ namespace KarataClub.Tests.Common.BeltRanks
         {
             return BeltRankFile.Create(
                 beltRankId??Guid.NewGuid(),
-                uploadedFileId??Guid.NewGuid()
+                uploadedFileId
                 );
         }
     }

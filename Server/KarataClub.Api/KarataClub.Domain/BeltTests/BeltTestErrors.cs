@@ -2,6 +2,8 @@
 
 internal class BeltTestErrors
 {
+    internal static Error InvalidInstructorId => Error.Validation("BeltTestErrors.InvalidInstructorId", $"provide a valid Instructor id");
+
     internal static Error InvalidTestDate(DateTimeOffset testDate) => Error.Validation("BeltTestErrors.InvalidTestDate",$"provide a valid test date greated than {testDate}");
     internal static Error InvalidReservationDate(DateTimeOffset reservationDate) => Error.Validation("BeltTestErrors.ReservationDate", $"provide a valid Reservation Date greated than {reservationDate}");
     internal static Error InvalidBeltRankId=> Error.Validation("BeltTestErrors.InvalidBeltRankId", $"provide a valid Belt rank id");

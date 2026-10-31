@@ -6,6 +6,6 @@ internal class CourseErrors
     internal static Error InvalidCourseSessions=Error.Validation("CourseErrors.InvalidCourseSessions", "Invalid Course Sessions");
     internal static Error InvalidCourseName=Error.Validation("CourseErrors.InvalidCourseName", "Invalid Course Name");
     internal static Error InvalidCourseFees=Error.Validation("CourseErrors.InvalidCourseFees", "Invalid Course Fees");
-    internal static Result<Course> InvalidCourseStartDate;
-    internal static Result<Course> InvalidPriority;
+    internal static Error InvalidCourseStartDate=>Error.Validation("CourseErrors.InvalidCourseStartDate", "Invalid Course Start Date");
+    internal static Error InvalidPriority=>Error.Validation("CourseErrors.", "Invalid Priority");
 }

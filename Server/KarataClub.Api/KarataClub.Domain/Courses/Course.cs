@@ -34,10 +34,10 @@ public class Course:AuditEntity
     public static Result<Course> Create(string courseName, decimal fees, int numberOfSessions,
         decimal totalHours, DateTimeOffset startAt, DateTimeOffset endAt, Priority priority)
     {
-        if (startAt > endAt) return CourseErrors.InvalidCourseStartDate;
+        if (endAt.Subtract(  startAt).TotalDays<1) return CourseErrors.InvalidCourseStartDate;
         if (!Enum.IsDefined(priority)) return CourseErrors.InvalidPriority;
         if (string.IsNullOrWhiteSpace(courseName)) return CourseErrors.InvalidCourseName;
-        if (fees < 0 || fees > 10000) return CourseErrors.InvalidCourseFees;
+        if (fees <= 0 || fees > 10000) return CourseErrors.InvalidCourseFees;
         if (numberOfSessions <= 0 || numberOfSessions > 100) return CourseErrors.InvalidCourseSessions;
         if (totalHours <= 0 || totalHours > 500) return CourseErrors.InvalidCourseTotalHours;
 

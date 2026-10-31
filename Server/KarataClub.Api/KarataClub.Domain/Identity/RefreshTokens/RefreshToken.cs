@@ -17,9 +17,9 @@ public sealed class RefreshToken:AuditEntity
     }
     public static Result<RefreshToken> Create(string userId, string token, DateTimeOffset expireAt)
     {
-        if (string.IsNullOrWhiteSpace(userId)) return RefreshTokenErrors.InvalidRefreshToken;
+        if (string.IsNullOrWhiteSpace(userId)||Guid.Parse(userId)==Guid.Empty) return RefreshTokenErrors.InvalidRefreshToken;
         if (string.IsNullOrWhiteSpace(token)) return RefreshTokenErrors.InvalidToken;
-        if (expireAt <= DateTime.UtcNow) return RefreshTokenErrors.InvalidExpirationDate;
+        if (expireAt <= DateTimeOffset.UtcNow) return RefreshTokenErrors.InvalidExpirationDate;
 
         return new RefreshToken(Guid.NewGuid(),userId,token,expireAt);
     }

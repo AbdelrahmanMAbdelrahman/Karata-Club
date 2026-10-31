@@ -22,7 +22,7 @@ public class BeltRank : AuditEntity
     public static Result<BeltRank> Create(string rankName, decimal testFees, Priority rankPriority)
     {
         if (string.IsNullOrEmpty(rankName)) return BeltRankErrors.InvalidRankName;
-        if (testFees < 0 || testFees > 10000m) return BeltRankErrors.InvalidTestFees;
+        if (testFees <= 0 || testFees > 10000m) return BeltRankErrors.InvalidTestFees;
         if (!Enum.IsDefined(rankPriority)) return BeltRankErrors.InvalidRankPriority;
 
         return new BeltRank(Guid.NewGuid(),rankName,testFees,rankPriority);
